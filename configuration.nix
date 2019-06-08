@@ -1,21 +1,56 @@
 { config, pkgs, ... }:
 
-
 let
   unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
   all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
-
 in
 {
   system.stateVersion = "19.03";
 
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      # ./build.nix
     ];
 
+  hardware = {
+    # enableAllFirmware = true;
+    enableRedistributableFirmware = true;
+    cpu = {
+      amd.updateMicrocode = true;
+      intel.updateMicrocode = true;
+    };
+  };
+  # for skype
+  # hardware.pulseaudio.enable = true;
+
   nixpkgs.config = {
-    packageOverrides = pkgs: {
+#    packageOverrides = pkgs: {
+#       emacs = pkgs.emacs.override {
+#         srcRepo = true;
+#         imagemagick = false;
+#         version = "27.0.5";
+#      };
+
+      packageOverrides = pkgs: {
+      emacs = (pkgs.emacs.override { srcRepo = true; imagemagick = false; }).overrideAttrs (old: rec {
+         name = "emacs-${version}${versionModifier}";
+              version = "27.0.50";
+              versionModifier = "-git";
+              src = pkgs.fetchFromGitHub {
+                owner = "emacs-mirror";
+                repo = "emacs";
+
+                rev = "e751431989f0af69a7eabf26a86ccac8d8aab74f";
+                #rev = "4dv3f68b76sb47xy5nri28x7a0wflqf8";
+                sha256 = "0alb8g9bflkk5yy5wrk069ihbwynyib2wilz36125ibs7p6l084h";
+              };
+             patches = [];
+            });
+
+    
       unstable = import unstableTarball {
         config = config.nixpkgs.config;
       };
@@ -23,6 +58,7 @@ in
   };
 
   # Add binary caches
+  nix.useSandbox = true;
   nix.binaryCaches = [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" ];
   nix.binaryCachePublicKeys = [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
 
@@ -51,6 +87,8 @@ in
      unstable.emacs unstable.firefox unstable.git unstable.git-lfs unstable.redshift unstable.gimp
 
      dovecot
+     
+     direnv
 
      # Security
      gnupg unstable.pinentry_emacs
@@ -94,8 +132,6 @@ in
 
   # List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-   services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -116,7 +152,36 @@ in
   # services.xserver.xkbOptions = "eurosign:e";
   #  services.xserver.displayManager.lightdm.enable = false;
 
-  services.xserver = {
+services = {
+  emacs.defaultEditor = true;
+
+  # SMART.
+  smartd = {
+    enable = true;
+    devices = [{ device = "/dev/sda"; }];
+    notifications.test = true;
+    notifications.x11.enable = true;
+  };
+  fstrim.enable = true;
+
+    physlock = {
+      enable = true;
+      lockOn = {
+        suspend = true;
+        hibernate = true;
+        # systemd[1]: Starting Physlock...
+        # physlock-start[774]: physlock: Unable to detect user of tty1
+        # extraTargets = ["display-manager.service"];
+      };
+    };
+
+# Enable the OpenSSH daemon.
+openssh = {
+  enable = true;
+  forwardX11 = true;
+};
+
+xserver = {
       enable = true;
       #autorun = false;
       layout = "us";
@@ -132,24 +197,34 @@ in
       manage = "desktop";
       name = "emacs";
       start = ''
-          ${pkgs.emacs}/bin/emacs &
+          #${pkgs.emacs}/bin/emacs &
+          emacs &
           waitPID=$!
       '';
       }];
   };
   
   # Enable the locate service, it doesn't work otherwise
-  services.locate = {
+  locate = {
       enable = true;
       # just never auto update the database, they use cron as a to run locate at time intervals, this expression makes it never evauate (unless the year is 3099)
       interval = "0 0 0 1 1 ? 3099";
   };
-  #users.mutableUsers = false;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.admin = {
+};
+
+  users = {
+      extraUsers.admin = {
+      group = "users";
+
       isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      # extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      uid = 1000;
+      extraGroups = [ "wheel" "audio" "video" "usbmux" "networkmanager" ];
       #"mlocate" 
       password = "";   
+      };
+      mutableUsers = true;
   };
 }
