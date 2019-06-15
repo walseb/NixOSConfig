@@ -70,7 +70,7 @@ in
      
      unstable.mono unstable.guile unstable.gcc
 
-     mlocate atool unzip ag unstable.imagemagick wget openssh ffmpeg 
+     mlocate atool unzip ag unstable.imagemagick wget openssh ffmpeg p7zip
 
      aspell aspellDicts.en aspellDicts.sv
 
@@ -79,12 +79,17 @@ in
      poppler
 
      # Haskell
-     stack ghc haskellPackages.ghcid cabal-install cabal2nix hlint
+     stack ghc cabal2nix cabal-install hlint haskellPackages.hoogle
+     
      # Install stable HIE for GHC845 (GHC 864 and 863 is commented out). Looks like the binaries only exist for stable versions of ghc (ghc864)
-     (all-hies.selection { selector = p: { inherit (p) /* ghc864 ghc863 */ ghc864; }; })
+     # (all-hies.selection { selector = p: { inherit (p) /* ghc864 ghc863 */ ghc864; }; })
  
      # Applications
-     unstable.emacs unstable.firefox unstable.git unstable.git-lfs unstable.redshift unstable.gimp
+     emacs 
+     unstable.firefox unstable.git unstable.git-lfs unstable.redshift unstable.gimp mpv
+     pavucontrol
+     
+     harfbuzz
 
      dovecot
      
