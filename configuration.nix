@@ -7,8 +7,7 @@ in
 {
   system.stateVersion = "19.03";
 
-  imports =
-    [
+  imports = [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
 
@@ -27,13 +26,6 @@ in
   # hardware.pulseaudio.enable = true;
 
   nixpkgs.config = {
-#    packageOverrides = pkgs: {
-#       emacs = pkgs.emacs.override {
-#         srcRepo = true;
-#         imagemagick = false;
-#         version = "27.0.5";
-#      };
-
       packageOverrides = pkgs: {
       emacs = (pkgs.emacs.override { srcRepo = true; imagemagick = false; }).overrideAttrs (old: rec {
          name = "emacs-${version}${versionModifier}";
@@ -44,7 +36,6 @@ in
                 repo = "emacs";
 
                 rev = "e751431989f0af69a7eabf26a86ccac8d8aab74f";
-                #rev = "4dv3f68b76sb47xy5nri28x7a0wflqf8";
                 sha256 = "0alb8g9bflkk5yy5wrk069ihbwynyib2wilz36125ibs7p6l084h";
               };
              patches = [];
@@ -81,8 +72,10 @@ in
      # Haskell
      stack ghc cabal2nix cabal-install hlint haskellPackages.hoogle
      
+     #binutils
+     
      # Install stable HIE for GHC845 (GHC 864 and 863 is commented out). Looks like the binaries only exist for stable versions of ghc (ghc864)
-     # (all-hies.selection { selector = p: { inherit (p) /* ghc864 ghc863 */ ghc864; }; })
+      (all-hies.selection { selector = p: { inherit (p) /* ghc864 ghc863 */ ghc864; }; })
  
      # Applications
      emacs 
@@ -102,7 +95,7 @@ in
      linuxPackages.virtualboxGuestAdditions
   ];
 
-  fonts.fonts = [ pkgs.inconsolata-lgc pkgs.open-sans ];
+  fonts.fonts = [ pkgs.inconsolata-lgc pkgs.dejavu_fonts ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
