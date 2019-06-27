@@ -70,7 +70,10 @@ in
      poppler
 
      # Haskell
-     stack ghc cabal2nix cabal-install hlint haskellPackages.hoogle
+     ghc cabal-install cabal2nix 
+
+     # Haskell editor
+     hlint haskellPackages.hoogle
      
      #binutils
      
