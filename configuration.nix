@@ -30,8 +30,6 @@ in
 
   nixpkgs.config = {
     packageOverrides = pkgs: {
-      emacs = (pkgs.haskellPackages.halive.override { srcRepo = true; imagemagick = false; }).overrideAttrs (old: rec {
-    
       emacs = (pkgs.emacs.override { srcRepo = true; imagemagick = false; }).overrideAttrs (old: rec {
         name = "emacs-${version}${versionModifier}";
         version = "27.0.50";
