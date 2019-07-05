@@ -76,7 +76,9 @@ in
     poppler
 
     # Haskell
-    ghc haskellPackages.halive cabal-install cabal2nix 
+    ghc cabal-install cabal2nix 
+    # Broken
+    # haskellPackages.halive 
 
     # Haskell editor
     hlint haskellPackages.hoogle
