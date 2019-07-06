@@ -84,6 +84,7 @@ in
     # Haskell editor
     hlint haskellPackages.hoogle
 
+    cachix
 
     #binutils
 
@@ -162,7 +163,7 @@ in
   # services.xserver.xkbOptions = "eurosign:e";
   #  services.xserver.displayManager.lightdm.enable = false;
 
-# services.dovecot2
+  # services.dovecot2
 
 
   services = {
