@@ -13,6 +13,7 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./cachix.nix
 
     # ./build.nix
   ];
@@ -38,8 +39,8 @@ in
           owner = "emacs-mirror";
           repo = "emacs";
 
-          rev = "e751431989f0af69a7eabf26a86ccac8d8aab74f";
-          sha256 = "0alb8g9bflkk5yy5wrk069ihbwynyib2wilz36125ibs7p6l084h";
+          rev = "dde0320020429a2d2917895fc0e2f5a24ffe6348";
+          sha256 = "1xnjxmd8bdi01wdqshl5w613xb5v2i9f1hm33hharggmnpwydr2q";
         };
         patches = [];
       });
