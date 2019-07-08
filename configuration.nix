@@ -8,13 +8,18 @@ let
   all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
 in
 {
-  system.stateVersion = "19.03";
-
   imports = [
     ./hardware-configuration.nix
     ./cachix.nix
     ./device.nix
   ];
+
+  system.stateVersion = "19.03";
+  
+  # Add binary caches
+  nix.useSandbox = true;
+  nix.binaryCaches = [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" ];
+  nix.binaryCachePublicKeys = [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
 
   nixpkgs.config = {
     # Enable use of nixos unstable
@@ -39,11 +44,6 @@ in
       });
     };
   };
-
-  # Add binary caches
-  nix.useSandbox = true;
-  nix.binaryCaches = [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" ];
-  nix.binaryCachePublicKeys = [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
 
   environment.systemPackages = with pkgs; [
     # xorg.xauth 
@@ -81,10 +81,14 @@ in
     unstable.imagemagick
     unstable.ffmpeg
 
+    # Needed by cabal?
+    binutils
+
     # Haskell
     ghc
     cabal-install
     cabal2nix
+    stack
     hlint
     haskellPackages.hoogle
     cachix
