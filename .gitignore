@@ -1,0 +1,8 @@
+/*
+/*/
+
+!.gitignore
+!configuration.nix
+!device.nix
+
+!/hw-configs/
