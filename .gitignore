@@ -4,5 +4,6 @@
 !.gitignore
 !configuration.nix
 !device.nix
+!dovecot.conf
 
 !/hw-configs/

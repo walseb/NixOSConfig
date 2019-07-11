@@ -15,7 +15,7 @@ in
   ];
 
   system.stateVersion = "19.03";
-  
+
   # Add binary caches
   nix.useSandbox = true;
   nix.binaryCaches = [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" ];
@@ -98,10 +98,11 @@ in
     # Install HIE for ghc864
     (all-hies.selection { selector = p: { inherit (p) /* ghc864 ghc863 */ ghc864; }; })
 
+
     # Applications
     emacs
     unstable.harfbuzz
-    pinentry_emacs 
+    unstable.pinentry_emacs 
 
     firefox
     plasma-browser-integration
@@ -110,10 +111,14 @@ in
     unstable.git-lfs
     unstable.redshift
     unstable.gimp
-    unstable.mpv
 
+    unstable.mpv
     unstable.pavucontrol
+
+    # mail
     unstable.dovecot
+    unstable.isync
+    unstable.msmtp
 
     unstable.direnv
 
@@ -155,6 +160,12 @@ in
 
   services = {
     emacs.defaultEditor = true;
+
+    dovecot2.enable = true;
+    dovecot2.configFile = "/etc/nixos/dovecot.conf";
+    # TODO when fixing this. The password files are all read/write only to user admin, this would have to change if dovecot got to use it's own user. Also update the docs in config.el about this change
+    dovecot2.user = "admin";
+    dovecot2.group = "users";
 
     # SMART.
     smartd = {
