@@ -57,7 +57,7 @@ in
     unstable.gcc
 
     unstable.networkmanager
-    unstable.networkmanagerapplet # this fixes the emacs nix-mode formatter: in
+    unstable.networkmanagerapplet # this comment fixes the emacs nix-mode formatter: in
 
     unstable.wget
     unstable.openssh
@@ -81,6 +81,8 @@ in
     unstable.imagemagick
     unstable.ffmpeg
 
+    unstable.w3m
+
     # Needed by cabal?
     binutils
 
@@ -88,10 +90,11 @@ in
     ghc
     cabal-install
     cabal2nix
+    cachix
     stack
     hlint
     haskellPackages.hoogle
-    cachix
+    unstable.haskellPackages.brittany
     # Broken
     # haskellPackages.halive 
 
