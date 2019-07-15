@@ -1,6 +1,7 @@
 # This install an arbritary ghc version
 # nix-shell -p haskell.compiler.ghcXYZ
 
+# Lib is needed by emacs build
 { config, pkgs, ... }:
 
 let
@@ -12,6 +13,7 @@ in
     ./hardware-configuration.nix
     ./cachix.nix
     ./device.nix
+    #./build-emacs.nix
   ];
 
   system.stateVersion = "19.03";
@@ -37,7 +39,7 @@ in
           owner = "emacs-mirror";
           repo = "emacs";
 
-          rev = "dde0320020429a2d2917895fc0e2f5a24ffe6348";
+          rev = "dea9970bc0deaf320e78c46a2e7456cbb6e7a0ea";
           sha256 = "1xnjxmd8bdi01wdqshl5w613xb5v2i9f1hm33hharggmnpwydr2q";
         };
         patches = [];
