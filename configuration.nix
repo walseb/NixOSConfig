@@ -1,7 +1,6 @@
 # This install an arbritary ghc version
 # nix-shell -p haskell.compiler.ghcXYZ
 
-# Lib is needed by emacs build
 { config, pkgs, ... }:
 
 let
@@ -13,7 +12,7 @@ in
     ./hardware-configuration.nix
     ./cachix.nix
     ./device.nix
-    #./build-emacs.nix
+    ./build-emacs.nix
   ];
 
   system.stateVersion = "19.03";
@@ -29,21 +28,6 @@ in
       unstable = import unstableTarball {
         config = config.nixpkgs.config;
       };
-
-      # Install emacs git
-      emacs = (pkgs.emacs.override { srcRepo = true; imagemagick = false; }).overrideAttrs (old: rec {
-        name = "emacs-${version}${versionModifier}";
-        version = "27.0.50";
-        versionModifier = "-git";
-        src = pkgs.fetchFromGitHub {
-          owner = "emacs-mirror";
-          repo = "emacs";
-
-          rev = "dea9970bc0deaf320e78c46a2e7456cbb6e7a0ea";
-          sha256 = "1xnjxmd8bdi01wdqshl5w613xb5v2i9f1hm33hharggmnpwydr2q";
-        };
-        patches = [];
-      });
     };
   };
 
@@ -103,11 +87,10 @@ in
     # Install HIE for ghc864
     (all-hies.selection { selector = p: { inherit (p) /* ghc864 ghc863 */ ghc864; }; })
 
-
     # Applications
-    emacs
+    emacs_master
     unstable.harfbuzz
-    unstable.pinentry_emacs 
+    pinentry_emacs 
 
     firefox
     plasma-browser-integration
