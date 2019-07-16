@@ -104,7 +104,7 @@ in
     unstable.pavucontrol
 
     # mail
-    unstable.dovecot
+    dovecot
     unstable.isync
     unstable.msmtp
 
