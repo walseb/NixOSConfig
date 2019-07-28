@@ -42,30 +42,31 @@ in
     unstable.guile
     unstable.gcc
 
-    unstable.networkmanager
-    unstable.networkmanagerapplet # this comment fixes the emacs nix-mode formatter: in
+    networkmanager
+    networkmanagerapplet # this comment fixes the emacs nix-mode formatter: in
 
     unstable.wget
     unstable.openssh
 
-    unstable.ag
+    ag
 
-    unstable.atool
-    unstable.unzip
-    unstable.p7zip
+    atool
+    unzip
+    p7zip
 
     unstable.aspell
     unstable.aspellDicts.en
     unstable.aspellDicts.sv
+    languagetool
 
     unstable.mpd
     unstable.mpc_cli
 
-    unstable.htop
-    unstable.poppler
+    htop
+    poppler
 
-    unstable.imagemagick
-    unstable.ffmpeg
+    imagemagick
+    ffmpeg
 
     unstable.w3m
 
@@ -81,14 +82,18 @@ in
     hlint
     haskellPackages.hoogle
     unstable.haskellPackages.brittany
+    # Used by hlint-refactor-mode
+    # haskellPackages.apply-refact
+
     # Broken
     # haskellPackages.halive 
 
     # Install HIE for ghc864
-    (all-hies.selection { selector = p: { inherit (p) /* ghc864 ghc863 */ ghc864; }; })
+    (all-hies.selection { selector = p: { inherit (p) /* ghc863 */ ghc864; }; })
 
     # Applications
-    emacs_master
+    emacs-master
+    haskellPackages.structured-haskell-mode
     unstable.harfbuzz
     pinentry_emacs 
 
@@ -98,10 +103,11 @@ in
     unstable.git
     unstable.git-lfs
     unstable.redshift
+
     unstable.gimp
 
-    unstable.mpv
-    unstable.pavucontrol
+    mpv
+    pavucontrol
 
     # mail
     dovecot
@@ -121,18 +127,6 @@ in
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
-
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-
-  # Enable EFI support
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
-  # Enable BIOS support
-  boot.loader.grub.device = "/dev/sda";
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
