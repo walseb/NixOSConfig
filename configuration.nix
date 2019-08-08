@@ -149,15 +149,6 @@ in
     dovecot2.user = "admin";
     dovecot2.group = "users";
 
-    # SMART.
-    smartd = {
-      enable = true;
-      devices = [{ device = "/dev/sda"; }];
-      notifications.test = true;
-      notifications.x11.enable = true;
-    };
-    fstrim.enable = true;
-
     physlock = {
       enable = true;
       lockOn = {
@@ -172,6 +163,9 @@ in
     };
 
     xserver = {
+#      resolutions =  { x = 1680; y = 1050; };
+#      virtualScreen = lib.mkOverride 9 { x = 1680; y = 1050; };
+      
       enable = true;
       layout = "us";
 
@@ -204,3 +198,4 @@ in
     mutableUsers = true;
   };
 }
+
