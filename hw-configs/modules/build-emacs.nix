@@ -30,7 +30,7 @@ in
     # /nix/var/nix/profiles/per-user/root/channels/nixos/pkgs/applications/editors/emacs/default.nix
     packageOverrides = pkgs: {
 
-      emacs-master = (pkgs.emacs.override { srcRepo = true; }).overrideAttrs (old: rec {
+      emacs = (pkgs.emacs.override { srcRepo = true; }).overrideAttrs (old: rec {
         name = "emacs-${version}${versionModifier}";
         version = "27.0.50";
         versionModifier = "-git";

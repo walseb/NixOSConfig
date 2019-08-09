@@ -12,7 +12,6 @@ in
     ./hardware-configuration.nix
     ./cachix.nix
     ./device.nix
-    ./build-emacs.nix
   ];
 
   system.stateVersion = "19.03";
@@ -92,7 +91,7 @@ in
     (all-hies.selection { selector = p: { inherit (p) /* ghc863 */ ghc864; }; })
 
     # Applications
-    emacs-master
+    emacs
     haskellPackages.structured-haskell-mode
     unstable.harfbuzz
     pinentry_emacs 
@@ -163,9 +162,6 @@ in
     };
 
     xserver = {
-#      resolutions =  { x = 1680; y = 1050; };
-#      virtualScreen = lib.mkOverride 9 { x = 1680; y = 1050; };
-      
       enable = true;
       layout = "us";
 
