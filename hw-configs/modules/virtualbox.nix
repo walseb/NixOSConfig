@@ -7,8 +7,8 @@ with lib;
   # "vesa" "modesetting" "fbdev" "cirrus" "vmware" "virtualbox" "amdgpu" "cirrus" "fbdev"
   # "vmware" - vmware drivers
   # "virtualbox" - virtualbox drivers
-   services.xserver.videoDrivers = mkOverride 40 [ "vmware" "virtualbox" "modesetting" ];
+  services.xserver.videoDrivers = mkOverride 40 [ "vmware" "virtualbox" "modesetting" ];
 
-   powerManagement.enable = false;
-   virtualisation.virtualbox.guest.enable = true;
+  powerManagement.enable = false;
+  virtualisation.virtualbox.guest.enable = true;
 }
