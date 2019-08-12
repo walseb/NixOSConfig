@@ -90,6 +90,7 @@ in
     # Install HIE for ghc864
     (all-hies.selection { selector = p: { inherit (p) /* ghc863 */ ghc864; }; })
 
+    # unstable.haskellPackages.ghc-imported-from
     # Applications
     emacs
     haskellPackages.structured-haskell-mode
