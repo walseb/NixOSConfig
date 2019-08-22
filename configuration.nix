@@ -35,7 +35,6 @@ in
   environment.systemPackages = with pkgs; [
     # xorg.xauth 
     # xorg.xinit
-    haskellPackages.reactive-banana-sdl2-bsd
     xorg.setxkbmap
     xorg.xrandr
     xorg.xkbcomp
@@ -83,6 +82,9 @@ in
     hlint
     haskellPackages.hoogle
     unstable.haskellPackages.brittany
+
+    haskellPackages.reactive-banana-sdl2-bsd
+
     # Used by hlint-refactor-mode
     # haskellPackages.apply-refact
 
