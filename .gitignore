@@ -6,5 +6,6 @@
 !device.nix
 !dovecot.conf
 !build-emacs.nix
+!my-haskell-packages
 
 !/hw-configs/

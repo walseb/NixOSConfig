@@ -1,0 +1,3 @@
+[submodule "my-haskell-packages/reactive-banana-sdl2"]
+	path = my-haskell-packages/reactive-banana-sdl2
+	url = https://github.com/walseb/reactive-banana-sdl2

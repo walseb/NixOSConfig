@@ -12,6 +12,8 @@ in
     ./hardware-configuration.nix
     ./cachix.nix
     ./device.nix
+
+    ./my-haskell-packages/reactive-banana-sdl2-bsd.nix
   ];
 
   system.stateVersion = "19.03";
@@ -33,6 +35,7 @@ in
   environment.systemPackages = with pkgs; [
     # xorg.xauth 
     # xorg.xinit
+    haskellPackages.reactive-banana-sdl2-bsd
     xorg.setxkbmap
     xorg.xrandr
     xorg.xkbcomp
@@ -62,7 +65,6 @@ in
     unstable.mpc_cli
 
     htop
-    poppler
 
     imagemagick
     ffmpeg
@@ -96,6 +98,13 @@ in
     haskellPackages.structured-haskell-mode
     unstable.harfbuzz
     pinentry_emacs 
+    # pdftools
+    poppler
+    # libvterm
+    cmake
+    libtool
+    gnumake
+    libvterm
 
     firefox
     plasma-browser-integration
