@@ -12,8 +12,6 @@ in
     ./hardware-configuration.nix
     ./cachix.nix
     ./device.nix
-
-    ./my-haskell-packages/reactive-banana-sdl2-bsd.nix
   ];
 
   system.stateVersion = "19.03";
@@ -82,8 +80,6 @@ in
     hlint
     haskellPackages.hoogle
     unstable.haskellPackages.brittany
-
-    haskellPackages.reactive-banana-sdl2-bsd
 
     # Used by hlint-refactor-mode
     # haskellPackages.apply-refact
