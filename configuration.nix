@@ -147,6 +147,9 @@ in
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  # Make /tmp be in ram
+  boot.tmpOnTmpfs = true;
+
   services = {
     emacs.defaultEditor = true;
 
