@@ -5,7 +5,6 @@
 
 let
   unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
-  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
 in
 {
   imports = [
@@ -87,15 +86,16 @@ in
     # Broken
     # haskellPackages.halive 
 
-    # Install HIE for ghc864
-    (all-hies.selection { selector = p: { inherit (p) /* ghc863 */ ghc864; }; })
-
     # unstable.haskellPackages.ghc-imported-from
     # Applications
     emacs
     haskellPackages.structured-haskell-mode
     unstable.harfbuzz
     pinentry_emacs 
+
+    # haskellPackages.glance - not on hackage
+    # haskellPackages.visualize-cbn - marked as broken
+
     # pdftools
     poppler
     # libvterm
@@ -168,7 +168,6 @@ in
     };
 
     openssh = {
-      enable = true;
       forwardX11 = true;
     };
 
