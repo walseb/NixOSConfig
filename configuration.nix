@@ -27,6 +27,8 @@ in
         config = config.nixpkgs.config;
       };
     };
+    # allowBroken = true;
+    allowUnfree = false; 
   };
 
   environment.systemPackages = with pkgs; [
@@ -34,6 +36,7 @@ in
     # xorg.xinit
     xorg.setxkbmap
     xorg.xrandr
+    autorandr
     xorg.xkbcomp
 
     unstable.mono
@@ -72,13 +75,17 @@ in
 
     # Haskell
     ghc
-    cabal-install
+    unstable.cabal-install
     cabal2nix
     cachix
     stack
     hlint
     haskellPackages.hoogle
     unstable.haskellPackages.brittany
+
+    nix-prefetch
+    nix-prefetch-git
+    nix-prefetch-github
 
     # Used by hlint-refactor-mode
     # haskellPackages.apply-refact
@@ -125,9 +132,6 @@ in
 
     # Security
     unstable.gnupg
-
-    # Virtualbox
-    linuxPackages.virtualboxGuestAdditions
   ];
 
   fonts.fonts = [ pkgs.inconsolata-lgc pkgs.dejavu_fonts ];

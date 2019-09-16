@@ -11,4 +11,8 @@ with lib;
 
   powerManagement.enable = false;
   virtualisation.virtualbox.guest.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    linuxPackages.virtualboxGuestAdditions
+  ];
 }

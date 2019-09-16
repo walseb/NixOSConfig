@@ -3,6 +3,7 @@
     ./modules/boot/bios.nix
     ./modules/virtualbox.nix
     # ./modules/build-emacs.nix
+    # ./modules/build-emacs-gdb.nix
     # ./modules/hie.nix
   ];
 }
