@@ -9,7 +9,6 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    ./cachix.nix
     ./device.nix
   ];
 

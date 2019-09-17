@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    ./games/cataclysm-dda/cataclysm-dda-git-latest.nix
+    ./cachix.nix
   ];
 
   environment.systemPackages = with pkgs; [
