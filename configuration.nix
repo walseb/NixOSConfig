@@ -12,7 +12,7 @@ in
     ./device.nix
   ];
 
-  system.stateVersion = "19.03";
+  system.stateVersion = "19.09";
 
   # Add binary caches
   nix.useSandbox = true;
@@ -31,6 +31,8 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    # (import ./hw-configs/modules/tools/voglperf.nix)
+
     # xorg.xauth 
     # xorg.xinit
     xorg.setxkbmap
@@ -53,6 +55,8 @@ in
     atool
     unzip
     p7zip
+
+    cloc
 
     unstable.aspell
     unstable.aspellDicts.en
@@ -80,8 +84,10 @@ in
     stack
     hlint
     haskellPackages.hoogle
-    unstable.haskellPackages.brittany
 
+    # unstable.haskellPackages.brittany
+    unstable.haskellPackages.ormolu
+    
     nix-prefetch
     nix-prefetch-git
     nix-prefetch-github
