@@ -7,5 +7,7 @@
   environment.systemPackages = with pkgs; [
     mongodb
     redis
+    gradle
+    jdk11
   ];
 }
