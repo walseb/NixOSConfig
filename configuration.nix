@@ -61,7 +61,8 @@ in
     unstable.aspell
     unstable.aspellDicts.en
     unstable.aspellDicts.sv
-    languagetool
+    # languagetool
+    # jre
 
     unstable.mpd
     unstable.mpc_cli
@@ -129,9 +130,10 @@ in
     pavucontrol
 
     # mail
-    dovecot
+    # dovecot
     unstable.isync
     unstable.msmtp
+    mu
 
     unstable.direnv
 
@@ -139,7 +141,10 @@ in
     unstable.gnupg
   ];
 
-  fonts.fonts = [ pkgs.inconsolata-lgc pkgs.dejavu_fonts ];
+  fonts.fonts = [
+    # pkgs.fira-code
+    (import ./hw-configs/modules/fonts/my-inconsolata-lgc.nix)
+  ];
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
