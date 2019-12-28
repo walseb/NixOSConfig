@@ -87,7 +87,7 @@ in
     haskellPackages.hoogle
 
     # unstable.haskellPackages.brittany
-    unstable.haskellPackages.ormolu
+    # unstable.haskellPackages.ormolu
     
     nix-prefetch
     nix-prefetch-git
