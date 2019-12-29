@@ -5,6 +5,7 @@
     ./modules/boot/bios.nix
     ./modules/virtualbox.nix
     ./modules/hardware/proprietary-drivers.nix
+    ./modules/network/wire.nix
     # ./modules/build-emacs.nix
     # ./modules/build-emacs-gdb.nix
     # ./modules/hie.nix

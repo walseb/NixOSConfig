@@ -150,7 +150,6 @@ in
   time.timeZone = "Europe/Amsterdam";
 
   networking.hostName = "nixos";
-  networking.networkmanager.enable = true;
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 
