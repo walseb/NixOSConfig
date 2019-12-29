@@ -1,8 +1,10 @@
 {
   imports = [
     ./modules/boot/bios.nix
-    ./modules/libreboot.nix
     ./modules/carpalx-layout.nix
-    ./modules/build-emacs.nix
+    ./modules/hardware/no-proprietary-drivers.nix
+    ./modules/network/wifi.nix
   ];
+
+  boot.loader.grub.copyKernels = true;
 }
