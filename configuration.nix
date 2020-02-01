@@ -77,13 +77,12 @@ in
     ghc
     cabal-install
     cabal2nix
-    cachix
     stack
     hlint
     haskellPackages.hoogle
 
     # unstable.haskellPackages.brittany
-    # unstable.haskellPackages.ormolu
+    unstable.ormolu
     
     nix-prefetch
     nix-prefetch-git
@@ -152,6 +151,18 @@ in
 
   # Some programs need SUID wrappers, can be configured further or are started in user sessions.
   # programs.mtr.enable = true;
+
+  programs.bash.shellInit = "
+  \# Suggested by cached nix-shell script https://github.com/direnv/direnv/wiki/Nix
+  export HISTCONTROL=ignoreboth
+  bind \"set page-completions off\"
+  bind \"set show-all-if-unmodified on\"
+  bind \"set show-all-if-ambiguous on\"
+  bind \"set completion-query-items -1\"
+
+  \# Suggested by direnv
+  eval \"$(direnv hook bash)\"
+  ";
 
   # Enable sound.
   sound.enable = true;
