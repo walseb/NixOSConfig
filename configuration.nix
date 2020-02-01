@@ -40,10 +40,6 @@ in
     autorandr
     xorg.xkbcomp
 
-    unstable.mono
-    unstable.guile
-    unstable.gcc
-
     networkmanager
     networkmanagerapplet # this comment fixes the emacs nix-mode formatter: in
 
@@ -79,7 +75,7 @@ in
 
     # Haskell
     ghc
-    unstable.cabal-install
+    cabal-install
     cabal2nix
     cachix
     stack
@@ -120,19 +116,19 @@ in
     firefox
     plasma-browser-integration
 
-    unstable.git
-    unstable.git-lfs
-    unstable.redshift
+    git
+    git-lfs
+    redshift
 
-    unstable.gimp
+    gimp
 
     mpv
     pavucontrol
 
     # mail
     # dovecot
-    unstable.isync
-    unstable.msmtp
+    isync
+    msmtp
     mu
 
     unstable.direnv
@@ -150,6 +146,7 @@ in
   time.timeZone = "Europe/Amsterdam";
 
   networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
 
   nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
 

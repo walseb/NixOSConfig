@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./home-vm.nix
+    ./vbox-vm.nix
   ];
 
   environment.systemPackages = with pkgs; [
