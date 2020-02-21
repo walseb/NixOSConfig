@@ -10,5 +10,6 @@
     wakatime
     texlive.combined.scheme-full
     cachix
+    krita
   ];
 }
