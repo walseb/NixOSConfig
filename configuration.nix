@@ -112,6 +112,8 @@ in
     gnumake
     libvterm
 
+    shellcheck
+
     firefox
     plasma-browser-integration
 
@@ -170,6 +172,7 @@ in
 
   # Make /tmp be in ram
   boot.tmpOnTmpfs = true;
+  boot.loader.timeout = 1;
 
   services = {
     emacs.defaultEditor = true;
