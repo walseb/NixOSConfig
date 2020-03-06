@@ -4,30 +4,27 @@
 { config, pkgs, ... }:
 
 let
-  unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
-in
-{
-  imports = [
-    ./hardware-configuration.nix
-    ./device.nix
-  ];
+  unstableTarball = fetchTarball
+    "https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz";
+in {
+  imports = [ ./hardware-configuration.nix ./device.nix ];
 
   system.stateVersion = "19.09";
 
   # Add binary caches
   nix.useSandbox = true;
-  nix.binaryCaches = [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" ];
-  nix.binaryCachePublicKeys = [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
+  nix.binaryCaches =
+    [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" ];
+  nix.binaryCachePublicKeys =
+    [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
 
   nixpkgs.config = {
     # Enable use of nixos unstable
     packageOverrides = pkgs: {
-      unstable = import unstableTarball {
-        config = config.nixpkgs.config;
-      };
+      unstable = import unstableTarball { config = config.nixpkgs.config; };
     };
     # allowBroken = true;
-    allowUnfree = false; 
+    allowUnfree = false;
   };
 
   environment.systemPackages = with pkgs; [
@@ -47,6 +44,7 @@ in
     unstable.openssh
 
     ag
+    ripgrep
 
     atool
     unzip
@@ -65,9 +63,6 @@ in
 
     htop
 
-    imagemagick
-    ffmpeg
-
     unstable.w3m
 
     # Needed by cabal?
@@ -83,7 +78,9 @@ in
 
     # unstable.haskellPackages.brittany
     unstable.ormolu
-    
+
+    nixfmt
+
     nix-prefetch
     nix-prefetch-git
     nix-prefetch-github
@@ -99,13 +96,14 @@ in
     emacs
     haskellPackages.structured-haskell-mode
     unstable.harfbuzz
-    pinentry_emacs 
+    pinentry_emacs
 
     # haskellPackages.glance - not on hackage
     # haskellPackages.visualize-cbn - marked as broken
 
     # pdftools
     poppler
+
     # libvterm
     cmake
     libtool
@@ -134,8 +132,9 @@ in
 
     unstable.direnv
 
-    # Security
     unstable.gnupg
+
+    st
   ];
 
   fonts.fonts = [
@@ -154,17 +153,8 @@ in
   # Some programs need SUID wrappers, can be configured further or are started in user sessions.
   # programs.mtr.enable = true;
 
-  programs.bash.shellInit = "
-  \# Suggested by cached nix-shell script https://github.com/direnv/direnv/wiki/Nix
-  export HISTCONTROL=ignoreboth
-  bind \"set page-completions off\"
-  bind \"set show-all-if-unmodified on\"
-  bind \"set show-all-if-ambiguous on\"
-  bind \"set completion-query-items -1\"
-
-  \# Suggested by direnv
-  eval \"$(direnv hook bash)\"
-  ";
+  programs.bash.shellInit =
+    "\n  # Suggested by cached nix-shell script https://github.com/direnv/direnv/wiki/Nix\n  export HISTCONTROL=ignoreboth\n  bind \"set page-completions off\"\n  bind \"set show-all-if-unmodified on\"\n  bind \"set show-all-if-ambiguous on\"\n  bind \"set completion-query-items -1\"\n\n  # Suggested by direnv\n  eval \"$(direnv hook bash)\"\n  ";
 
   # Enable sound.
   sound.enable = true;
@@ -191,21 +181,36 @@ in
       };
     };
 
-    openssh = {
-      forwardX11 = true;
-    };
+    openssh = { forwardX11 = true; };
 
     xserver = {
       enable = true;
       layout = "us";
 
       # Allow exwm to work
-      displayManager.sessionCommands = "${pkgs.xorg.xhost}/bin/xhost +SI:localuser:$USER";
+      displayManager.sessionCommands =
+        "${pkgs.xorg.xhost}/bin/xhost +SI:localuser:$USER";
 
       #  Set emacs as default entry
       desktopManager.default = "emacs";
 
-      desktopManager.session = [ {
+      libinput.enable = true;
+
+      # Disable mouse acceleration for touchpad
+      libinput.accelProfile = "flat";
+
+      # Disable mouse acceleration for mouse
+      config = ''
+        Section "InputClass"
+          Identifier "mouse accel"
+          Driver "libinput"
+          MatchIsPointer "on"
+          Option "AccelProfile" "flat"
+          Option "AccelSpeed" "0"
+        EndSection
+      '';
+
+      desktopManager.session = [{
         manage = "desktop";
         name = "emacs";
         start = ''
@@ -221,7 +226,7 @@ in
       group = "users";
       isNormalUser = true;
       uid = 1000;
-      password = "";   
+      password = "";
 
       extraGroups = [ "wheel" "audio" "video" "usbmux" "networkmanager" ];
     };
