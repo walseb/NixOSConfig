@@ -43,7 +43,6 @@ in {
     unstable.wget
     unstable.openssh
 
-    ag
     ripgrep
 
     atool
