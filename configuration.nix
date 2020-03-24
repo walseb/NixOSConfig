@@ -37,6 +37,8 @@ in {
     autorandr
     xorg.xkbcomp
 
+    lm_sensors
+
     networkmanager
     networkmanagerapplet # this comment fixes the emacs nix-mode formatter: in
 
@@ -50,6 +52,8 @@ in {
     p7zip
 
     cloc
+
+    imagemagick
 
     unstable.aspell
     unstable.aspellDicts.en
@@ -74,6 +78,9 @@ in {
     stack
     hlint
     haskellPackages.hoogle
+    # haskellPackages.threadscope
+    # haskellPackages.eventlog2html
+    haskellPackages.hp2pretty
 
     # unstable.haskellPackages.brittany
     unstable.ormolu

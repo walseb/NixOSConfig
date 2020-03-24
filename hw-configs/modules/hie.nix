@@ -1,14 +1,11 @@
 { pkgs, ... }:
+
 let
   all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
 in
 {
-  imports = [
-    ./cachix.nix
-  ];
-
-  environment.systemPackages = with pkgs; [
-    # Install HIE for ghc864
-    (all-hies.selection { selector = p: { inherit (p) /* ghc863 */ ghc864; }; })
+  environment.systemPackages = [
+    # Install stable HIE for GHC 8.6.4, 8.6.3 and 8.4.3
+    (all-hies.selection { selector = p: { inherit (p) ghc864 ghc865; }; })
   ];
 }
