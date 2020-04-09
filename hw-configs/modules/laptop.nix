@@ -1,6 +1,6 @@
 {
   imports = [
-    ./modules/carpalx-layout.nix
+    ./carpalx-layout.nix
   ];
 
   services.tlp.enable = true;

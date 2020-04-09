@@ -173,12 +173,6 @@ in {
   services = {
     emacs.defaultEditor = true;
 
-    dovecot2.enable = true;
-    dovecot2.configFile = "/etc/nixos/dovecot.conf";
-    # TODO when fixing this. The password files are all read/write only to user admin, this would have to change if dovecot got to use it's own user. Also update the docs in config.el about this change
-    dovecot2.user = "admin";
-    dovecot2.group = "users";
-
     physlock = {
       enable = true;
       lockOn = {
