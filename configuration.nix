@@ -136,7 +136,8 @@ in {
     msmtp
     mu
 
-    unstable.direnv
+    direnv
+    lorri
 
     unstable.gnupg
 
@@ -158,9 +159,6 @@ in {
 
   # Some programs need SUID wrappers, can be configured further or are started in user sessions.
   # programs.mtr.enable = true;
-
-  programs.bash.shellInit =
-    "\n  # Suggested by cached nix-shell script https://github.com/direnv/direnv/wiki/Nix\n  export HISTCONTROL=ignoreboth\n  bind \"set page-completions off\"\n  bind \"set show-all-if-unmodified on\"\n  bind \"set show-all-if-ambiguous on\"\n  bind \"set completion-query-items -1\"\n\n  # Suggested by direnv\n  eval \"$(direnv hook bash)\"\n  ";
 
   # Enable sound.
   sound.enable = true;

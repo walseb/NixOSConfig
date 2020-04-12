@@ -8,5 +8,6 @@
     ./modules/laptop.nix
     ./modules/hardware/proprietary-drivers.nix
     ./modules/hardware/printer.nix
+    ./modules/build-emacs.nix
   ];
 }
