@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
 {
-  i18n.consoleKeyMap = "carpalx";
+  console.keyMap = "carpalx";
   # The xorg keymap is loaded through emacs
 }

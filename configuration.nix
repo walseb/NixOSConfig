@@ -1,15 +1,14 @@
-# This install an arbritary ghc version
-# nix-shell -p haskell.compiler.ghcXYZ
-
 { config, pkgs, ... }:
 
-let
-  unstableTarball = fetchTarball
-    "https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz";
-in {
+# let
+#   unstableTarball = fetchTarball
+#     "https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz";
+# in
+{
   imports = [ ./hardware-configuration.nix ./device.nix ];
 
-  system.stateVersion = "19.09";
+  system.stateVersion = "20.03";
+  # system.autoUpgrade.enable = true;
 
   # Add binary caches
   nix.useSandbox = true;
@@ -20,16 +19,20 @@ in {
 
   nixpkgs.config = {
     # Enable use of nixos unstable
-    packageOverrides = pkgs: {
-      unstable = import unstableTarball { config = config.nixpkgs.config; };
-    };
+    # packageOverrides = pkgs: {
+    #   unstable = import unstableTarball { config = config.nixpkgs.config; };
+    # };
+
     # allowBroken = true;
     allowUnfree = false;
   };
 
   environment.systemPackages = with pkgs; [
-    # (import ./hw-configs/modules/tools/voglperf.nix)
+    mpd
+    mpc_cli
 
+    htop
+    
     # xorg.xauth 
     # xorg.xinit
     xorg.setxkbmap
@@ -37,109 +40,22 @@ in {
     autorandr
     xorg.xkbcomp
 
-    lm_sensors
+    brightnessctl
 
     networkmanager
-    networkmanagerapplet # this comment fixes the emacs nix-mode formatter: in
+    networkmanagerapplet
 
-    unstable.wget
-    unstable.openssh
-
-    ripgrep
-
-    atool
-    unzip
-    p7zip
-
-    cloc
-
-    imagemagick
-
-    unstable.aspell
-    unstable.aspellDicts.en
-    unstable.aspellDicts.sv
-    # languagetool
-    # jre
-
-    unstable.mpd
-    unstable.mpc_cli
-
-    htop
-
-    unstable.w3m
-
-    # Needed by cabal?
-    binutils
-
-    # Haskell
-    ghc
-    cabal-install
-    cabal2nix
-    stack
-    hlint
-    haskellPackages.hoogle
-    # haskellPackages.threadscope
-    # haskellPackages.eventlog2html
-    haskellPackages.hp2pretty
-
-    # unstable.haskellPackages.brittany
-    unstable.ormolu
-
-    nixfmt
-
-    nix-prefetch
-    nix-prefetch-git
-    nix-prefetch-github
-
-    # Used by hlint-refactor-mode
-    # haskellPackages.apply-refact
-
-    # Broken
-    # haskellPackages.halive 
-
-    # unstable.haskellPackages.ghc-imported-from
-    # Applications
-    emacs
-    haskellPackages.structured-haskell-mode
-    unstable.harfbuzz
-    pinentry_emacs
-
-    # haskellPackages.glance - not on hackage
-    # haskellPackages.visualize-cbn - marked as broken
-
-    # pdftools
-    poppler
-
-    # libvterm
-    cmake
-    libtool
-    gnumake
-    libvterm
-
-    shellcheck
-
-    firefox
-    plasma-browser-integration
+    wget
+    openssh
 
     git
     git-lfs
-    redshift
 
-    gimp
-
-    mpv
     pavucontrol
 
-    # mail
-    # dovecot
-    isync
-    msmtp
-    mu
+    gnupg
 
-    direnv
-    lorri
-
-    unstable.gnupg
+    emacs
 
     st
   ];
@@ -154,8 +70,7 @@ in {
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-
-  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
+  networking.nameservers = [ "1.1.1.1" ];
 
   # Some programs need SUID wrappers, can be configured further or are started in user sessions.
   # programs.mtr.enable = true;
@@ -190,7 +105,15 @@ in {
         "${pkgs.xorg.xhost}/bin/xhost +SI:localuser:$USER";
 
       #  Set emacs as default entry
-      desktopManager.default = "emacs";
+      displayManager.defaultSession = "emacs";
+      displayManager.session = [{
+        manage = "desktop";
+        name = "st";
+        start = ''
+          ${pkgs.st}/bin/st -ls &
+          waitPID=$!
+        '';
+      }];
 
       libinput.enable = true;
 
@@ -231,4 +154,3 @@ in {
     mutableUsers = true;
   };
 }
-
