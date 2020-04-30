@@ -32,7 +32,7 @@
     mpc_cli
 
     htop
-    
+
     # xorg.xauth 
     # xorg.xinit
     xorg.setxkbmap
@@ -79,6 +79,8 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  # Clean /tmp on boot
+  boot.cleanTmpDir = true;
   # Make /tmp be in ram
   boot.tmpOnTmpfs = true;
   boot.loader.timeout = 1;
@@ -104,17 +106,6 @@
       displayManager.sessionCommands =
         "${pkgs.xorg.xhost}/bin/xhost +SI:localuser:$USER";
 
-      #  Set emacs as default entry
-      displayManager.defaultSession = "emacs";
-      displayManager.session = [{
-        manage = "desktop";
-        name = "st";
-        start = ''
-          ${pkgs.st}/bin/st -ls &
-          waitPID=$!
-        '';
-      }];
-
       libinput.enable = true;
 
       # Disable mouse acceleration for touchpad
@@ -131,14 +122,38 @@
         EndSection
       '';
 
-      desktopManager.session = [{
+      displayManager.session = [{
         manage = "desktop";
-        name = "emacs";
+        name = "st";
         start = ''
-          emacs &
+          ${pkgs.st}/bin/st -ls &
           waitPID=$!
         '';
       }];
+
+      desktopManager.session = [
+        {
+          manage = "desktop";
+          name = "emacs";
+          start = ''
+            emacs &
+            waitPID=$!
+          '';
+        }
+
+        {
+          manage = "desktop";
+          name = "emacs-docked";
+          start = ''
+            emacs -my/docked &
+            waitPID=$!
+          '';
+        }
+      ];
+
+      #  Set emacs as default entry
+      displayManager.defaultSession = "emacs";
+
     };
   };
 
