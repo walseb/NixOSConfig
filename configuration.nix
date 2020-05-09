@@ -85,6 +85,9 @@
   boot.tmpOnTmpfs = true;
   boot.loader.timeout = 1;
 
+  # Hibernate after 1 hour of sleep
+  systemd.sleep.extraConfig = "HibernateDelaySec=1h";
+
   services = {
     emacs.defaultEditor = true;
 
@@ -122,14 +125,25 @@
         EndSection
       '';
 
-      displayManager.session = [{
-        manage = "desktop";
-        name = "st";
-        start = ''
-          ${pkgs.st}/bin/st -ls &
-          waitPID=$!
-        '';
-      }];
+      # displayManager.session = [{
+      #   manage = "desktop";
+      #   name = "st";
+      #   # https://lists.suckless.org/hackers/1611/13652.html
+      #   start = ''
+      #     st -e /bin/bash --login &
+      #     waitPID=$!
+      #   '';
+      # }];
+
+      displayManager.session = 
+        [ { manage = "desktop";
+            name = "xterm";
+            start = ''
+            ${pkgs.xterm}/bin/xterm -ls &
+            waitPID=$!
+          '';
+          }
+        ];
 
       desktopManager.session = [
         {
