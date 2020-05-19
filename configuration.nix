@@ -28,11 +28,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    mpd
-    mpc_cli
-
-    htop
-
     # xorg.xauth 
     # xorg.xinit
     xorg.setxkbmap
@@ -40,22 +35,13 @@
     autorandr
     xorg.xkbcomp
 
-    brightnessctl
+    htop
 
     networkmanager
     networkmanagerapplet
 
     wget
     openssh
-
-    git
-    git-lfs
-
-    pavucontrol
-
-    gnupg
-
-    emacs
 
     st
   ];
