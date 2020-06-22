@@ -2,14 +2,14 @@
 
 {
   imports = [
-    ../cachix.nix
-    ./vbox-vm.nix
+    # ../cachix.nix
+    ../modules/vbox-vm.nix
   ];
 
   environment.systemPackages = with pkgs; [
     wakatime
     texlive.combined.scheme-full
-    cachix
+    # cachix
     krita
   ];
 }
