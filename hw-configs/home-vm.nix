@@ -3,12 +3,12 @@
 {
   imports = [
     # ../cachix.nix
-    ../modules/vbox-vm.nix
+    ./generic/virtualbox.nix
   ];
 
   environment.systemPackages = with pkgs; [
     wakatime
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
     # cachix
     krita
   ];

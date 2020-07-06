@@ -4,8 +4,6 @@
 !configuration.nix
 !device-template.nix
 !dovecot.conf
-!build-emacs.nix
-!my-haskell-packages
 
 !/hw-configs/
 !/modules/

@@ -45,6 +45,8 @@
   boot.loader.timeout = 1;
 
   services = {
+    lorri.enable = true;
+
     emacs.defaultEditor = true;
     physlock = {
       enable = true;
@@ -91,7 +93,5 @@
 
     # Needs to be installed here to work properly
     ntfs3g
-
-    mu
   ];
 }
