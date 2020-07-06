@@ -93,5 +93,8 @@
 
     # Needs to be installed here to work properly
     ntfs3g
+
+    # This doesn't have the elisp if you put it in home-manager
+    mu
   ];
 }
