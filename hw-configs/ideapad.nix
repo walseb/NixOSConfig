@@ -4,6 +4,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   imports = [
+    ./generic/home.nix
     ./generic/laptop.nix
     ../modules/boot/bios-nvme.nix
     ../modules/hardware/printer.nix
