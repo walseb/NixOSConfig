@@ -5,6 +5,7 @@
     # ./hw-configs/ideapad.nix
   ];
 
+  # services.syncthing.relay.enable = true;
   # services.syncthing.relay.port = ;
   # services.syncthing.relay.statusPort = ;
   # # [22 80]
