@@ -1,9 +1,11 @@
 /*
 
 !.gitignore
+!.gitmodules
 !configuration.nix
 !device-template.nix
 !dovecot.conf
 
 !/hw-configs/
 !/modules/
+!/nixos-private-config/

@@ -1,0 +1,3 @@
+[submodule "nixos-private-config"]
+	path = nixos-private-config
+	url = https://github.com/walseb/nixos-private-config
