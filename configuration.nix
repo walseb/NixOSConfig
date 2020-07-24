@@ -55,8 +55,6 @@
         hibernate = true;
       };
     };
-
-    openssh = { forwardX11 = true; };
   };
 
   users = {
