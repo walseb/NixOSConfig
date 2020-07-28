@@ -1,8 +1,11 @@
 { config, pkgs, ... }:
 
+# Unstable packages
 # let
-#   unstableTarball = fetchTarball
-#     "https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz";
+#   unstable = import
+#     (builtins.fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz)
+#     # reuse the current configuration
+#     { config = config.nixpkgs.config; };
 # in
 {
   system.stateVersion = "20.03";
@@ -15,6 +18,7 @@
             ];
 
   # system.autoUpgrade.enable = true;
+  # nix.gc.automatic
 
   # Add binary caches
   nix.useSandbox = true;
@@ -22,11 +26,6 @@
   nix.binaryCachePublicKeys = [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
 
   nixpkgs.config = {
-    # Enable use of nixos unstable
-    # packageOverrides = pkgs: {
-    #   unstable = import unstableTarball { config = config.nixpkgs.config; };
-    # };
-
     # allowBroken = true;
     allowUnfree = false;
   };
