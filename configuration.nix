@@ -10,20 +10,23 @@
 {
   system.stateVersion = "20.03";
 
-  imports = [ ./hardware-configuration.nix
-              ./device.nix
-              ./modules/dns.nix
-              ./modules/xorg.nix
-              ./modules/audio.nix
-            ];
+  imports = [
+    ./hardware-configuration.nix
+    ./device.nix
+    ./modules/dns.nix
+    ./modules/xorg.nix
+    ./modules/audio.nix
+  ];
 
   # system.autoUpgrade.enable = true;
   # nix.gc.automatic
 
   # Add binary caches
   nix.useSandbox = true;
-  nix.binaryCaches = [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" ];
-  nix.binaryCachePublicKeys = [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
+  nix.binaryCaches =
+    [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" ];
+  nix.binaryCachePublicKeys =
+    [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
 
   nixpkgs.config = {
     # allowBroken = true;
