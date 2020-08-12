@@ -1,3 +1,5 @@
+# https://github.com/jonascarpay/nix
+
 { config, pkgs, ... }:
 
 # Unstable packages
@@ -12,11 +14,15 @@
 
   imports = [
     ./hardware-configuration.nix
-    ./device.nix
-    ./modules/dns.nix
-    ./modules/xorg.nix
-    ./modules/audio.nix
+    ./system-modules/cachix.nix
+    ./system-device.nix
+    ./system-modules/dns.nix
+    ./system-modules/xorg.nix
+    ./system-modules/audio.nix
   ];
+
+  cachix = [];
+  # (import ./cachix-caches.nix);
 
   # system.autoUpgrade.enable = true;
   # nix.gc.automatic
@@ -27,6 +33,9 @@
     [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" ];
   nix.binaryCachePublicKeys =
     [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
+
+  # Needed to be able to use custom channels in home-manager
+  nix.trustedUsers = [ "root" "admin" ];
 
   nixpkgs.config = {
     # allowBroken = true;
@@ -96,5 +105,8 @@
 
     # This doesn't have the elisp if you put it in home-manager
     mu
+
+    # Required to use cachix
+    cachix
   ];
 }

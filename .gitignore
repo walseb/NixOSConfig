@@ -2,10 +2,14 @@
 
 !.gitignore
 !.gitmodules
-!configuration.nix
-!device-template.nix
-!dovecot.conf
 
-!/hw-configs/
-!/modules/
+!configuration.nix
+!system-device-template.nix
 !/nixos-private-config/
+
+!home.nix
+!home-device-template.nix
+!/home-hw-configs/
+!/home-modules/
+!/system-modules/
+!/loose-configs/
