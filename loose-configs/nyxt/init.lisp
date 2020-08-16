@@ -44,6 +44,22 @@
   "Simulate key"
   (simulate-key-no-modifiers "Down"))
 
+(defun simulate-aa ()
+  "Simulate key å"
+  (simulate-key-no-modifiers "U00E5"))
+
+(defun simulate-aaa ()
+  "Simulate key ä"
+  (simulate-key-no-modifiers "U00E4"))
+
+(defun simulate-oo ()
+  "Simulate key ö"
+  (simulate-key-no-modifiers "U00F6"))
+
+(defun simulate-! ()
+  "Simulate key ö"
+  (simulate-key-no-modifiers "!"))
+
 ;; (defun simulate-tab ()
 ;;   "Simulate key"
 ;;   (simulate-key-no-modifiers "Tab"))
@@ -54,8 +70,14 @@
   ((keymap-scheme
     :initform
     (define-scheme "my"
-      scheme:vi-insert
+	scheme:vi-insert
       (list
+       "M-q" 'simulate-!
+
+       "M-p" 'simulate-aa
+       "M-," 'simulate-aaa
+       "M-." 'simulate-oo
+
        "C-a" 'simulate-ret
 
        "C-e" 'simulate-esc
@@ -78,6 +100,10 @@
        )
       scheme:vi-normal
       (list
+       "M-p" 'simulate-aa
+       "M-," 'simulate-aaa
+       "M-." 'simulate-oo
+
        "C-a" 'simulate-ret
 
        "C-f" 'simulate-backspace
@@ -108,7 +134,8 @@
        "H" 'history-backwards
        "L" 'history-forwards
 
-       "U" 'history-all-query
+       "u" 'history-all-query
+       "U" 'buffer-history-tree
        "M-h" 'history-backwards-query
        "M-l" 'history-forwards-query
        "M-L" 'history-forwards-all-query

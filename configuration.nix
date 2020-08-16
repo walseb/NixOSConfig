@@ -19,9 +19,10 @@
     ./system-modules/dns.nix
     ./system-modules/xorg.nix
     ./system-modules/audio.nix
+    ./system-modules/hardware/backlight.nix
   ];
 
-  cachix = [];
+  cachix = [ ];
   # (import ./cachix-caches.nix);
 
   # system.autoUpgrade.enable = true;
@@ -89,8 +90,6 @@
     xorg.xkbcomp
 
     htop
-
-    brightnessctl
 
     networkmanager
     networkmanagerapplet
