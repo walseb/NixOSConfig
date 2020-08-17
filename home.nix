@@ -29,10 +29,12 @@ in {
     ./home-modules/caches.nix
     ./home-modules/notifications.nix
     ./home-modules/git.nix
-    ./home-modules/direnv.nix
     ./home-modules/gpg.nix
     ./home-modules/visual.nix
+
     ./home-modules/cached-nix-shell.nix
+    ./home-modules/direnv/direnv.nix
+    ./home-modules/direnv/lorri.nix
   ];
 
   caches.cachix = (import ./cachix-caches.nix);
@@ -155,7 +157,5 @@ in {
     xclip
     unstable.haskellPackages.threadscope
     # unstable.haskellPackages.eventlog2html
-
-
   ];
 }

@@ -1,5 +1,3 @@
-# https://github.com/jonascarpay/nix
-
 { config, pkgs, ... }:
 
 # Unstable packages
@@ -20,23 +18,26 @@
     ./system-modules/xorg.nix
     ./system-modules/audio.nix
     ./system-modules/hardware/backlight.nix
+    ./system-modules/wakelock.nix
   ];
 
   cachix = [ ];
-  # (import ./cachix-caches.nix);
 
   # system.autoUpgrade.enable = true;
-  # nix.gc.automatic
 
-  # Add binary caches
-  nix.useSandbox = true;
-  nix.binaryCaches =
-    [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" ];
-  nix.binaryCachePublicKeys =
-    [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
+  nix = {
+    # Needed to be able to use custom channels in home-manager
+    trustedUsers = [ "root" "admin" ];
 
-  # Needed to be able to use custom channels in home-manager
-  nix.trustedUsers = [ "root" "admin" ];
+    # gc.automatic
+
+    # Add binary caches
+    useSandbox = true;
+    binaryCaches =
+      [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" ];
+    binaryCachePublicKeys =
+      [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
+  };
 
   nixpkgs.config = {
     # allowBroken = true;
@@ -49,25 +50,16 @@
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
-  # Clean /tmp on boot
-  boot.cleanTmpDir = true;
-  # Make /tmp be in ram
-  boot.tmpOnTmpfs = true;
+  boot = {
+    # Clean /tmp on boot
+    cleanTmpDir = true;
+    # Make /tmp be in ram
+    tmpOnTmpfs = true;
 
-  boot.loader.timeout = 1;
-
-  services = {
-    lorri.enable = true;
-
-    emacs.defaultEditor = true;
-    physlock = {
-      enable = true;
-      lockOn = {
-        suspend = true;
-        hibernate = true;
-      };
-    };
+    loader.timeout = 1;
   };
+
+  services.emacs.defaultEditor = true;
 
   users = {
     extraUsers.admin = {
@@ -82,12 +74,11 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # xorg.xauth 
-    # xorg.xinit
     xorg.setxkbmap
+    xorg.xkbcomp
+
     xorg.xrandr
     autorandr
-    xorg.xkbcomp
 
     htop
 
