@@ -83,7 +83,7 @@ in {
     #emacs
     # emacsGit
     emacsGcc
-    emacs-all-the-icons-fonts
+    # emacs-all-the-icons-fonts
 
     # haskellPackages.glance - not on hackage
     # haskellPackages.visualize-cbn - marked as broken
@@ -157,5 +157,7 @@ in {
     xclip
     unstable.haskellPackages.threadscope
     # unstable.haskellPackages.eventlog2html
+
+    emacsPackages.vterm
   ];
 }

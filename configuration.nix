@@ -44,12 +44,6 @@
     allowUnfree = false;
   };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
-
-  networking.hostName = "nixos";
-  networking.networkmanager.enable = true;
-
   boot = {
     # Clean /tmp on boot
     cleanTmpDir = true;
@@ -58,6 +52,15 @@
 
     loader.timeout = 1;
   };
+
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = { "TIME_STYLE"  = "iso"; };
+
+  # Set your time zone.
+  time.timeZone = "Europe/Amsterdam";
+
+  networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
 
   services.emacs.defaultEditor = true;
 
