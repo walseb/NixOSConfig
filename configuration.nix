@@ -59,11 +59,11 @@
   services.emacs.defaultEditor = true;
 
   users = {
-    extraUsers.admin = {
+    users.admin = {
       group = "users";
       isNormalUser = true;
       uid = 1000;
-      password = "";
+      initialPassword = "";
 
       extraGroups = [ "wheel" "audio" "video" "usbmux" "networkmanager" ];
     };
