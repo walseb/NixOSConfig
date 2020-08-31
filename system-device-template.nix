@@ -1,8 +1,9 @@
 {
   imports = [
-    # ./hw-configs/x200-libreboot.nix
-    # ./hw-configs/home-vm.nix
-    # ./hw-configs/ideapad.nix
+    # ./system-hw-configs/x200-libreboot.nix
+    # ./system-hw-configs/home-vm.nix
+    # ./system-hw-configs/vps.nix
+    # ./system-hw-configs/ideapad.nix
   ];
 
   # services.syncthing.relay.enable = true;

@@ -39,7 +39,7 @@ in {
     # ./home-modules/tools/activitywatch-stable.nix
   ];
 
-  caches.cachix = (import ./cachix-caches.nix);
+  caches.cachix = (import ./home-modules/cachix-caches.nix);
 
   home.packages = with pkgs; [
     # xfce.xfce4-notifyd
