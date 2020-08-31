@@ -8,7 +8,7 @@
 #     { config = config.nixpkgs.config; };
 # in
 {
-  system.stateVersion = "20.03";
+  system.stateVersion = "20.09";
 
   imports = [
     ./hardware-configuration.nix
