@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  boot.loader.timeout = 1;
+
   imports = [
     ../../system-modules/xorg.nix
     ../../system-modules/audio.nix

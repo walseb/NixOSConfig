@@ -45,8 +45,6 @@
     cleanTmpDir = true;
     # Make /tmp be in ram
     tmpOnTmpfs = true;
-
-    loader.timeout = 1;
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
