@@ -4,6 +4,6 @@
     lockOn = {
       suspend = true;
       hibernate = true;
-      };
     };
+  };
 }

@@ -35,6 +35,8 @@ in {
     ./home-modules/cached-nix-shell.nix
     ./home-modules/direnv/direnv.nix
     ./home-modules/direnv/lorri.nix
+
+    # ./home-modules/tools/activitywatch-stable.nix
   ];
 
   caches.cachix = (import ./cachix-caches.nix);

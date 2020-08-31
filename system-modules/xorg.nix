@@ -1,5 +1,15 @@
 { config, pkgs, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    xorg.setxkbmap
+    xorg.xkbcomp
+
+    xorg.xrandr
+    autorandr
+
+    st
+  ];
+
   services.xserver = {
 
     enable = true;

@@ -15,10 +15,6 @@
     ./system-modules/cachix.nix
     ./system-device.nix
     ./system-modules/dns.nix
-    ./system-modules/xorg.nix
-    ./system-modules/audio.nix
-    ./system-modules/hardware/backlight.nix
-    ./system-modules/wakelock.nix
   ];
 
   cachix = [ ];
@@ -77,12 +73,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    xorg.setxkbmap
-    xorg.xkbcomp
-
-    xorg.xrandr
-    autorandr
-
     htop
 
     networkmanager
@@ -90,14 +80,6 @@
 
     wget
     openssh
-
-    st
-
-    # Needs to be installed here to work properly
-    ntfs3g
-
-    # This doesn't have the elisp if you put it in home-manager
-    mu
 
     # Required to use cachix
     cachix
