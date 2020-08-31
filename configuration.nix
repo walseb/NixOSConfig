@@ -58,18 +58,6 @@
 
   services.emacs.defaultEditor = true;
 
-  users = {
-    users.admin = {
-      group = "users";
-      isNormalUser = true;
-      uid = 1000;
-      initialPassword = "";
-
-      extraGroups = [ "wheel" "audio" "video" "usbmux" "networkmanager" ];
-    };
-    mutableUsers = false;
-  };
-
   environment.systemPackages = with pkgs; [
     htop
 

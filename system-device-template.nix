@@ -6,6 +6,19 @@
     # ./system-hw-configs/ideapad.nix
   ];
 
+  users = {
+    users.admin = {
+      group = "users";
+      isNormalUser = true;
+      uid = 1000;
+      # password = "";
+      # passwordFile = "./nixos-private-config/pass-vps";
+
+      extraGroups = [ "wheel" "audio" "video" "usbmux" "networkmanager" ];
+    };
+    mutableUsers = false;
+  };
+
   # services.syncthing.relay.enable = true;
   # services.syncthing.relay.port = ;
   # services.syncthing.relay.statusPort = ;

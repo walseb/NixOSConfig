@@ -50,7 +50,7 @@
         # refresh-delay = 100;
       };
 
-      server_names = (import ../nixos-private-config/config.nix).myDnsServers;
+      server_names = (import ../nixos-private-config/dns.nix).myDnsServers;
 
       anonymized_dns = {
         # TODO: Requires ~2.0.42
@@ -58,7 +58,7 @@
         # direct_cert_fallback = false;
 
         routes = [
-          { server_name = "*"; via=(import ../nixos-private-config/config.nix).myDnsRelays; }
+          { server_name = "*"; via=(import ../nixos-private-config/dns.nix).myDnsRelays; }
         ];
       };
     };
