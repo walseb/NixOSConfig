@@ -19,13 +19,9 @@
 
   cachix = [ ];
 
-  # system.autoUpgrade.enable = true;
-
   nix = {
     # Needed to be able to use custom channels in home-manager
     trustedUsers = [ "root" "admin" ];
-
-    # gc.automatic
 
     # Add binary caches
     useSandbox = true;
