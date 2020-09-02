@@ -12,7 +12,7 @@
       isNormalUser = true;
       uid = 1000;
       # password = "";
-      # passwordFile = "./nixos-private-config/pass-vps";
+      # hashedPassword = "";
 
       extraGroups = [ "wheel" "audio" "video" "usbmux" "networkmanager" ];
     };
