@@ -13,6 +13,7 @@
       dbname = "nextcloud";
       adminuser = "admin";
       # Just put your password in quotation marks in this file
+      # The password can't contain quotation marks
       adminpass = (import /home/admin/nextcloud-password.nix);
 
       # overwriteProtocol = "https";
