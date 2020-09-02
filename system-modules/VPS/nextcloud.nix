@@ -12,7 +12,8 @@
       dbhost = "/run/postgresql"; # nextcloud will add /.s.PGSQL.5432 by itself
       dbname = "nextcloud";
       adminuser = "admin";
-      adminpassFile = "/home/admin/nextcloud-password";
+      # Just put your password in quotation marks in this file
+      adminpass = (import /home/admin/nextcloud-password.nix);
 
       # overwriteProtocol = "https";
     };
