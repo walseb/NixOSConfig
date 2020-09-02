@@ -1,3 +1,6 @@
+# Generate using mkpasswd -m sha-512
+let pass = ;
+in
 {
   imports = [
     # ./system-hw-configs/x200-libreboot.nix
@@ -11,11 +14,15 @@
       group = "users";
       isNormalUser = true;
       uid = 1000;
-      # password = "";
-      # hashedPassword = "";
+      hashedPassword = pass;
 
       extraGroups = [ "wheel" "audio" "video" "usbmux" "networkmanager" ];
     };
+
+    users.root = {
+      hashedPassword = pass;
+    };
+
     mutableUsers = false;
   };
 
