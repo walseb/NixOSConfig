@@ -4,7 +4,7 @@
     hostName = "127.0.0.1";
     autoUpdateApps.enable = true;
 
-    https = true;
+    # https = true;
     maxUploadSize = "100G";
 
     config = {
@@ -14,7 +14,7 @@
       adminuser = "admin";
       adminpassFile = "/home/admin/nextcloud-password";
 
-      overwriteProtocol = "https";
+      # overwriteProtocol = "https";
     };
   };
 
