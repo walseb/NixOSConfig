@@ -1,5 +1,7 @@
-# Generate using mkpasswd -m sha-512
-let pass = ;
+let
+  # Generate using mkpasswd -m sha-512
+  pass = null;
+  my-nat-addr = null;
 in
 {
   imports = [
@@ -7,6 +9,9 @@ in
     # ./system-hw-configs/home-vm.nix
     # ./system-hw-configs/vps.nix
     # ./system-hw-configs/ideapad.nix
+
+    # ./system-modules/network/wireguard-server.nix
+    # (import ./system-modules/network/wireguard-client.nix { nat-addr = my-nat-addr; })
   ];
 
   users = {

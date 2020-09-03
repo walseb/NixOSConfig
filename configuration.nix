@@ -14,7 +14,7 @@
     ./hardware-configuration.nix
     ./system-modules/cachix.nix
     ./system-device.nix
-    ./system-modules/dns.nix
+    ./system-modules/network/dns.nix
   ];
 
   cachix = [ ];
