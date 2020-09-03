@@ -1,6 +1,7 @@
 let
   # Generate using mkpasswd -m sha-512
   pass = null;
+  # Check ./nixos-private-config/vpn-clients.nix
   my-nat-addr = null;
 in
 {
