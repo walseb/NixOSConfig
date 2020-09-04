@@ -14,7 +14,7 @@
         # For a client configuration, one peer entry for the server will suffice.
         {
           # Public key of the server (not a file path).
-          publicKey = (import /home/admin/pkg-keys/wireguard-key-public.nix);
+          publicKey = (import ../../nixos-private-config/servers.nix).mainServerWireguardPublicKey;
 
           # Forward all the traffic via VPN.
           allowedIPs = [ "0.0.0.0/0" ];
