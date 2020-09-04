@@ -6,7 +6,7 @@
     # "wg0" is the network interface name. You can name the interface arbitrarily.
     wg0 = {
       # Determines the IP address and subnet of the client's end of the tunnel interface.
-      ips = [ nat-addr ];
+      address = [ nat-addr ];
 
       privateKeyFile = "/home/admin/pkg-keys/wireguard-key-private";
 
@@ -15,6 +15,8 @@
         {
           # Public key of the server (not a file path).
           publicKey = (import ../../nixos-private-config/servers.nix).mainServerWireguardPublicKey;
+
+          presharedKey = "VMC46nt/d8uF/87c8BHjSDXJwcRGgaAV/I8nSITLPbU=";
 
           # Forward all the traffic via VPN.
           allowedIPs = [ "0.0.0.0/0" ];
