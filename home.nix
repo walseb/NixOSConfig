@@ -37,6 +37,8 @@ in {
     ./home-modules/direnv/lorri.nix
 
     # ./home-modules/tools/activitywatch-stable.nix
+    # Doesn't work with eshell currently
+    # ./home-modules/comma.nix
   ];
 
   caches.cachix = (import ./home-modules/cachix-caches.nix);
@@ -49,8 +51,6 @@ in {
     git-lfs
 
     nix-top
-
-    gnupg
 
     pavucontrol
 
@@ -146,7 +146,8 @@ in {
 
     # unscii
 
-    (import ./home-modules/fonts/my-inconsolata-lgc.nix)
+    # (import ./home-modules/fonts/my-inconsolata-lgc.nix)
+    hasklig
     # inconsolata-lgc
     # inconsolata
 

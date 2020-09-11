@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ../../system-modules/syncthing.nix
+    # ../../system-modules/syncthing.nix
   ];
 }

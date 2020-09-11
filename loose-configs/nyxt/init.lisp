@@ -1,10 +1,10 @@
 ;; * Set search engine
 (define-configuration browser
-  ((search-engines (list
-		    (make-instance 'search-engine
-				   :shortcut "default"
-				   :search-url "https://www.google.com/search?q=~a"
-				   :fallback-url "https://google.com")))))
+    ((search-engines (list
+		      (make-instance 'search-engine
+				     :shortcut "default"
+				     :search-url "https://www.google.com/search?q=~a"
+				     :fallback-url "https://google.com")))))
 
 ;; * Simulation keys
 (in-package :nyxt/vi-mode)
@@ -182,11 +182,11 @@
 
 ;; * Auto-enable modes
 (define-configuration buffer
-  ((default-modes (append '(
-			    ;; noscript-mode
-			    vi-normal-mode
-			    my-mode
-			    ) %slot-default))))
+    ((default-modes (append '(
+			      ;; noscript-mode
+			      vi-normal-mode
+			      my-mode
+			      ) %slot-default))))
 
 ;; * Minibuffer settings
 (in-package :nyxt/minibuffer-mode)
