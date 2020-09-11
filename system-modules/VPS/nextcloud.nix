@@ -4,7 +4,7 @@
     enable = true;
     hostName = "127.0.0.1";
     autoUpdateApps.enable = true;
-    packages = [ pkgs.nextcloud19 ];
+    package = [ pkgs.nextcloud19 ];
 
     # https = true;
     maxUploadSize = "100G";
