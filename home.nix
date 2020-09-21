@@ -39,6 +39,7 @@ in {
     # ./home-modules/tools/activitywatch-stable.nix
     # Doesn't work with eshell currently
     # ./home-modules/comma.nix
+
   ];
 
   caches.cachix = (import ./home-modules/cachix-caches.nix);
@@ -104,7 +105,7 @@ in {
 
     # Haskell
     # haskell.compiler.ghc882 # cabal-install
-    cabal-install
+    # cabal-install
 
     hlint
     haskellPackages.hoogle

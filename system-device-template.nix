@@ -1,13 +1,15 @@
+# * Config
 let
   # Generate using mkpasswd -m sha-512
   pass = null;
   # Check ./nixos-private-config/vpn-clients.nix
-  my-nat-addr = null;
+  # my-nat-addr = null;
 in
 {
+  # ** Imports
   imports = [
     # ./system-hw-configs/x200-libreboot.nix
-    # ./system-hw-configs/home-vm.nix
+    # ./system-hw-configs/vbox.nix
     # ./system-hw-configs/vps.nix
     # ./system-hw-configs/ideapad.nix
 
@@ -15,6 +17,7 @@ in
     # (import ./system-modules/network/wireguard-client.nix { nat-addr = my-nat-addr; })
   ];
 
+  # ** Users
   users = {
     users.admin = {
       group = "users";
@@ -32,6 +35,15 @@ in
     mutableUsers = false;
   };
 
+  # ** SSH
+  # services.openssh.listenAddresses =
+  #   [
+  #     {
+  #       addr = "192.168.56.101"; port = 22;
+  #     }
+  #   ];
+
+  # ** Syncthing
   # services.syncthing.relay.enable = true;
   # services.syncthing.relay.port = ;
   # services.syncthing.relay.statusPort = ;
