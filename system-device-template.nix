@@ -1,6 +1,6 @@
 # * Config
 let
-  # Generate using mkpasswd -m sha-512
+  # Generate using ~mkpasswd -m sha-512~ contained in package ~mkpasswd~
   pass = null;
   # Check ./nixos-private-config/vpn-clients.nix
   # my-nat-addr = null;
