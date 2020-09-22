@@ -69,7 +69,7 @@
         manage = "desktop";
         name = "emacs-docked";
         start = ''
-            emacs -my/docked &
+            emacs --my/docked &
             waitPID=$!
           '';
       }
