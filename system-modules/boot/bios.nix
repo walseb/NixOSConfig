@@ -1,8 +1,8 @@
-{ config, ... }:
+{ grub-dev ? "/dev/sda" }:
 {
   imports = [
     ./grub.nix
   ];
 
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.device = grub-dev;
 }

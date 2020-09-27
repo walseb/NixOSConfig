@@ -14,6 +14,8 @@ in
     # ./system-hw-configs/ideapad.nix
 
     # ./system-modules/network/sshd.nix
+    # ./system-modules/network/sshd-xorg.nix
+
     # ./system-modules/network/wireguard-server.nix
     # (import ./system-modules/network/wireguard-client.nix { nat-addr = my-nat-addr; })
   ];

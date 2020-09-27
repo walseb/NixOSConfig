@@ -7,7 +7,7 @@
     ./generic/pc.nix
     ./generic/home.nix
     ./generic/laptop.nix
-    ../system-modules/boot/bios-nvme.nix
+    (import ../system-modules/boot/bios.nix { grub-dev = "/dev/nvme0n1"; })
     ../system-modules/hardware/printer.nix
 
     ../system-modules/hardware/acpi_call.nix

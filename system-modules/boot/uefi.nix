@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   imports = [
     ./grub.nix
