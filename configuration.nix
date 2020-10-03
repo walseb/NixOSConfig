@@ -61,7 +61,6 @@
     networkmanagerapplet
 
     wget
-    openssh
 
     # Required to use cachix
     cachix

@@ -36,6 +36,8 @@ in {
     ./home-modules/direnv/direnv.nix
     ./home-modules/direnv/lorri.nix
 
+    ./home-modules/ssh.nix
+
     # ./home-modules/tools/activitywatch-stable.nix
     # Doesn't work with eshell currently
     # ./home-modules/comma.nix
