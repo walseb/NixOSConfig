@@ -15,6 +15,7 @@
     ./system-modules/cachix.nix
     ./system-device.nix
     ./system-modules/network/dns.nix
+    ./system-modules/fonts/font.nix
   ];
 
   cachix = [ ];

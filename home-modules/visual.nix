@@ -7,5 +7,5 @@
 
   # xsession.pointerCursor.size = 32;
 
-  fonts.fontconfig.enable = true;
+  # fonts.fontconfig.enable = true;
 }

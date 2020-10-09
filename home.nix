@@ -38,6 +38,7 @@ in {
 
     ./home-modules/ssh.nix
 
+    (import ./font.nix)
     # ./home-modules/tools/activitywatch-stable.nix
     # Doesn't work with eshell currently
     # ./home-modules/comma.nix
@@ -142,17 +143,10 @@ in {
     # cachix
 
     # iosevka
-    # (import ./home-modules/fonts/scientifica.nix)
-    # (import ./home-modules/fonts/BlockZone.nix)
 
     # ultimate-oldschool-pc-font-pack
 
     # unscii
-
-    # (import ./home-modules/fonts/my-inconsolata-lgc.nix)
-    hasklig
-    # inconsolata-lgc
-    # inconsolata
 
     pwgen
 
