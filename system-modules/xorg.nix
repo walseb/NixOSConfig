@@ -11,29 +11,12 @@
   ];
 
   services.xserver = {
-
     enable = true;
     layout = "us";
 
     # Allow exwm to work
     displayManager.sessionCommands =
       "${pkgs.xorg.xhost}/bin/xhost +SI:localuser:$USER";
-
-    libinput.enable = true;
-
-    # Disable mouse acceleration for touchpad
-    libinput.accelProfile = "flat";
-
-    # Disable mouse acceleration for mouse
-    config = ''
-        Section "InputClass"
-          Identifier "mouse accel"
-          Driver "libinput"
-          MatchIsPointer "on"
-          Option "AccelProfile" "flat"
-          Option "AccelSpeed" "0"
-        EndSection
-      '';
 
     # displayManager.session = [{
     #   manage = "desktop";

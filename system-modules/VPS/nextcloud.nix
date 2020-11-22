@@ -1,3 +1,4 @@
+# https://jacobneplokh.com/how-to-setup-nextcloud-on-nixos/
 {pkgs, ...}:
 {
   services.nextcloud = {
@@ -13,6 +14,8 @@
       dbuser = "nextcloud";
       dbhost = "/run/postgresql"; # nextcloud will add /.s.PGSQL.5432 by itself
       dbname = "nextcloud";
+      dbtype = "pgsql";
+
       adminuser = "admin";
       # Just put your password in quotation marks in this file
       # The password can't contain quotation marks

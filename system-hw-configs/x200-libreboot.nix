@@ -1,7 +1,6 @@
 {
   imports = [
     ./generic/pc.nix
-    ./generic/home.nix
     ./generic/laptop.nix
     ../system-modules/boot/bios.nix
     ../system-modules/hardware/no-proprietary-firmware.nix

@@ -12,8 +12,8 @@
   fonts.fontconfig.includeUserConf = true;
 
   fonts.fontconfig.defaultFonts.monospace = ["Hasklig"];
-  fonts.fontconfig.defaultFonts.sansSerif = ["Hasklig"];
-  fonts.fontconfig.defaultFonts.serif = ["Hasklig"];
+  # fonts.fontconfig.defaultFonts.sansSerif = ["Hasklig"];
+  # fonts.fontconfig.defaultFonts.serif = ["Hasklig"];
 
   fonts.fontconfig.localConf = ''
   <?xml version="1.0"?>

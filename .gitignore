@@ -7,9 +7,8 @@
 !system-device-template.nix
 !/nixos-private-config/
 
-!flake.nix
-
 !home.nix
+
 !home-device-template.nix
 !/home-hw-configs/
 !/home-modules/

@@ -1,32 +1,18 @@
 { config, pkgs, ... }:
 
-# # Unstable packages
-let
-  unstable = import (builtins.fetchTarball
-    "https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz")
-    # reuse the current configuration
-    { config = config.nixpkgs.config; };
-in {
+{
   home.stateVersion = "20.03";
 
   programs.home-manager.enable = true;
 
   nixpkgs.config = {
-    # allowBroken = true;
+    allowBroken = true;
     # allowUnfree = false;
   };
 
-  # Emacs overlay
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url =
-        "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-    }))
-  ];
-
   imports = [
     ./home-device.nix
-    ./home-modules/caches.nix
+    # ./home-modules/caches.nix
     ./home-modules/notifications.nix
     ./home-modules/git.nix
     ./home-modules/gpg.nix
@@ -38,14 +24,14 @@ in {
 
     ./home-modules/ssh.nix
 
-    (import ./font.nix)
     # ./home-modules/tools/activitywatch-stable.nix
     # Doesn't work with eshell currently
     # ./home-modules/comma.nix
 
+    ./home-modules/emacs.nix
   ];
 
-  caches.cachix = (import ./home-modules/cachix-caches.nix);
+  # caches.cachix = (import ./home-modules/cachix-caches.nix);
 
   home.packages = with pkgs; [
     # xfce.xfce4-notifyd
@@ -85,11 +71,6 @@ in {
     # haskellPackages.structured-haskell-mode
     pinentry_emacs
     # libvterm
-
-    #emacs
-    # emacsGit
-    emacsGcc
-    # emacs-all-the-icons-fonts
 
     # haskellPackages.glance - not on hackage
     # haskellPackages.visualize-cbn - marked as broken
@@ -155,9 +136,20 @@ in {
 
     xdotool
     xclip
-    unstable.haskellPackages.threadscope
+    haskellPackages.threadscope
     # unstable.haskellPackages.eventlog2html
 
-    emacsPackages.vterm
+    sbcl
+
+    chromium
+
+    sbcl
+
+    graphviz
+
+    recoll
+    # Needed by emacsqlite to compile binary
+    gcc
+
   ];
 }

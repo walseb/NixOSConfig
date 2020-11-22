@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-
+{  mouse-acceleration ? false, pkgs, ... }:
 {
   boot.loader.timeout = 1;
 
@@ -10,5 +9,6 @@
     ../../system-modules/wakelock.nix
     ../../system-modules/hardware/ntfs-support.nix
     ../../system-modules/mu.nix
+    ../../system-modules/hardware/input/input.nix
   ];
 }
