@@ -7,8 +7,9 @@
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url =
-        # "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-        "https://github.com/nix-community/emacs-overlay/archive/d8288f606564792365790a305617913ad3be86a5.tar.gz";
+        "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+      # "https://github.com/nix-community/emacs-overlay/archive/d8288f606564792365790a305617913ad3be86a5.tar.gz";
+      # "https://github.com/nix-community/emacs-overlay/archive/d8288f606564792365790a305617913ad3be86a5.tar.gz";
     }))
   ];
 
@@ -16,10 +17,12 @@
     # environment.systemPackages = with pkgs; [
     #emacs
     # emacsGit
-    emacsGcc
+
+    # emacsGcc
     # emacs-all-the-icons-fonts
-    # emacsUnstable
+    emacsUnstable
 
     emacsPackages.vterm
+    emacsPackages.pdf-tools
   ];
 }

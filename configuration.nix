@@ -37,6 +37,12 @@ in {
   nix = {
     # package = pkgs.nixUnstable;
 
+    # Don't garbage collect nix-shell
+    extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+  '';
+
     # extraOptions = ''
     #   experimental-features = nix-command flakes
     # '';
@@ -84,5 +90,13 @@ in {
 
     # Required to use cachix
     cachix
+
+    # Needed by org-roam
+    sqlite
+
+    xorg.libxcb
+    libdrm
+
+    chromium
   ];
 }

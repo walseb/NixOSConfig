@@ -48,14 +48,14 @@
           '';
       }
 
-      {
-        manage = "desktop";
-        name = "emacs-docked";
-        start = ''
-            emacs --my/docked &
-            waitPID=$!
-          '';
-      }
+      # {
+      #   manage = "desktop";
+      #   name = "emacs-docked";
+      #   start = ''
+      #       emacs --my/docked &
+      #       waitPID=$!
+      #     '';
+      # }
     ];
 
     #  Set emacs as default entry

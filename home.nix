@@ -20,7 +20,8 @@
 
     ./home-modules/cached-nix-shell.nix
     ./home-modules/direnv/direnv.nix
-    ./home-modules/direnv/lorri.nix
+    # ./home-modules/direnv/lorri.nix
+    ./home-modules/direnv/nix-direnv.nix
 
     ./home-modules/ssh.nix
 
@@ -82,6 +83,9 @@
     aspell
     aspellDicts.en # aspellDicts.sv # languagetool # jre
 
+    # Required by the wordnut package
+    wordnet
+
     mpv
 
     # Needed by cabal?
@@ -136,20 +140,36 @@
 
     xdotool
     xclip
-    haskellPackages.threadscope
+    # haskellPackages.threadscope
     # unstable.haskellPackages.eventlog2html
 
-    sbcl
+    # ogre
 
-    chromium
+    # (import ./home-modules/tools/youtube-music-desktop.nix)
 
-    sbcl
+    # (import ./home-modules/tools/ogre-2.nix)
+
+    nyxt
+    # sbcl
 
     graphviz
 
     recoll
+
     # Needed by emacsqlite to compile binary
     gcc
 
+    clojure
+    leiningen
+
+    # Needed by gtk-launch
+    gnome3.gtk
+
+    # Notmuch
+    mailcap
+
+    # Emacs webkit
+    # gcc pkg-config gtk3 webkitgtk glib-networking wrapGAppsHook
+    # gdb
   ];
 }

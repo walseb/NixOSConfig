@@ -1,3 +1,6 @@
 [submodule "nixos-private-config"]
 	path = nixos-private-config
 	url = https://github.com/walseb/nixos-private-config
+[submodule "vijual"]
+	path = deps/clj/vijual
+	url = https://github.com/stathissideris/vijual

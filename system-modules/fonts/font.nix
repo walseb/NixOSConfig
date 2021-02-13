@@ -5,6 +5,8 @@
     # (import ./scientifica.nix)
     # (import ./BlockZone.nix)
 
+    ultimate-oldschool-pc-font-pack
+
     hasklig
     # inconsolata-lgc
     # inconsolata

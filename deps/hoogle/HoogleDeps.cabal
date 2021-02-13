@@ -1,0 +1,25 @@
+cabal-version: >=1.10
+name: HoogleDeps
+version: 0.1.0.0
+license-file: LICENSE
+maintainer: s.walinder@gmail.com
+author: Sebastian Wålinder
+build-type: Simple
+
+executable HoogleDeps
+    main-is: Main.hs
+    hs-source-dirs: src
+    build-depends:
+                  base >=0
+                , lens
+                , linear
+
+                , sdl2
+                , sdl2-image
+                , sdl2-ttf
+
+                -- , Yampa
+                , dunai
+                , bearriver
+                , template-haskell
+                , deepseq

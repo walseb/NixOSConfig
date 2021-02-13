@@ -8,7 +8,8 @@
     ../../system-modules/hardware/backlight.nix
     ../../system-modules/wakelock.nix
     ../../system-modules/hardware/ntfs-support.nix
-    ../../system-modules/mu.nix
+    # ../../system-modules/mu.nix
     ../../system-modules/hardware/input/input.nix
+    # ../../system-modules/auto-upgrade.nix
   ];
 }

@@ -28,6 +28,8 @@
       require_nolog = true;
       require_nofilter = true;
 
+      cloaking_rules = "/etc/nixos/nixos-private-config/dnscrypt-hosts.txt";
+
       sources.public-resolvers = {
         # https://github.com/DNSCrypt/dnscrypt-proxy/wiki/DNS-server-sources
         urls = [

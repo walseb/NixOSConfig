@@ -15,3 +15,5 @@
 !/system-modules/
 !/system-hw-configs/
 !/loose-configs/
+!/bin
+!/deps

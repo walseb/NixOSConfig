@@ -6,6 +6,6 @@
 
     ./generic/linode.nix
     ../system-modules/VPS/nextcloud.nix
-    ../system-modules/auto-upgrade.nix
+    ../system-modules/auto-upgrade-VPS.nix
   ];
 }

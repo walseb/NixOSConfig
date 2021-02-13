@@ -1,6 +1,12 @@
 {
   services.xserver.libinput = {
-    accelProfile = "flat";
-    accelSpeed = "1";
+    touchpad = {
+      accelProfile = "flat";
+      accelSpeed = "1";
+    };
+    mouse = {
+      accelProfile = "flat";
+      accelSpeed = "1";
+    };
   };
 }
