@@ -1,4 +1,4 @@
-{  mouse-acceleration ? false, pkgs, ... }:
+{  pkgs, ... }:
 {
   boot.loader.timeout = 1;
 

@@ -7,6 +7,6 @@
   # hardware.pulseaudio.package = pkgs.pulseaudioFull;
 
   imports = [
-    ./audio/pulseeffects.nix
+    # ./audio/pulseeffects.nix
   ];
 }

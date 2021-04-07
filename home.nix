@@ -150,7 +150,6 @@
     # (import ./home-modules/tools/ogre-2.nix)
 
     nyxt
-    # sbcl
 
     graphviz
 
@@ -159,8 +158,7 @@
     # Needed by emacsqlite to compile binary
     gcc
 
-    clojure
-    leiningen
+    graphviz
 
     # Needed by gtk-launch
     gnome3.gtk
