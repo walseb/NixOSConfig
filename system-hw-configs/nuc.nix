@@ -13,5 +13,6 @@
     ../system-modules/syncthing.nix
     ../system-modules/VPS/nextcloud.nix
     ../system-modules/network/wireguard-server.nix
+    ../system-modules/network/sshd.nix
   ];
 }
