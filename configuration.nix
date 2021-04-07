@@ -82,6 +82,8 @@ in {
   environment.systemPackages = with pkgs; [
     htop
 
+    git
+
     networkmanager
     networkmanagerapplet
 
@@ -89,9 +91,6 @@ in {
 
     # Required to use cachix
     cachix
-
-    # Needed by org-roam
-    sqlite
 
     xorg.libxcb
     libdrm

@@ -169,5 +169,8 @@
     # Emacs webkit
     # gcc pkg-config gtk3 webkitgtk glib-networking wrapGAppsHook
     # gdb
+
+    # Needed by org-roam
+    sqlite
   ];
 }
