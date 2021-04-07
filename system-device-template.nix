@@ -12,6 +12,7 @@ in
     # ./system-hw-configs/vbox.nix
     # ./system-hw-configs/vps.nix
     # ./system-hw-configs/ideapad.nix
+    # ./system-hw-configs/nuc.nix
 
     # ./system-modules/network/sshd.nix
     # ./system-modules/network/sshd-xorg.nix
