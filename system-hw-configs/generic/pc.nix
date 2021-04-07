@@ -11,5 +11,6 @@
     # ../../system-modules/mu.nix
     ../../system-modules/hardware/input/input.nix
     # ../../system-modules/auto-upgrade.nix
+    ../../system-modules/fonts/font.nix
   ];
 }
