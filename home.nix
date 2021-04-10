@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  home.stateVersion = "20.03";
+  home.stateVersion = "20.09";
 
   programs.home-manager.enable = true;
 
@@ -28,8 +28,6 @@
     # ./home-modules/tools/activitywatch-stable.nix
     # Doesn't work with eshell currently
     # ./home-modules/comma.nix
-
-    ./home-modules/emacs.nix
   ];
 
   # caches.cachix = (import ./home-modules/cachix-caches.nix);
@@ -39,9 +37,9 @@
     # mpd
     # mpc_cli
     git
-    git-lfs
+    # git-lfs
 
-    nix-top
+    # nix-top
 
     pavucontrol
 
@@ -54,14 +52,11 @@
     # TODO Find replacement
     # p7zip
 
-    # mail
-    isync
-    msmtp
     # Only works in main nixos config
     # mu
 
     # gimp
-    redshift
+    # redshift
 
     w3m
 
@@ -149,9 +144,7 @@
 
     # (import ./home-modules/tools/ogre-2.nix)
 
-    nyxt
-
-    graphviz
+    # nyxt
 
     recoll
 
@@ -163,14 +156,9 @@
     # Needed by gtk-launch
     gnome3.gtk
 
-    # Notmuch
-    mailcap
-
     # Emacs webkit
     # gcc pkg-config gtk3 webkitgtk glib-networking wrapGAppsHook
     # gdb
-
-    # Needed by org-roam
-    sqlite
+    gnumake
   ];
 }

@@ -4,10 +4,11 @@
   imports = [
     # ./home-modules/email.nix
     # ./home-modules/games/cataclysm-dda/cataclysm-dda-git-latest.nix
-    # ./home-modules/build-emacs.nix
+    # ./home-modules/emacs.nix
     # ./home-modules/art.nix
     # ./home-modules/spotify.nix
     # ./home-modules/spotifyd.nix
+    # ./home-modules/email.nix
   ];
 
   # home.packages = with pkgs; [

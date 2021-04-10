@@ -92,6 +92,9 @@ in {
     # Required to use cachix
     cachix
 
+    # Needs to be system-wide by org-roam
+    sqlite
+
     xorg.libxcb
     libdrm
 
