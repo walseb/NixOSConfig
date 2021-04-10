@@ -2,6 +2,8 @@
 
 {
   home.stateVersion = "20.09";
+  home.username="admin";
+  home.homeDirectory="/home/admin";
 
   programs.home-manager.enable = true;
 

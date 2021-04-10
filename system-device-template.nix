@@ -21,6 +21,8 @@ in
     # (import ./system-modules/network/wireguard-client.nix { nat-addr = my-nat-addr; })
   ];
 
+  networking.hostName = "nixos";
+
   # ** Users
   users = {
     users.admin = {

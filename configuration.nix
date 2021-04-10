@@ -74,7 +74,6 @@ in {
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
-  networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
   services.emacs.defaultEditor = true;
