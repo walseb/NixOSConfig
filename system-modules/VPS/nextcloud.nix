@@ -19,7 +19,7 @@
       adminuser = "admin";
       # Just put your password in quotation marks in this file
       # The password can't contain quotation marks
-      adminpassFile = "/home/admin/pkg-keys/nextcloud-password";
+      adminpassFile = "/pkg-keys/nextcloud-password";
       # overwriteProtocol = "https";
       extraTrustedDomains = [ (import ../../nixos-private-config/servers.nix).mainServer ];
     };
