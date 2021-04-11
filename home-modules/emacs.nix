@@ -24,5 +24,7 @@
 
     emacsPackages.vterm
     emacsPackages.pdf-tools
+    emacsPackages.org
+    emacsPackages.org-plus-contrib
   ];
 }
