@@ -23,7 +23,7 @@ in
   environment.systemPackages = with pkgs; [
     xorg.xrandr
     inotify-tools
-    surf
+    surf-display
     xterm
   ];
 
