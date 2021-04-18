@@ -5,7 +5,7 @@ stdenv.mkDerivation rec {
   version = "master";
 
   src = fetchgit {
-    url = "https://github.com/pldubouilh/gossa";
+    url = "https://github.com/walseb/gossa";
     deepClone = true;
     sha256 = "1fp3vhx5w0wjyrccwccxf14bh7y1gqp910368arq1kppjhd1phcf";
     rev = "e2aa4f149e40614bad24f4ff2db2bac29b670b6c";
