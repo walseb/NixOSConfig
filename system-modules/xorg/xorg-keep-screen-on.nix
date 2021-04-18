@@ -1,10 +1,11 @@
 {pkgs, ...}:
 let
   script = pkgs.writeShellScript "script" ''
+    su - admin
+    export DISPLAY=:0
     while true; do
         # 30 minutes, 15 min off, 15 on
         ${pkgs.coreutils}/bin/sleep 1800
-        export DISPLAY=:0
         ${pkgs.xorg.xset}/bin/xset dpms force on
     done'';
 in
