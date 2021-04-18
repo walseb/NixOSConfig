@@ -7,8 +7,8 @@ stdenv.mkDerivation rec {
   src = fetchgit {
     url = "https://github.com/pldubouilh/gossa";
     deepClone = true;
-    sha256 = "1swj78dd6sl7bgzy1072s8a7c2663zklbwbjrsr10wl3ph91dk9h";
-    rev = "557b3fd50d618e2e5ec2007d87ee502d56170560";
+    sha256 = "1fp3vhx5w0wjyrccwccxf14bh7y1gqp910368arq1kppjhd1phcf";
+    rev = "e2aa4f149e40614bad24f4ff2db2bac29b670b6c";
   };
 
   buildInputs = [ stdenv go perl ];
