@@ -16,6 +16,6 @@
     ../system-modules/network/sshd.nix
     ../system-modules/xorg-auto-login.nix
 
-    ../nixos-private-config/remote-file-server/remote-file-server.nix
+    (import ../nixos-private-config/remote-file-server/remote-file-server.nix { address = (import ../nixos-private-config/servers.nix).mainServer; })
   ];
 }
