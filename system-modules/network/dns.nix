@@ -1,4 +1,3 @@
-{ config, pkgs, ... }:
 {
   # https://nixos.wiki/wiki/Encrypted_DNS
   networking = {

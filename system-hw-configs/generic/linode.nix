@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, ... }:
 with lib;
 {
   boot.kernelParams = [ "console=ttyS0,19200n8" ];

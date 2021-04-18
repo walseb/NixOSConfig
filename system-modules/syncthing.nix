@@ -1,4 +1,3 @@
-{ config, pkgs, ... }:
 {
   services.syncthing.enable = true;
   services.syncthing.dataDir = "/home/admin/.cache/syncthing/.config/";

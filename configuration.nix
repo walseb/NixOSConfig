@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, stdenv, callPackage, ... }:
 
 let
   caches = [
@@ -24,9 +24,9 @@ in {
   system.stateVersion = "20.09";
 
   imports = [
+    ./system-device.nix
     ./hardware-configuration.nix
     ./system-modules/cachix.nix
-    ./system-device.nix
     ./system-modules/network/dns.nix
     # ./system-modules/tty.nix
   ];

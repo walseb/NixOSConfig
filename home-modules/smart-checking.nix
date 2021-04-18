@@ -1,4 +1,3 @@
-{ config, pkgs, ... }:
 {
   # SMART checking
   smartd = {

@@ -6,7 +6,7 @@
     (import ../system-modules/boot/bios.nix { grub-dev = "/dev/vda"; })
 
     ../system-modules/VPS/nextcloud.nix
-    ../system-modules/auto-upgrade-VPS.nix
+    ../system-modules/auto-upgrade-server.nix
   ];
 
   networking.usePredictableInterfaceNames = false;

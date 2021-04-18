@@ -1,7 +1,7 @@
 # https://hydra.nix-community.org/project/emacs-overlay
 # https://hydra.nix-community.org/jobset/emacs-overlay/unstable
 # { pkgs ? (fetchTarball "https://github.com/NixOS/nixpkgs/archive/84d74ae9c9cbed73274b8e4e00be14688ffc93fe.tar.gz" ) {}, ... }:
-{config, pkgs, ... }:
+{ pkgs, ... }:
 {
   # Emacs overlay
   nixpkgs.overlays = [
@@ -24,7 +24,7 @@
 
     emacsPackages.vterm
     emacsPackages.pdf-tools
-    # emacsPackages.org
+    emacsPackages.org
     emacsPackages.org-plus-contrib
   ];
 }

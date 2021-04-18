@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, pkgs, ... }:
 with lib;
 {
   boot.kernelParams = [ "nomodeset" ];

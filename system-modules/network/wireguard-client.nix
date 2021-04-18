@@ -8,7 +8,7 @@
       # Determines the IP address and subnet of the client's end of the tunnel interface.
       address = [ nat-addr ];
 
-      privateKeyFile = "/pkg-keys/wireguard-key-private";
+      privateKeyFile = "/keys/wireguard-key-private";
 
       peers = [
         # For a client configuration, one peer entry for the server will suffice.

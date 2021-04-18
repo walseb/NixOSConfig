@@ -19,7 +19,7 @@
       # The port that Wireguard listens to. Must be accessible by the client.
       listenPort = 51820;
 
-      privateKeyFile = "/pkg-keys/wireguard-key-private";
+      privateKeyFile = "/keys/wireguard-key-private";
 
       # This allows the wireguard server to route your traffic to the internet and hence be like a VPN
       postUp = ''
