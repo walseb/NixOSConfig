@@ -23,7 +23,7 @@ in
   systemd.user.services.xorg-keep-screen-on = {
     enable = true;
     description = "Screen on without burn in";
-    wantedBy = [ "graphical.target" ];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       ExecStart = script;
       Restart = "on-failure";
