@@ -21,7 +21,7 @@ in
     Option "OffTime" "15"
 '';
 
-  systemd.user.services.xorg-keep-screen-on = {
+  systemd.services.xorg-keep-screen-on = {
     enable = true;
     description = "Screen on without burn in";
     wantedBy = [ "multi-user.target" ];
