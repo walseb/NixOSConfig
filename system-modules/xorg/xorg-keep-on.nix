@@ -1,7 +1,6 @@
-{pkgs, extraConfig, ...}:
+{pkgs, ...}:
 let
   script = pkgs.writeShellScript "script" ''
-    ${extraConfig}
     while true; do
         # 30 minutes, 15 min off, 15 on
         ${pkgs.coreutils}/bin/sleep 1800
