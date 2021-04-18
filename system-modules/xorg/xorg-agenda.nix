@@ -47,15 +47,12 @@ in
         name = "agenda";
         start = ''
             xrandr --output ${xrandr-output} ${xrandr-extra}
-            ${pkgs.xterm}/bin/xterm -ls &
-            ENDPID=$!
             while true; do
                 ${pkgs.surf-display}/bin/surf-display ${file} &
                 PID=$!
                 ${pkgs.inotify-tools}/bin/inotifywait -e modify ${file}
                 kill $PID
             done
-            waitPID=ENDPID
           '';
       }
     ];
