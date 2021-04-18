@@ -8,6 +8,10 @@ let
     done'';
 in
 {
+  services.xserver.monitorSection = ''
+    Option "DPMS" "true"
+'';
+
   services.xserver.serverFlagsSection = ''
     Option "BlankTime" "0"
     Option "StandbyTime" "0"
