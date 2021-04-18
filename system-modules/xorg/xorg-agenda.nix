@@ -18,6 +18,8 @@ let
 '';
 in
 {
+  environment.etc."default/surf-display".text = surfDisplayConf;
+
   environment.systemPackages = with pkgs; [
     xorg.xrandr
     inotify-tools
@@ -38,8 +40,6 @@ in
           '';
         }
       ];
-
-    environment.etc."default/surf-display".text = surfDisplayConf;
 
     desktopManager.session = [
       {
