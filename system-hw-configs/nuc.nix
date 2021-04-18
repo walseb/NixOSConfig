@@ -10,11 +10,12 @@
     ../system-modules/hardware/SSD.nix
     ../system-modules/hardware/printer.nix
 
-    ../system-modules/xorg.nix
     ../system-modules/syncthing.nix
     ../system-modules/network/wireguard-server.nix
     ../system-modules/network/sshd.nix
-    ../system-modules/xorg-auto-login.nix
+
+    (import ../system-modules/xorg/xorg-agenda.nix {pkgs = pkgs; xrandr-output = "HDMI-1"; agenda-dir = "/home/admin/sync/org-agenda-img/agenda.html"; xrandr-extra = "-s 1920x1080 --rate 50.00"; })
+    ../system-modules/xorg/xorg-auto-login.nix
 
     (import ../nixos-private-config/remote-file-server/remote-file-server.nix { pkgs = pkgs; lib = lib; address = (import ../nixos-private-config/servers.nix).mainServer; })
   ];

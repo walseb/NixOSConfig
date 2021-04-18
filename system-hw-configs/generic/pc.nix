@@ -3,7 +3,7 @@
   boot.loader.timeout = 1;
 
   imports = [
-    ../../system-modules/xorg.nix
+    ../../system-modules/xorg/xorg.nix
     ../../system-modules/audio.nix
     ../../system-modules/hardware/backlight.nix
     ../../system-modules/wakelock.nix
