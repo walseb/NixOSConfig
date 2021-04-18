@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -16,6 +16,6 @@
     ../system-modules/network/sshd.nix
     ../system-modules/xorg-auto-login.nix
 
-    (import ../nixos-private-config/remote-file-server/remote-file-server.nix { address = (import ../nixos-private-config/servers.nix).mainServer; })
+    (import ../nixos-private-config/remote-file-server/remote-file-server.nix { pkgs = pkgs; lib = lib; address = (import ../nixos-private-config/servers.nix).mainServer; })
   ];
 }
