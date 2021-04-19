@@ -50,6 +50,8 @@ in
                 ${pkgs.surf-display}/bin/surf-display ${file} &
                 PID=$!
                 ${pkgs.inotify-tools}/bin/inotifywait -e modify ${file}
+                # Give transfer some time to complete
+                ${pkgs.coreutils}/bin/sleep 5
                 kill $PID
             done
           '';
