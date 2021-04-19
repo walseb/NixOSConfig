@@ -1,11 +1,13 @@
 {pkgs, ...}:
 let
   script = pkgs.writeShellScript "script" ''
-    su - admin
     export DISPLAY=:0
     while true; do
-        # 30 minutes, 15 min off, 15 on
-        ${pkgs.coreutils}/bin/sleep 1800
+        # 15 min on
+        ${pkgs.coreutils}/bin/sleep 900
+        ${pkgs.xorg.xset}/bin/xset dpms force off
+        # 15 min off
+        ${pkgs.coreutils}/bin/sleep 900
         ${pkgs.xorg.xset}/bin/xset dpms force on
     done'';
 in
@@ -26,6 +28,8 @@ in
     description = "Screen on without burn in";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
+      User = "admin";
+      Group = "users";
       ExecStart = script;
       Restart = "on-failure";
     };

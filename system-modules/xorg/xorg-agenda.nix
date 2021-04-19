@@ -14,7 +14,6 @@ let
     WITH_PULSEAUDIO="no"
     # Hide idle mouse pointer.
     HIDE_IDLE_POINTER="yes"
-
 '';
 in
 {
