@@ -51,7 +51,7 @@ in
                 PID=$!
                 ${pkgs.inotify-tools}/bin/inotifywait -e modify ${file}
                 # Give transfer some time to complete
-                ${pkgs.coreutils}/bin/sleep 5
+                # ${pkgs.coreutils}/bin/sleep 5
                 kill $PID
             done
           '';
