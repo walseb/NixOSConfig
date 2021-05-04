@@ -5,6 +5,7 @@
 
   imports = [
     ./generic/pc.nix
+    ./generic/midi.nix
     # (import ./generic/pc.nix { mouse-acceleration = false; pkgs = pkgs; })
     ./generic/laptop.nix
     # (import ../system-modules/boot/bios.nix { grub-dev = "/dev/nvme0n1"; })

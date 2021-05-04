@@ -6,7 +6,12 @@
 
   # hardware.pulseaudio.package = pkgs.pulseaudioFull;
 
+  environment.systemPackages = with pkgs; [
+    pamixer
+  ];
+
   imports = [
     # ./audio/pulseeffects.nix
+    # ./jack.nix
   ];
 }

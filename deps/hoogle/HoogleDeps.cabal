@@ -14,12 +14,14 @@ executable HoogleDeps
                 , lens
                 , linear
 
-                , sdl2
-                , sdl2-image
-                , sdl2-ttf
-
                 -- , Yampa
                 , dunai
                 , bearriver
                 , template-haskell
                 , deepseq
+                , essence-of-live-coding
+
+                , stm
+
+                , exception-transformers
+                , transformers

@@ -8,10 +8,10 @@
 , pkgs ? import nixpkgsSrc nixpkgsArgs
 }: pkgs.haskell-nix.project {
   # 'cleanGit' cleans a source directory based on the files known by git
-  src = pkgs.haskell-nix.haskellLib.cleanGit {
+  src = pkgs.haskell-nix.haskellLib.cleanSourceWith {
     name = "HoogleDeps";
     src = ./.;
   };
   # Specify the GHC version to use.
-  compiler-nix-name = "ghc865"; # Not required for `stack.yaml` based projects.
+  compiler-nix-name = "ghc884"; # Not required for `stack.yaml` based projects.
 }

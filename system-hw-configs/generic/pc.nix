@@ -4,7 +4,9 @@
 
   imports = [
     ../../system-modules/xorg/xorg.nix
-    ../../system-modules/audio.nix
+    # ../../system-modules/audio/pulse.nix
+    # ../../system-modules/audio/jack.nix
+    ../../system-modules/audio/pipewire.nix
     ../../system-modules/hardware/backlight.nix
     ../../system-modules/wakelock.nix
     ../../system-modules/hardware/file-systems/ntfs-support.nix
