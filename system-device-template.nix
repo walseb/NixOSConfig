@@ -29,12 +29,14 @@ in
       group = "users";
       isNormalUser = true;
       uid = 1000;
+      # password = "";
       hashedPassword = pass;
 
       extraGroups = [ "wheel" "audio" "video" "usbmux" "networkmanager" ];
     };
 
     users.root = {
+      # password = "";
       hashedPassword = pass;
     };
 
