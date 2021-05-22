@@ -1,29 +1,12 @@
 { pkgs, xrandr-output, file, xrandr-extra ? "", ... }:
-let
-  surfDisplayConf = ''
-    # Surf Kiosk Display: Wrap around surf browser and turn your
-    # system into a browser screen in KIOSK-mode.
-    # default download URI for all display screens if not configured individually
-    DEFAULT_WWW_URI="file://${file}"
-    # Enforce fixed resolution for all displays (default: not set):
-    #DEFAULT_RESOLUTION="1920x1080"
-    # Setting for internal inactivity timer to restart surf-display
-    # if the user goes inactive/idle.
-    INACTIVITY_INTERVAL="0"
-    # Launch pulseaudio daemon if not already running.
-    WITH_PULSEAUDIO="no"
-    # Hide idle mouse pointer.
-    HIDE_IDLE_POINTER="yes"
-'';
-in
 {
-  environment.etc."default/surf-display".text = surfDisplayConf;
 
   environment.systemPackages = with pkgs; [
     xorg.xrandr
     inotify-tools
-    surf-display
+    surf
     xterm
+    dwm
   ];
 
   services.xserver = {
@@ -47,12 +30,15 @@ in
         start = ''
             xrandr --output ${xrandr-output} ${xrandr-extra}
             while true; do
-                ${pkgs.surf-display}/bin/surf-display ${file} &
+                ${pkgs.dwm}/bin/dwm &
                 PID=$!
+                ${pkgs.surf}/bin/surf ${file} &
+                PIDSURF=$!
                 ${pkgs.inotify-tools}/bin/inotifywait -e modify ${file}
                 # Give transfer some time to complete
                 # ${pkgs.coreutils}/bin/sleep 5
                 kill $PID
+                kill $PIDSURF
             done
           '';
       }
