@@ -11,7 +11,7 @@
     ../system-modules/hardware/printer.nix
 
     ../system-modules/syncthing.nix
-    ../system-modules/network/wireguard-server.nix
+    # ../system-modules/network/wireguard-server.nix
     ../system-modules/network/sshd.nix
 
     (import ../system-modules/xorg/xorg-agenda.nix {pkgs = pkgs; xrandr-output = "HDMI-1"; file = "/home/admin/sync/org-agenda-img/agenda.html"; xrandr-extra = "--rotate left -s 1920x1080 --rate 50.00"; })
