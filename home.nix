@@ -162,5 +162,11 @@
     # gcc pkg-config gtk3 webkitgtk glib-networking wrapGAppsHook
     # gdb
     gnumake
+
+    gimp
+
+    languagetool
+    # Needed to call langtool jar
+    adoptopenjdk-jre-bin
   ];
 }
