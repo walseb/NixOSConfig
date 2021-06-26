@@ -19,6 +19,7 @@
     ./home-modules/git.nix
     ./home-modules/gpg.nix
     ./home-modules/visual.nix
+    ./home-modules/audio.nix
 
     ./home-modules/cached-nix-shell.nix
     ./home-modules/direnv/direnv.nix
@@ -165,8 +166,10 @@
 
     gimp
 
-    languagetool
+    # languagetool
     # Needed to call langtool jar
-    adoptopenjdk-jre-bin
+    # adoptopenjdk-jre-bin
+
+    gnuplot
   ];
 }

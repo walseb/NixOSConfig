@@ -1,5 +1,10 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
+  imports =
+    [
+      ./pulseeffects-pipewire.nix
+    ];
+
   services.pipewire = {
     enable = true;
     alsa = {
