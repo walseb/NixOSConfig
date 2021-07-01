@@ -7,13 +7,17 @@
 
     ultimate-oldschool-pc-font-pack
 
-    hasklig
+    # hasklig
+
+    # scientifica
+    # spleen
+    ibm-plex
     # inconsolata-lgc
     # inconsolata
   ];
   fonts.fontconfig.includeUserConf = true;
 
-  fonts.fontconfig.defaultFonts.monospace = ["Hasklig"];
+  fonts.fontconfig.defaultFonts.monospace = ["IBM Plex Mono"];
   # fonts.fontconfig.defaultFonts.sansSerif = ["Hasklig"];
   # fonts.fontconfig.defaultFonts.serif = ["Hasklig"];
 
