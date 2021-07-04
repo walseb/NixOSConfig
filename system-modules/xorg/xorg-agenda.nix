@@ -3,8 +3,10 @@
   environment.systemPackages = with pkgs; [
     xorg.xrandr
     inotify-tools
-    surf
+    # surf
     # (pkgs.surf.override { patches = ../../loose-configs/surf/autoplay.patch; })
+
+    chromium
 
     xterm
     dwm
@@ -36,13 +38,13 @@
         while true; do
             ${pkgs.dwm}/bin/dwm &
             PID=$!
-            ${pkgs.surf}/bin/surf ${file} &
-            PIDSURF=$!
+            ${pkgs.chromium}/bin/chromium ${file} --autoplay-policy=no-user-gesture-required --mute-audio &
+            PIDBROWSER=$!
             ${pkgs.inotify-tools}/bin/inotifywait -e modify ${file}
             # Give transfer some time to complete
             # ${pkgs.coreutils}/bin/sleep 5
             kill $PID
-            kill $PIDSURF
+            kill $PIDBROWSER
         done
       '';
     }];
