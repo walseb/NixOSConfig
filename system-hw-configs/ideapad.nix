@@ -14,6 +14,7 @@
     ../system-modules/webcam-loopback.nix
 
     ../system-modules/hardware/printer.nix
+    # ../system-modules/hardware/bluetooth.nix
 
     ../system-modules/hardware/acpi_call.nix
     ../system-modules/hardware/tlp/tlp-amd.nix

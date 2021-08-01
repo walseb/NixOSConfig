@@ -21,7 +21,7 @@ let
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
   ];
 in {
-  system.stateVersion = "20.09";
+  system.stateVersion = "21.05";
 
   imports = [
     ./system-device.nix
@@ -94,9 +94,13 @@ in {
     # Needs to be system-wide by org-roam
     sqlite
 
+    chromium
+
+    # Needed for opengl?
     xorg.libxcb
+
     libdrm
 
-    chromium
+    killall
   ];
 }

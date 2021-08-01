@@ -171,5 +171,9 @@
     # adoptopenjdk-jre-bin
 
     gnuplot
+
+    # dwarf-fortress
+
+    anki
   ];
 }

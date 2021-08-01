@@ -1,3 +1,4 @@
+# The pulse effects daemon is enabled in home manager
 { pkgs, ...}:
 {
   programs.dconf.enable = true;

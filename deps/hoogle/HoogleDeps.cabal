@@ -25,4 +25,4 @@ executable HoogleDeps
 
                 , exception-transformers
                 , transformers
-                , GPipe
+                , GPipe-Core
