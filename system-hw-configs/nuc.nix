@@ -19,5 +19,7 @@
     ../system-modules/xorg/xorg-keep-screen-on.nix
 
     (import ../nixos-private-config/remote-file-server/remote-file-server.nix { pkgs = pkgs; lib = lib; address = (import ../nixos-private-config/servers.nix).mainServer; })
+
+    ../system-modules/hardware/PrecisionClockMkII/nmea-time-service.nix
   ];
 }
