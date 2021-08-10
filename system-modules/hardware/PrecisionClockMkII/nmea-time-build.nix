@@ -6,8 +6,8 @@ buildPythonPackage rec {
   src = pkgs.fetchFromGitHub {
     owner = "walseb";
     repo = "nmea-time-simplified";
-    rev = "0bcd10d1505f69b84f5352c7dc76d573d0f744a7";
-    sha256 = "0c6n9475lp2s9gf6054xgy7qifsdmizbxzc9f1ah6k0y63wa5amh";
+    rev = "94899452c64702a5d0086a9dde05d3033dee309e";
+    sha256 = "1mw70h4c090w1s9yj6hdw7j54vvscis9zchdmpqii5k32b25y85a";
   };
   propagatedBuildInputs = [ pkgs.python39Packages.pyserial pkgs.python39Packages.iso8601 ];
 }

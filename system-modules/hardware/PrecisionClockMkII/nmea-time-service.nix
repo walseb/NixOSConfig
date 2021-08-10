@@ -1,13 +1,18 @@
 { nmea-time-pkg, pkgs, ... }:
 {
   systemd.services.nmea-time-service = {
+    serviceConfig.Type = "oneshot";
+    script = "${nmea-time-pkg}/bin/nmea-time.py";
+  };
+
+  systemd.timers.nmea-time-timer = {
     enable = true;
-    description = "Nmea-time service";
-    serviceConfig = {
-      ExecStart = "${nmea-time-pkg}/bin/nmea-time.py";
-      TimeoutStartSec= "infinity";
+    wantedBy = [ "timers.target" ];
+    partOf = [ "nmea-time-service.service" ];
+    timerConfig = {
+      # Every 15 minutes
+      OnCalendar = "*:0/15";
+      Unit = "nmea-time-service.service";
     };
-    wantedBy = [ "multi-user.target" ];
-    after = [ "multi-user.target" ];
   };
 }
