@@ -17,13 +17,13 @@
     #emacs
     # emacsGit
 
-    # emacsGcc
+    emacsGcc
     # emacs-all-the-icons-fonts
-    emacsUnstable
+    # emacsUnstable
 
     emacsPackages.vterm
     emacsPackages.pdf-tools
     emacsPackages.org
-    emacsPackages.org-plus-contrib
+    # emacsPackages.org-plus-contrib
   ];
 }

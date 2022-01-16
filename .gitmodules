@@ -1,6 +1,6 @@
 [submodule "nixos-private-config"]
 	path = nixos-private-config
 	url = https://github.com/walseb/nixos-private-config
-[submodule "system-modules/overlays/musnix"]
-	path = system-modules/overlays/musnix
-	url = https://github.com/musnix/musnix
+[submodule "fir"]
+	path = deps/hoogle/custom-projects/fir
+	url = https://gitlab.com/sheaf/fir

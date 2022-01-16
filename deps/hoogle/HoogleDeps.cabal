@@ -11,7 +11,7 @@ executable HoogleDeps
     hs-source-dirs: src
     build-depends:
                   base >=0
-                , lens
+                , generic-lens
                 , linear
 
                 -- , Yampa
@@ -26,3 +26,9 @@ executable HoogleDeps
                 , exception-transformers
                 , transformers
                 , GPipe-Core
+
+                , vulkan
+                , vulkan-utils
+                , VulkanMemoryAllocator
+                -- , SDL2
+                , vector

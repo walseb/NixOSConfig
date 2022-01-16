@@ -12,6 +12,7 @@
     name = "HoogleDeps";
     src = ./.;
   };
+
   # Specify the GHC version to use.
   # [[file:~/Notes/20210610002833.org::*Binary cache dependencies][Binary cache dependencies]]
   compiler-nix-name = "ghc884"; # Not required for `stack.yaml` based projects.

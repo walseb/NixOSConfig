@@ -27,5 +27,6 @@
     # ../system-modules/hardware/graphics/amd-video.nix
 
     ../system-modules/syncthing.nix
+    ../system-modules/redshift.nix
   ];
 }

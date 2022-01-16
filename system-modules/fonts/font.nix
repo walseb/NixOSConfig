@@ -1,4 +1,6 @@
 { pkgs, ... }:
+let selectedFont = "Roboto Mono"; # "IBM Plex Mono";
+in
 {
   fonts.fonts = with pkgs; [
     # (import ./my-inconsolata-lgc.nix)
@@ -12,15 +14,19 @@
     # scientifica
     # spleen
     ibm-plex
+
+    roboto-mono
+
     # inconsolata-lgc
     # inconsolata
   ];
   fonts.fontconfig.includeUserConf = true;
 
-  fonts.fontconfig.defaultFonts.monospace = ["IBM Plex Mono"];
-  # fonts.fontconfig.defaultFonts.sansSerif = ["Hasklig"];
-  # fonts.fontconfig.defaultFonts.serif = ["Hasklig"];
+  fonts.fontconfig.defaultFonts.monospace = [selectedFont];
+  fonts.fontconfig.defaultFonts.sansSerif = [selectedFont];
+  fonts.fontconfig.defaultFonts.serif = [selectedFont];
 
+  # Attempt at making zeroes dashed
   fonts.fontconfig.localConf = ''
   <?xml version="1.0"?>
   <!DOCTYPE fontconfig SYSTEM "fonts.dtd">

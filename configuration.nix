@@ -102,5 +102,9 @@ in {
     libdrm
 
     killall
+
+    glslang
+
+    shaderc
   ];
 }
