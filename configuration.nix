@@ -10,6 +10,9 @@ let
     "https://hydra.iohk.io"
 
     "https://nix-community.cachix.org"
+
+    # https://github.com/shajra/haskell-hls-nix
+    # "https://shajra.cachix.org"
   ];
 
   cachesKeys = [
@@ -19,6 +22,9 @@ let
     "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
 
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+
+    # https://github.com/shajra/haskell-hls-nix
+    # "shajra.cachix.org-1:V0x7Wjgd/mHGk2KQwzXv8iydfIgLupbnZKLSQt5hh9o="
   ];
 in {
   system.stateVersion = "21.05";
@@ -27,7 +33,7 @@ in {
     ./system-device.nix
     ./hardware-configuration.nix
     ./system-modules/cachix.nix
-    ./system-modules/network/dns.nix
+    # ./system-modules/network/dns.nix
     # ./system-modules/tty.nix
   ];
 
@@ -58,7 +64,7 @@ in {
 
   nixpkgs.config = {
     # allowBroken = true;
-    allowUnfree = false;
+    allowUnfree = true;
   };
 
   boot = {
@@ -72,7 +78,8 @@ in {
   i18n.extraLocaleSettings = { "TIME_STYLE" = "iso"; };
 
   # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
+  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Australia/Sydney";
 
   networking.networkmanager.enable = true;
 
@@ -80,6 +87,8 @@ in {
 
   environment.systemPackages = with pkgs; [
     htop
+
+    libqalculate
 
     git
 
@@ -106,5 +115,7 @@ in {
     glslang
 
     shaderc
+
+    SDL2
   ];
 }

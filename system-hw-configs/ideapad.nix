@@ -19,12 +19,12 @@
     ../system-modules/hardware/acpi_call.nix
     ../system-modules/hardware/tlp/tlp-amd.nix
 
-    ../system-modules/hardware/proprietary-firmware/amd.nix # ../system-modules/hardware/proprietary-firmware/all-firmware.nix
+    # ../system-modules/hardware/proprietary-firmware/amd.nix # ../system-modules/hardware/proprietary-firmware/all-firmware.nix
     # ../system-modules/hardware/proprietary-firmware/redistributable-firmware.nix
-    # ../system-modules/hardware/proprietary-firmware/all-firmware.nix
+    ../system-modules/hardware/proprietary-firmware/all-firmware.nix
 
-    # ../system-modules/hardware/graphics/vulkan.nix
-    # ../system-modules/hardware/graphics/amd-video.nix
+    ../system-modules/hardware/graphics/vulkan.nix
+    ../system-modules/hardware/graphics/amd-video.nix
 
     ../system-modules/syncthing.nix
     ../system-modules/redshift.nix

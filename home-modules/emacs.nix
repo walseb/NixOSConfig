@@ -17,7 +17,7 @@
     #emacs
     # emacsGit
 
-    emacsGcc
+    emacsNativeComp
     # emacs-all-the-icons-fonts
     # emacsUnstable
 

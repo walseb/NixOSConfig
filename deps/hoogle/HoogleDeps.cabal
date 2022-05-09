@@ -25,10 +25,11 @@ executable HoogleDeps
 
                 , exception-transformers
                 , transformers
-                , GPipe-Core
+                -- , GPipe-Core
 
                 , vulkan
                 , vulkan-utils
                 , VulkanMemoryAllocator
                 -- , SDL2
                 , vector
+                , fir

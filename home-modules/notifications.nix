@@ -21,6 +21,9 @@
         # background = "#37474f";
         # foreground = "#eceff1";
 
+        # No border
+        frame_width = 0;
+
         word_wrap = true;
         stack_duplicates = true;
         # show_icons = "left";

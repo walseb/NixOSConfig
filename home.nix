@@ -8,8 +8,8 @@
   programs.home-manager.enable = true;
 
   nixpkgs.config = {
-    allowBroken = true;
-    # allowUnfree = false;
+    allowBroken = false;
+    allowUnfree = true;
   };
 
   imports = [
@@ -61,87 +61,86 @@
     # gimp
     # redshift
 
-
     w3m
 
-        # shellcheck
+    # shellcheck
 
-        # cmake libtool gnumake
+    # cmake libtool gnumake
 
-        # haskellPackages.structured-haskell-mode
-        pinentry_emacs
-        # libvterm
+    # haskellPackages.structured-haskell-mode
+    pinentry_emacs
+    # libvterm
 
-        # haskellPackages.glance - not on hackage
-        # haskellPackages.visualize-cbn - marked as broken
+    # haskellPackages.glance - not on hackage
+    # haskellPackages.visualize-cbn - marked as broken
 
-        cloc
+    cloc
 
-        imagemagick
+    imagemagick
 
-        aspell
-        aspellDicts.en # aspellDicts.sv # languagetool # jre
+    aspell
+    aspellDicts.en # aspellDicts.sv # languagetool # jre
 
-        # Required by the wordnut package
-        wordnet
+    # Required by the wordnut package
+    wordnet
 
-        mpv
+    mpv
 
-        # Needed by cabal?
-        binutils
+    # Needed by cabal?
+    binutils
 
-        # Haskell
-        # haskell.compiler.ghc882 # cabal-install
-        # cabal-install
+    # Haskell
+    # haskell.compiler.ghc882 # cabal-install
+    # cabal-install
 
-        hlint
-        haskellPackages.hoogle
+    hlint
+    haskellPackages.hoogle
 
-        haskellPackages.hp2pretty # haskellPackages.threadscope # haskellPackages.eventlog2html
+    haskellPackages.hp2pretty # haskellPackages.threadscope # haskellPackages.eventlog2html
 
-        # haskellPackages.retrie
+    # haskellPackages.retrie
 
-        # Haskell formatters
-        # ormolu
-        haskellPackages.fourmolu
-        # haskellPackages.hindent
-        # haskellPackages.brittany
-        stylish-haskell
+    # Haskell formatters
+    # ormolu
+    haskellPackages.fourmolu
+    # haskellPackages.hindent
+    # haskellPackages.brittany
+    stylish-haskell
 
-        nixfmt
+    nixfmt
 
-        nix-prefetch
-        nix-prefetch-git
-        nix-prefetch-github
+    nix-prefetch
+    nix-prefetch-git
+    nix-prefetch-github
 
-        # Used by hlint-refactor-mode
-        # haskellPackages.apply-refact
+    # Used by hlint-refactor-mode
+    # haskellPackages.apply-refact
 
-        # Broken
-        # haskellPackages.halive
+    # Broken
+    # haskellPackages.halive
 
-        # haskellPackages.ghc-imported-from
-        # Applications
+    # haskellPackages.ghc-imported-from
+    # Applications
 
-        # next
+    # next
 
-        # cachix
+    # cachix
 
-        # iosevka
+    # iosevka
 
-        # ultimate-oldschool-pc-font-pack
+    # ultimate-oldschool-pc-font-pack
 
-        # unscii
+    # unscii
 
-        pwgen
+    pwgen
 
     # tree-sitter
     # unstable.haskellPackages.tree-sitter-haskell
 
-    xdotool
+    # xdotool
     xclip
     # haskellPackages.threadscope
-    # unstable.haskellPackages.eventlog2html
+
 
     # ogre
 
@@ -151,7 +150,7 @@
 
     # nyxt
 
-    recoll
+    # recoll
 
     # Needed by emacsqlite to compile binary
     gcc
@@ -159,20 +158,20 @@
     graphviz
 
     # Needed by gtk-launch
-    gnome3.gtk
+    gtk3
 
     # Emacs webkit
     # gcc pkg-config gtk3 webkitgtk glib-networking wrapGAppsHook
     # gdb
-    gnumake
+    # gnumake
 
-    gimp
+    # gimp
 
     # languagetool
     # Needed to call langtool jar
     # adoptopenjdk-jre-bin
 
-    gnuplot
+    # gnuplot
 
     # dwarf-fortress
 
@@ -182,5 +181,10 @@
     nodejs
 
     haskell-language-server
+
+    kdenlive
+
+    # Dictionary browser, needed for package lexic
+    sdcv
   ];
 }

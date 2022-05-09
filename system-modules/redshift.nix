@@ -9,8 +9,8 @@
     # brightness.night =
     enable = true;
     temperature = {
-      day = 3000;
-      night = 3000;
+      day = 3500;
+      night = 3500;
     };
   };
 }
