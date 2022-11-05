@@ -18,3 +18,5 @@
 !/bin
 !/deps
 !/pkgs
+
+/deps/hoogle/dist-newstyle
