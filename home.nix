@@ -1,9 +1,9 @@
 { pkgs, ... }:
 
 {
-  home.stateVersion = "20.09";
-  home.username="admin";
-  home.homeDirectory="/home/admin";
+  home.stateVersion = "22.05";
+  home.username = "admin";
+  home.homeDirectory= "/home/admin";
 
   programs.home-manager.enable = true;
 
@@ -14,26 +14,29 @@
 
   imports = [
     ./home-device.nix
-    # ./home-modules/caches.nix
-    ./home-modules/notifications.nix
-    ./home-modules/git.nix
-    ./home-modules/gpg.nix
-    ./home-modules/visual.nix
-    ./home-modules/audio.nix
+    # ./modules-home/caches.nix
+    ./modules-home/notifications.nix
+    ./modules-home/git.nix
+    ./modules-home/gpg.nix
+    ./modules-home/visual.nix
+    ./modules-home/audio.nix
 
-    ./home-modules/cached-nix-shell.nix
-    ./home-modules/direnv/direnv.nix
-    # ./home-modules/direnv/lorri.nix
-    ./home-modules/direnv/nix-direnv.nix
+    ./modules-home/cached-nix-shell.nix
+    ./modules-home/direnv/direnv.nix
+    # ./modules-home/direnv/lorri.nix
+    ./modules-home/direnv/nix-direnv.nix
 
-    ./home-modules/ssh.nix
+    ./modules-home/ssh.nix
 
-    # ./home-modules/tools/activitywatch-stable.nix
+    ./modules-home/mpv.nix
+    ./modules-home/mpris.nix
+
+    # ./modules-home/tools/activitywatch-stable.nix
     # Doesn't work with eshell currently
-    # ./home-modules/comma.nix
+    # ./modules-home/comma.nix
   ];
 
-  # caches.cachix = (import ./home-modules/cachix-caches.nix);
+  # caches.cachix = (import ./modules-home/cachix-caches.nix);
 
   home.packages = with pkgs; [
     # xfce.xfce4-notifyd
@@ -79,12 +82,11 @@
     imagemagick
 
     aspell
-    aspellDicts.en # aspellDicts.sv # languagetool # jre
+    aspellDicts.en
+    aspellDicts.sv # languagetool # jre
 
     # Required by the wordnut package
     wordnet
-
-    mpv
 
     # Needed by cabal?
     binutils
@@ -144,9 +146,9 @@
 
     # ogre
 
-    # (import ./home-modules/tools/youtube-music-desktop.nix)
+    # (import ./modules-home/tools/youtube-music-desktop.nix)
 
-    # (import ./home-modules/tools/ogre-2.nix)
+    # (import ./modules-home/tools/ogre-2.nix)
 
     # nyxt
 
@@ -180,11 +182,27 @@
     # Needed to build the grammarly language server
     nodejs
 
-    haskell-language-server
+    # haskell-language-server
 
-    kdenlive
+    # kdenlive
 
     # Dictionary browser, needed for package lexic
     sdcv
+
+    # CLI media controls
+    cabal-install
+    ghc
+
+    feh
+
+    # qutebrowser
+    # nyxt
+
+    comma
+
+    usbutils
+    # gnuplot
+
+    libqalculate
   ];
 }

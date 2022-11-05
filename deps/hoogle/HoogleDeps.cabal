@@ -32,4 +32,4 @@ executable HoogleDeps
                 , VulkanMemoryAllocator
                 -- , SDL2
                 , vector
-                , fir
+                -- , fir

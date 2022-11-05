@@ -8,17 +8,17 @@ in
 {
   # ** Imports
   imports = [
-    # ./system-hw-configs/x200-libreboot.nix
-    # ./system-hw-configs/vbox.nix
-    # ./system-hw-configs/vps.nix
-    # ./system-hw-configs/ideapad.nix
-    # ./system-hw-configs/nuc.nix
+    # ./hw-configs/x200-libreboot.nix
+    # ./hw-configs/vbox.nix
+    # ./hw-configs/vps.nix
+    # ./hw-configs/ideapad.nix
+    # ./hw-configs/nuc.nix
 
-    # ./system-modules/network/sshd.nix
-    # ./system-modules/network/sshd-xorg.nix
+    # ./modules-system/network/sshd.nix
+    # ./modules-system/network/sshd-xorg.nix
 
-    # ./system-modules/network/wireguard-server.nix
-    # (import ./system-modules/network/wireguard-client.nix { nat-addr = my-nat-addr; })
+    # ./modules-system/network/wireguard-server.nix
+    # (import ./modules-system/network/wireguard-client.nix { nat-addr = my-nat-addr; })
   ];
 
   networking.hostName = "nixos";
@@ -32,7 +32,7 @@ in
       # password = "";
       hashedPassword = pass;
 
-      extraGroups = [ "wheel" "audio" "video" "usbmux" "networkmanager" ];
+      extraGroups = [ "wheel" "audio" "video" "usbmux" "networkmanager" "uinput" ];
     };
 
     users.root = {

@@ -27,14 +27,17 @@ let
     # "shajra.cachix.org-1:V0x7Wjgd/mHGk2KQwzXv8iydfIgLupbnZKLSQt5hh9o="
   ];
 in {
-  system.stateVersion = "21.05";
+  system.stateVersion = "22.05";
 
   imports = [
     ./system-device.nix
     ./hardware-configuration.nix
-    ./system-modules/cachix.nix
-    # ./system-modules/network/dns.nix
-    # ./system-modules/tty.nix
+    ./modules-system/cachix.nix
+    ./modules-system/chromium.nix
+    # ./modules-system/network/dns.nix
+    # ./modules-system/tty.nix
+
+    # ./modules-system/keyboard-rebind.nix
   ];
 
   cachix = [ ];
@@ -83,12 +86,10 @@ in {
 
   networking.networkmanager.enable = true;
 
-  services.emacs.defaultEditor = true;
+  # services.emacs.defaultEditor = true;
 
   environment.systemPackages = with pkgs; [
     htop
-
-    libqalculate
 
     git
 
@@ -103,8 +104,6 @@ in {
     # Needs to be system-wide by org-roam
     sqlite
 
-    chromium
-
     # Needed for opengl?
     xorg.libxcb
 
@@ -117,5 +116,6 @@ in {
     shaderc
 
     SDL2
+    # ydotool
   ];
 }

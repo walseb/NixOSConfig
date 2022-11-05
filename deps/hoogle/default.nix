@@ -1,5 +1,6 @@
 { # Fetch the latest haskell.nix and import its default.nix
-  haskellNix ? import (builtins.fetchTarball "https://github.com/input-output-hk/haskell.nix/archive/master.tar.gz") {}
+  # haskellNix ? import (builtins.fetchTarball "https://github.com/input-output-hk/haskell.nix/archive/master.tar.gz") {}
+  haskellNix ? import (builtins.fetchTarball "https://github.com/input-output-hk/haskell.nix/archive/d71e854deab4a5661f55d5a1675e34bd8d418061.tar.gz") {}
 
 , nixpkgsSrc ? haskellNix.sources.nixpkgs
 

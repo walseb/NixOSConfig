@@ -2,13 +2,13 @@
 { pkgs, ... }:
 {
   imports = [
-    # ./home-modules/email.nix
-    # ./home-modules/games/cataclysm-dda/cataclysm-dda-git-latest.nix
-    # ./home-modules/emacs.nix
-    # ./home-modules/art.nix
-    # ./home-modules/spotify.nix
-    # ./home-modules/spotifyd.nix
-    # ./home-modules/email.nix
+    # ./modules-home/email.nix
+    # ./modules-home/games/cataclysm-dda/cataclysm-dda-git-latest.nix
+    # ./modules-home/emacs.nix
+    # ./modules-home/art.nix
+    # ./modules-home/spotify.nix
+    # ./modules-home/spotifyd.nix
+    # ./modules-home/email.nix
   ];
 
   # home.packages = with pkgs; [

@@ -1,0 +1,11 @@
+StarDict's dict ifo file
+version=2.4.2
+wordcount=840282
+idxfilesize=16346426
+bookname=Wikitionary
+author=Wiktionary volunteers. Converted by Joel Korhonen
+email=stardict-korhoj@outlook.com
+website=http://dictinfo.com
+description=Stardict format, English Wiktionary, English only, v.2018-Oct-07 based on entries from 2018-Oct-01
+date=2018.10.07
+sametypesequence=m

@@ -11,9 +11,10 @@
 
 !home-device-template.nix
 !/home-hw-configs/
-!/home-modules/
-!/system-modules/
-!/system-hw-configs/
+!/modules-home/
+!/modules-system/
+!/hw-configs/
 !/loose-configs/
 !/bin
 !/deps
+!/pkgs
