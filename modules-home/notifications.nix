@@ -15,12 +15,19 @@
         # The width can be negative. In this case the actual width is the
         # screen width minus the width defined in within the geometry option.
         # geometry = "300x5-30+50";
-        geometry = "300x5-05+05";
+        # geometry = "300x5-200+200";
+
+        width = 300;
+        height = 300;
+        offset = "0x0";
+        origin = "top-right";
 
         # transparency = 10;
         # frame_color = "#eceff1";
-        # background = "#37474f";
+        background = "#005AA6";
         # foreground = "#eceff1";
+
+        frame_color = "#61A7F2";
 
         # No border
         frame_width = 0;

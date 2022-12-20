@@ -18,7 +18,8 @@
     # emacsGit
 
     # emacsGitNativeComp
-    emacsNativeComp
+    # emacsNativeComp
+    emacsUnstable
     # emacs-all-the-icons-fonts
     # emacsUnstable
 

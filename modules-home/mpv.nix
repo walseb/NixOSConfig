@@ -1,7 +1,7 @@
 {pkgs, ...}:
 {
   home.packages = with pkgs; [
-    (pkgs.mpv-with-scripts.override {
+    (pkgs.mpv.override {
       scripts = [ pkgs.mpvScripts.mpris ];
     })
   ];

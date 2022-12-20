@@ -56,13 +56,16 @@ in {
     # '';
 
     # Needed to be able to use custom channels in home-manager
-    trustedUsers = [ "root" "admin" ];
+    settings = {
+      trusted-users = [ "root" "admin" ];
 
-    # Add binary caches
-    # useSandbox = true;
-    trustedBinaryCaches = caches;
-    binaryCaches = caches;
-    binaryCachePublicKeys = cachesKeys;
+      # Add binary caches
+      # useSandbox = true;
+      trusted-substituters = caches;
+      trusted-public-keys = cachesKeys;
+
+      auto-optimise-store = true;
+    };
   };
 
   nixpkgs.config = {
@@ -78,11 +81,16 @@ in {
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
+  # https://github.com/NixOS/nixpkgs/issues/179486
+  i18n.supportedLocales = [
+    "en_US.UTF-8/UTF-8"
+  ];
+
   i18n.extraLocaleSettings = { "TIME_STYLE" = "iso"; };
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
-  time.timeZone = "Australia/Sydney";
+  time.timeZone = "Europe/Amsterdam";
+  # time.timeZone = "Australia/Sydney";
 
   networking.networkmanager.enable = true;
 

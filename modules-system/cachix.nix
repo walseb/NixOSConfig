@@ -38,8 +38,8 @@ in {
   };
 
   config = {
-    nix.binaryCaches = map (c: c.url) cachixCaches;
-    nix.binaryCachePublicKeys = concatMap (c: c.keys) cachixCaches;
+    nix.settings.substituters = map (c: c.url) cachixCaches;
+    nix.settings.trusted-public-keys = concatMap (c: c.keys) cachixCaches;
   };
 
 }

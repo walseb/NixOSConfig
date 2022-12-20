@@ -61,7 +61,7 @@
     # Only works in main nixos config
     # mu
 
-    # gimp
+    gimp
     # redshift
 
     w3m
@@ -169,9 +169,9 @@
 
     # gimp
 
-    # languagetool
+    languagetool
     # Needed to call langtool jar
-    # adoptopenjdk-jre-bin
+    adoptopenjdk-jre-bin
 
     # gnuplot
 
@@ -204,5 +204,7 @@
     # gnuplot
 
     libqalculate
+
+    inkscape
   ];
 }

@@ -5,7 +5,7 @@
 
   imports = [
     ./generic/pc.nix
-    ./generic/midi.nix
+    # ./generic/midi.nix
     # (import ./generic/pc.nix { mouse-acceleration = false; pkgs = pkgs; })
     ./generic/laptop.nix
     # (import ../modules-system/boot/bios.nix { grub-dev = "/dev/nvme0n1"; })
@@ -32,4 +32,8 @@
 
   services.xserver.libinput.touchpad.calibrationMatrix = "2, 0, 0, 0, 2, 0, 0, 0, 1";
   services.xserver.libinput.mouse.calibrationMatrix = "2, 0, 0, 0, 2, 0, 0, 0, 1";
+
+  hardware.usbWwan.enable = true;
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 }
