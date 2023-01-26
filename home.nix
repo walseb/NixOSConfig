@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.stateVersion = "22.05";
+  home.stateVersion = "22.11";
   home.username = "admin";
   home.homeDirectory= "/home/admin";
 
@@ -82,8 +82,11 @@
     imagemagick
 
     aspell
+
     aspellDicts.en
     aspellDicts.sv # languagetool # jre
+
+    scowl
 
     # Required by the wordnut package
     wordnet
@@ -111,9 +114,11 @@
 
     nixfmt
 
-    nix-prefetch
-    nix-prefetch-git
-    nix-prefetch-github
+    update-nix-fetchgit
+
+    # nix-prefetch
+    # nix-prefetch-git
+    # nix-prefetch-github
 
     # Used by hlint-refactor-mode
     # haskellPackages.apply-refact
@@ -140,7 +145,7 @@
     # unstable.haskellPackages.tree-sitter-haskell
 
     # xdotool
-    xclip
+    # xclip
     # haskellPackages.threadscope
 
 
@@ -155,7 +160,7 @@
     # recoll
 
     # Needed by emacsqlite to compile binary
-    gcc
+    # gcc
 
     graphviz
 
@@ -171,7 +176,7 @@
 
     languagetool
     # Needed to call langtool jar
-    adoptopenjdk-jre-bin
+    # adoptopenjdk-jre-bin
 
     # gnuplot
 
@@ -180,7 +185,7 @@
     anki
 
     # Needed to build the grammarly language server
-    nodejs
+    # nodejs
 
     # haskell-language-server
 

@@ -7,7 +7,7 @@ let
     "https://nixcache.reflex-frp.org"
 
     # Haskell.nix
-    "https://hydra.iohk.io"
+    # "https://hydra.iohk.io"
 
     "https://nix-community.cachix.org"
 
@@ -19,7 +19,7 @@ let
     "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
 
     # haskell.nix
-    "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+    # "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
 
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
 
@@ -108,9 +108,6 @@ in {
 
     # Required to use cachix
     cachix
-
-    # Needs to be system-wide by org-roam
-    sqlite
 
     # Needed for opengl?
     xorg.libxcb

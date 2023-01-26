@@ -11,7 +11,7 @@
     # (import ../modules-system/boot/bios.nix { grub-dev = "/dev/nvme0n1"; })
     ../modules-system/boot/uefi.nix
 
-    ../modules-system/webcam-loopback.nix
+    # ../modules-system/webcam-loopback.nix
 
     ../modules-system/hardware/printer-network.nix
     # ../modules-system/hardware/bluetooth.nix
