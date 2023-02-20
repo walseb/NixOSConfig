@@ -30,6 +30,8 @@
 
     ./modules-home/mpv.nix
     ./modules-home/mpris.nix
+    ./modules-home/dictionary/spell.nix
+    # ./modules-home/dictionary/scowl.nix
 
     # ./modules-home/tools/activitywatch-stable.nix
     # Doesn't work with eshell currently
@@ -66,6 +68,8 @@
 
     w3m
 
+    aspell
+
     # shellcheck
 
     # cmake libtool gnumake
@@ -81,15 +85,10 @@
 
     imagemagick
 
-    aspell
-
-    aspellDicts.en
-    aspellDicts.sv # languagetool # jre
-
-    scowl
+    # languagetool # jre
 
     # Required by the wordnut package
-    wordnet
+    # wordnet
 
     # Needed by cabal?
     binutils
@@ -116,6 +115,8 @@
 
     update-nix-fetchgit
 
+    # (import ./modules-home/tools/FAS-3.nix)
+    # dpkg-deb
     # nix-prefetch
     # nix-prefetch-git
     # nix-prefetch-github

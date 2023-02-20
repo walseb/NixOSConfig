@@ -1,5 +1,9 @@
 { pkgs, ... }:
-let selectedFont = "Roboto Mono"; # "IBM Plex Mono";
+let selectedFont =
+      # "Px437 IBM VGA 8x16";
+    "Roboto Mono";
+    # "Fragment Mono";
+    # "IBM Plex Mono";
 in
 {
   fonts.fonts = with pkgs; [
@@ -7,6 +11,8 @@ in
     # (import ./scientifica.nix)
     # (import ./BlockZone.nix)
     (import ./monocraft.nix)
+
+    (import ./fragment-mono.nix)
 
     ultimate-oldschool-pc-font-pack
 
@@ -21,6 +27,7 @@ in
     # inconsolata-lgc
     # inconsolata
   ];
+
   fonts.fontconfig.includeUserConf = true;
 
   fonts.fontconfig.defaultFonts.monospace = [selectedFont];

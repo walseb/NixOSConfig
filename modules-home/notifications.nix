@@ -52,10 +52,10 @@
 
         timeout = 5;
       };
-      # urgency_normal = {
-      #   background = "#37474f";
-      #   foreground = "#eceff1";
-      #   timeout = 5;
-      # };
+      urgency_critical = {
+        background = "#af0000";
+        foreground = "#eceff1";
+        timeout = 20;
+      };
     };
 }

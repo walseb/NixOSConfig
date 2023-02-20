@@ -60,11 +60,11 @@ in
     pkgs.sqlite
     emacsql-sqlite-builtin
 
-    # Use faster fork of swiper instead
-    # swiper
+    xr
 
     # This is broken on unstable
     # shm
+    swiper
     flycheck-languagetool
     org-contrib
     ol-notmuch
@@ -95,7 +95,8 @@ in
     drag-stuff
     org
     org-ml
-    org-superstar
+    org-modern
+    # org-superstar
     org-anki
     org-appear
     doct
