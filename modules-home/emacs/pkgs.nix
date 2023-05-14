@@ -5,13 +5,13 @@
   home.packages = with pkgs; [
     (emacsPackages.trivialBuild {
       pname = "salv";
-      version = "unstable-2023-01-25";
+      version = "unstable-2023-04-12";
 
       src = fetchFromGitHub {
         owner = "walseb";
         repo = "salv.el";
-        sha256 = "0753a8kjm00ssxdcbc810y9zbs9hip69y6b63vqqnb1pfx182qn6";
-        rev = "5340dd2a5c8409e18ae3e857e331d85925e2991a";
+        sha256 = "14zisarqz7i6mkw5hzwk3kf6rw4g1716qa26s7zxvxg01qzdiynz";
+        rev = "ac33171c18288adbab1b044bf53d19be890c2ee1";
       };
     })
 
@@ -51,17 +51,17 @@
       };
     })
 
-    (emacsPackages.trivialBuild {
-      pname = "org-link-minor-mode";
-      version = "unstable-2020-01-29";
+    # (emacsPackages.trivialBuild {
+    #   pname = "org-link-minor-mode";
+    #   version = "unstable-2020-01-29";
 
-      src = fetchFromGitHub {
-        repo = "org-link-minor-mode";
-        owner = "seanohalpin";
-        sha256 = "0gwrl936say6rjxkgs4k31psd3zy4kycizqf067id0nchyldbbj4";
-        rev = "952619339eb339e4d6458eb43025d3355df4db27";
-      };
-    })
+    #   src = fetchFromGitHub {
+    #     repo = "org-link-minor-mode";
+    #     owner = "seanohalpin";
+    #     sha256 = "0gwrl936say6rjxkgs4k31psd3zy4kycizqf067id0nchyldbbj4";
+    #     rev = "952619339eb339e4d6458eb43025d3355df4db27";
+    #   };
+    # })
 
     (emacsPackages.trivialBuild {
       pname = "link-hint";
@@ -89,25 +89,48 @@
       };
 
       packageRequires = with emacsPackages; [cl-lib ];
-
     })
 
+    # (emacsPackages.trivialBuild {
+    #   pname = "echo-bar";
+    #   version = "unstable-2023-02-09";
 
-    (emacsPackages.trivialBuild {
-      pname = "echo-bar";
-      version = "unstable-2023-02-09";
+    #   src = fetchFromGitHub {
+    #     repo = "echo-bar.el";
+    #     owner = "benzanol";
+    #     sha256 = "1431xpklnb5894mq3gxc7kvp2q5qa04bnlx8qcxv5l9g2rs0jiih";
+    #     rev = "03cae6d045636948d8b47979d85774e39556f9e1";
+    #   };
 
-      src = fetchFromGitHub {
-        repo = "echo-bar.el";
-        owner = "benzanol";
-        sha256 = "1431xpklnb5894mq3gxc7kvp2q5qa04bnlx8qcxv5l9g2rs0jiih";
-        rev = "03cae6d045636948d8b47979d85774e39556f9e1";
-      };
+    #   packageRequires = with emacsPackages; [cl-lib ];
 
-      packageRequires = with emacsPackages; [cl-lib ];
+    # })
 
-    })
+    # (emacsPackages.trivialBuild {
+    #   pname = "compat";
+    #   version = "unstable-2023-04-19";
 
+    #   src = fetchFromGitHub {
+    #     repo = "compat";
+    #     owner = "emacs-compat";
+    #     sha256 = "15ca34hyxj7cn7cvvy0vr6slbrmhhbqcj7bjvpvlmhk8chbxngl1";
+    #     rev = "bc4739eb1e88c6c409f83e4e471e5d0472792ad8";
+    #   };
+    # })
+
+    # (emacsPackages.trivialBuild {
+    #   pname = "jinx";
+    #   version = "unstable-2023-04-20";
+
+    #   src = fetchFromGitHub {
+    #     repo = "jinx";
+    #     owner = "minad";
+    #     sha256 = "1fwydaqxzj89an4pkjsss8jqpv4kjbl3plzn065nwpw41ns8jvp3";
+    #     rev = "7d1dbd725298ed5a57efa52c5c442b2d6341565e";
+    #   };
+
+    #   packageRequires = with emacsPackages; [ compat ];
+    # })
 
   ];
 }

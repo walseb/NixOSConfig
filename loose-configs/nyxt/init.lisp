@@ -1,10 +1,10 @@
 ;; * Set search engine
 (define-configuration browser
     ((search-engines (list
-		      (make-instance 'search-engine
-				     :shortcut "default"
-				     :search-url "https://www.google.com/search?q=~a"
-				     :fallback-url "https://google.com")))))
+                      (make-instance 'search-engine
+                                     :shortcut "default"
+                                     :search-url "https://www.google.com/search?q=~a"
+                                     :fallback-url "https://google.com")))))
 
 ;; * Simulation keys
 (in-package :nyxt/vi-mode)
@@ -13,12 +13,12 @@
 (defun simulate-key (key)
   "Run xdotool key"
   (ignore-errors (uiop:run-program
-		  (list "xdotool" "key" key))))
+                  (list "xdotool" "key" key))))
 
 (defun simulate-key-no-modifiers (key)
   "Run xdotool key and temporarily release any modifiers held down"
   (ignore-errors (uiop:run-program
-		  (list "xdotool" "key" "--clearmodifiers" key))))
+                  (list "xdotool" "key" "--clearmodifiers" key))))
 
 (defun simulate-ret ()
   "Simulate key"
@@ -66,127 +66,127 @@
 
 ;; * Main binds
 (define-mode my-mode ()
-  "My mode"
-  ((keymap-scheme
-    :initform
-    (define-scheme "my"
-	scheme:vi-insert
-      (list
-       "M-q" 'simulate-!
+             "My mode"
+             ((keymap-scheme
+               :initform
+               (define-scheme "my"
+                              scheme:vi-insert
+                              (list
+                               "M-q" 'simulate-!
 
-       "M-p" 'simulate-aa
-       "M-," 'simulate-aaa
-       "M-." 'simulate-oo
+                               "M-p" 'simulate-aa
+                               "M-," 'simulate-aaa
+                               "M-." 'simulate-oo
 
-       "C-a" 'simulate-ret
+                               "C-a" 'simulate-ret
 
-       "C-e" 'simulate-esc
+                               "C-e" 'simulate-esc
 
-       "C-f" 'simulate-backspace
-       "C-l" 'simulate-del
+                               "C-f" 'simulate-backspace
+                               "C-l" 'simulate-del
 
-       "C-u" 'scroll-page-up
-       "C-w" 'scroll-page-down
+                               "C-u" 'scroll-page-up
+                               "C-w" 'scroll-page-down
 
-       "C-s" 'search-buffer
+                               "C-s" 'search-buffer
 
-       "C-y" 'copy
-       "C-k" 'paste
+                               "C-y" 'copy
+                               "C-k" 'paste
 
-       "C-p" 'simulate-up
-       "C-n" 'simulate-down
+                               "C-p" 'simulate-up
+                               "C-n" 'simulate-down
 
-       ;; "C-t" 'simulate-tab
-       )
-      scheme:vi-normal
-      (list
-       "M-p" 'simulate-aa
-       "M-," 'simulate-aaa
-       "M-." 'simulate-oo
+                               ;; "C-t" 'simulate-tab
+                               )
+                              scheme:vi-normal
+                              (list
+                               "M-p" 'simulate-aa
+                               "M-," 'simulate-aaa
+                               "M-." 'simulate-oo
 
-       "C-a" 'simulate-ret
+                               "C-a" 'simulate-ret
 
-       "C-f" 'simulate-backspace
-       "C-l" 'simulate-del
+                               "C-f" 'simulate-backspace
+                               "C-l" 'simulate-del
 
-       ;; Just to unbound it
-       "C-g" 'vi-normal-mode
+                               ;; Just to unbound it
+                               "C-g" 'vi-normal-mode
 
-       "C-k" 'paste
-       "C-y" 'copy
+                               "C-k" 'paste
+                               "C-y" 'copy
 
 
-       ;; Movement
-       "h" 'scroll-left
-       "n" 'scroll-down
-       "p" 'scroll-up
-       "l" 'scroll-right
-       "C-p" 'simulate-up
-       "C-n" 'simulate-down
+                               ;; Movement
+                               "h" 'scroll-left
+                               "n" 'scroll-down
+                               "p" 'scroll-up
+                               "l" 'scroll-right
+                               "C-p" 'simulate-up
+                               "C-n" 'simulate-down
 
-       ;; Fast movement
-       "C-u" 'scroll-page-up
-       "C-w" 'scroll-page-down
-       "pageup" 'scroll-page-up
-       "pagedown" 'scroll-page-down
+                               ;; Fast movement
+                               "C-u" 'scroll-page-up
+                               "C-w" 'scroll-page-down
+                               "pageup" 'scroll-page-up
+                               "pagedown" 'scroll-page-down
 
-       ;; History
-       "H" 'history-backwards
-       "L" 'history-forwards
+                               ;; History
+                               "H" 'history-backwards
+                               "L" 'history-forwards
 
-       "u" 'history-all-query
-       "U" 'buffer-history-tree
-       "M-h" 'history-backwards-query
-       "M-l" 'history-forwards-query
-       "M-L" 'history-forwards-all-query
+                               "u" 'history-all-query
+                               "U" 'buffer-history-tree
+                               "M-h" 'history-backwards-query
+                               "M-l" 'history-forwards-query
+                               "M-L" 'history-forwards-all-query
 
-       ;; Link hint
-       "f" 'follow-hint
-       "F" 'follow-hint-new-buffer-focus
-       "(" 'follow-hint-new-buffer
+                               ;; Link hint
+                               "f" 'follow-hint
+                               "F" 'follow-hint-new-buffer-focus
+                               "(" 'follow-hint-new-buffer
 
-       ;; Search
-       "C-s" 'search-buffer
-       ;; "?" 'remove-search-hints
+                               ;; Search
+                               "C-s" 'search-buffer
+                               ;; "?" 'remove-search-hints
 
-       ;; Reload
-       "r" 'reload-current-buffer
-       "R" 'reload-buffer
+                               ;; Reload
+                               "r" 'reload-current-buffer
+                               "R" 'reload-buffer
 
-       "button9" 'history-forwards
-       "button8" 'history-backwards
-       "C-v" 'paste
-       "+" 'zoom-in-page
-       "hyphen" 'zoom-out-page
-       "0" 'unzoom-page
-       "z i" 'zoom-in-page
-       "z o" 'zoom-out-page
-       "z z" 'unzoom-page
-       "g h" 'jump-to-heading
+                               "button9" 'history-forwards
+                               "button8" 'history-backwards
+                               "C-v" 'paste
+                               "+" 'zoom-in-page
+                               "hyphen" 'zoom-out-page
+                               "0" 'unzoom-page
+                               "z i" 'zoom-in-page
+                               "z o" 'zoom-out-page
+                               "z z" 'unzoom-page
+                               "g h" 'jump-to-heading
 
-       "m f" 'bookmark-hint
-       "G" 'scroll-to-bottom
-       "g g" 'scroll-to-top
+                               "m f" 'bookmark-hint
+                               "G" 'scroll-to-bottom
+                               "g g" 'scroll-to-top
 
-       "k" 'delete-current-buffer
-       "K" 'delete-buffer
+                               "k" 'delete-current-buffer
+                               "K" 'delete-buffer
 
-       "tab" 'switch-buffer
+                               "tab" 'switch-buffer
 
-       "P" 'switch-buffer-previous
-       "N" 'switch-buffer-next
+                               "P" 'switch-buffer-previous
+                               "N" 'switch-buffer-next
 
-       "y" 'copy-url
-       "Y" 'copy-title
-       )))))
+                               "y" 'copy-url
+                               "Y" 'copy-title
+                               )))))
 
 ;; * Auto-enable modes
 (define-configuration buffer
-    ((default-modes (append '(
-			      ;; noscript-mode
-			      vi-normal-mode
-			      my-mode
-			      ) %slot-default))))
+                      ((default-modes (append '(
+                                                ;; noscript-mode
+                                                vi-normal-mode
+                                                my-mode
+                                                ) %slot-default))))
 
 ;; * Minibuffer settings
 (in-package :nyxt/minibuffer-mode)

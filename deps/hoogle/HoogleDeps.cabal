@@ -1,18 +1,19 @@
 cabal-version: >=1.10
 name: HoogleDeps
 version: 0.1.0.0
-license-file: LICENSE
 maintainer: s.walinder@gmail.com
 author: Sebastian Wålinder
 build-type: Simple
 
-executable HoogleDeps
-    main-is: Main.hs
-    hs-source-dirs: src
+library
     build-depends:
                   base >=0
                 , generic-lens
                 , linear
+
+                , text
+                , bytestring
+                , vector
 
                 -- , Yampa
                 , dunai
@@ -33,3 +34,10 @@ executable HoogleDeps
                 -- , SDL2
                 , vector
                 -- , fir
+
+                -- , GlobalGHCi
+
+                , currency-convert
+
+
+                , reanimate

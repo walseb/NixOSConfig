@@ -1,1 +1,1 @@
-packages: ./ ./custom-projects/fir/
+packages: ./ ./custom-projects/fir/ ../GlobalGHCi/ ../GlobalGHCi/pkgs/currency-convert/

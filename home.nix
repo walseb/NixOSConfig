@@ -13,6 +13,7 @@
   };
 
   imports = [
+    # ./nix.nix
     ./home-device.nix
     # ./modules-home/caches.nix
     ./modules-home/notifications.nix
@@ -20,6 +21,8 @@
     ./modules-home/gpg.nix
     ./modules-home/visual.nix
     ./modules-home/audio.nix
+
+    ./modules-home/firefox.nix
 
     ./modules-home/cached-nix-shell.nix
     ./modules-home/direnv/direnv.nix
@@ -30,17 +33,34 @@
 
     ./modules-home/mpv.nix
     ./modules-home/mpris.nix
-    ./modules-home/dictionary/spell.nix
+
+    ./modules-home/spell.nix
+
+    ./modules-home/man.nix
+    
     # ./modules-home/dictionary/scowl.nix
 
     # ./modules-home/tools/activitywatch-stable.nix
     # Doesn't work with eshell currently
     # ./modules-home/comma.nix
+
   ];
 
   # caches.cachix = (import ./modules-home/cachix-caches.nix);
+  xdg.configFile."mimeapps.list".force = true;
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "firefox.desktop";
+    };
+    associations.added = {
+      "x-scheme-handler/mailto" = "";
+    };
+  };
 
   home.packages = with pkgs; [
+    # (import ./modules-home/nyxt.nix {pkgs = pkgs;})
     # xfce.xfce4-notifyd
     # mpd
     # mpc_cli
@@ -68,8 +88,6 @@
 
     w3m
 
-    aspell
-
     # shellcheck
 
     # cmake libtool gnumake
@@ -84,6 +102,7 @@
     cloc
 
     imagemagick
+    ghostscript
 
     # languagetool # jre
 
@@ -163,6 +182,7 @@
     # Needed by emacsqlite to compile binary
     # gcc
 
+    # d2
     graphviz
 
     # Needed by gtk-launch
@@ -175,9 +195,6 @@
 
     # gimp
 
-    languagetool
-    # Needed to call langtool jar
-    # adoptopenjdk-jre-bin
 
     # gnuplot
 
@@ -209,8 +226,18 @@
     usbutils
     # gnuplot
 
-    libqalculate
+    # libqalculate
 
     inkscape
+
+    # Screenshots
+    maim
+
+    # OCR
+    tesseract5
+
+    # misc
+    ffmpeg
+    audacity
   ];
 }

@@ -3,49 +3,39 @@
 # { pkgs ? (fetchTarball "https://github.com/NixOS/nixpkgs/archive/84d74ae9c9cbed73274b8e4e00be14688ffc93fe.tar.gz" ) {}, ... }:
 # with import <nixpkgs> {};
 
-{ ... }:
+{ pkgs, ... }:
 let
-  new-pkgs =
-    # import (fetchTarball "https://github.com/rycee/home-manager/archive/release-22.11.tar.gz")
-    import (builtins.fetchGit {
-      name = "nixpkgs-emacs";
-      url = "https://github.com/nixos/nixpkgs/";
-      ref = "refs/heads/nixpkgs-unstable";
-      # WARNING: update-nix-fetchgit updates this to the latest master
-      rev = "37b97ae3dd714de9a17923d004a2c5b5543dfa6d";
-      # ref = "refs/heads/nixos-22.11";
-      # rev = "e285dd0ca97c264003867c7329f0d1f4f028739c";
-    })
-      {
-        overlays = [
-          (import (builtins.fetchTarball {
-            url =
-              # "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-              "https://github.com/nix-community/emacs-overlay/archive/fc341b52fe5837ef313cfe79eea7e2a05b6efffa.tar.gz";
-            # "https://github.com/nix-community/emacs-overlay/archive/b14b8b133d98c923071ec2e20eff3c76bd80d173.tar.gz";
-          }))
-        ];
-      };
-in
-{
-  imports = [
-    ./emacs/pkgs.nix
-    ./emacs/frozen-pkgs.nix
-  ];
+  emacsPkgsOverlay = import ./emacs/emacs-pkgs-overlay.nix { pkgs = pkgs; };
+  emacsMainOverlay = import ./emacs/emacs-main-overlay.nix { pkgs = pkgs; };
+  emacsNixpkgs = a: import (builtins.fetchGit {
+    name = "nixpkgs-emacs";
+    url = "https://github.com/nixos/nixpkgs/";
+    rev = "635a306fc8ede2e34cb3dd0d6d0a5d49362150ed"; # refs/heads/nixpkgs-unstable
+  }) { overlays = [ (import a) ]; };
 
-  home.packages = with new-pkgs; with new-pkgs.emacsPackages; [
-    # Emacs pinned at version 29
-    (emacsGit.overrideAttrs
-      (old : {
-        name = "emacs-29";
-        version = "unstable-2023-01-13";
-        src = fetchFromGitHub {
-          repo = "emacs";
-          owner = "emacs-mirror";
-          sha256 = "MhmLMXdd45hE2CEsOzI00LozoDvHOopRVB5fN3UbRyY=";
-          rev = "dc33a122230adbfa37926f4eb19c0620b3affd85";
-        };
-      }))
+  nixpkgsEmacsPkgs = emacsNixpkgs emacsPkgsOverlay;
+
+  nixpkgsEmacsMain = emacsNixpkgs emacsPkgsOverlay;
+in {
+  imports = [ ./emacs/pkgs.nix ./emacs/frozen-pkgs.nix ];
+
+  home.packages = with nixpkgsEmacsPkgs.emacsPackages; [
+    # Make sure to build emacs using normal nixpkgs so that we don't need to rebuild it every time the emacs overlay gets updated
+    (nixpkgsEmacsMain.emacsGit.overrideAttrs (old: {
+      name = "emacs-29";
+      version = "unstable-2023-05-13";
+
+      src = pkgs.fetchFromGitHub {
+        repo = "emacs";
+        owner = "emacs-mirror";
+        sha256 = "1dsi8pq314ch2wbqhr02qqvk95fyvl0mc2vy5fffyp8k7iy20dwp";
+        # sha256 = "06j9m57wc8b4qh9hbkv3ndd2vhikp7dkqnvc2gdjl6146iix349p";
+        rev = "1e6a7594361fa4d60c0d73450e45475593d93696"; # refs/heads/emacs-29
+
+        # sha256 = "MhmLMXdd45hE2CEsOzI00LozoDvHOopRVB5fN3UbRyY=";
+        # rev = "dc33a122230adbfa37926f4eb19c0620b3affd85";
+      };
+    }))
 
     # emacsGitNativeComp
     # emacsNativeComp
@@ -53,7 +43,19 @@ in
     # emacs-all-the-icons-fonts
     # emacsUnstable
 
+    orglink
+
+    org-assistant
+
+    jinx
+
+    better-jumper
+
     stem-reading-mode
+
+    vlf
+
+    pcre2el
 
     org-roam
     # Org roam deps for emacs 29
@@ -61,6 +63,8 @@ in
     emacsql-sqlite-builtin
 
     xr
+
+    # flyspell-correct
 
     # This is broken on unstable
     # shm
@@ -106,7 +110,8 @@ in
     org-noter
     outline-minor-faces
     outshine
-    selectrum
+    vertico
+    # selectrum
     marginalia
     consult
     consult-flycheck
@@ -166,7 +171,6 @@ in
     journalctl-mode
     google-translate
     lexic
-    flyspell-correct
     macro-math
     blimp
     indent-guide

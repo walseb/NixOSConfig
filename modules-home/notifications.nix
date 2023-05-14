@@ -57,5 +57,11 @@
         foreground = "#eceff1";
         timeout = 20;
       };
+
+      urgency_low = {
+        background = "#1a2d07";
+        foreground = "#67b11d";
+        timeout = 20;
+      };
     };
 }

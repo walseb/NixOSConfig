@@ -18,14 +18,14 @@
     #   packageRequires = with emacsPackages; [avy hydra];
     # })
 
-    # Mini modeline https://github.com/kiennq/emacs-mini-modeline/issues/53
+    # Re merge it to the main branch and owner after https://github.com/kiennq/emacs-mini-modeline/issues/53 has been resolved
     (emacsPackages.trivialBuild {
       pname = "mini-modeline";
       version = "master";
 
       src = fetchFromGitHub {
         repo = "emacs-mini-modeline";
-        owner = "10ne1";
+        owner = "10ne1"; # kiennq
         sha256 = "2dCf3y1/NYnUSoTCJ1WQEFNiKrrED05JRrPWZztByew=";
         rev = "8c239047c01a29fa7545ddc840c8fc98328534dc";
       };
@@ -33,19 +33,19 @@
       packageRequires = with emacsPackages; [dash];
     })
 
-    (emacsPackages.trivialBuild {
-      pname = "evil-textobj-anyblock";
-      version = "unstable-2020-07-18";
+    # (emacsPackages.trivialBuild {
+    #   pname = "evil-textobj-anyblock";
+    #   version = "unstable-2020-07-18";
 
-      src = fetchFromGitHub {
-        owner = "willghatch";
-        repo = "evil-textobj-anyblock";
-        sha256 = "gN2E/qCcneywTbLjq97Nc/RHhvCKQnsNhSfNNnm1CYA=";
-        rev = "29280cd71a05429364cdceef2ff595ae8afade4d";
-      };
+    #   src = fetchFromGitHub {
+    #     owner = "willghatch";
+    #     repo = "evil-textobj-anyblock";
+    #     sha256 = "gN2E/qCcneywTbLjq97Nc/RHhvCKQnsNhSfNNnm1CYA=";
+    #     rev = "29280cd71a05429364cdceef2ff595ae8afade4d";
+    #   };
 
-      packageRequires = with emacsPackages; [cl-lib evil];
+    #   packageRequires = with emacsPackages; [cl-lib evil];
 
-    })
+    # })
   ];
 }

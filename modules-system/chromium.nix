@@ -1,6 +1,9 @@
 { pkgs, ...}:
 {
   environment.systemPackages = with pkgs; [
+    # Needed for chromium?
+    libdrm
+
     chromium
   ];
 

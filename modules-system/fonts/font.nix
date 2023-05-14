@@ -11,6 +11,7 @@ in
     # (import ./scientifica.nix)
     # (import ./BlockZone.nix)
     (import ./monocraft.nix)
+    (import ./jingleberry.nix)
 
     (import ./fragment-mono.nix)
 
@@ -23,6 +24,7 @@ in
     ibm-plex
 
     roboto-mono
+    roboto
 
     # inconsolata-lgc
     # inconsolata
