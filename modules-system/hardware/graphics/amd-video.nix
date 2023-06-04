@@ -14,7 +14,7 @@
   # https://forums.debian.net/viewtopic.php?t=144681
   # https://github.com/i-rinat/libvdpau-va-gl
   # environment.variables.VDPAU_DRIVER = "va_gl";
-  
+
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [

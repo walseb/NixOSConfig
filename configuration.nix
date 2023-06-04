@@ -9,14 +9,15 @@
     ./hardware-configuration.nix
     ./modules-system/cachix.nix
     # ./modules-system/chromium.nix
-    # ./modules-system/network/dns.nix
+    ./modules-system/network/dns.nix
     # ./modules-system/tty.nix
+    ./modules-system/firefox.nix
 
+    ./modules-system/imagemagick.nix
     # ./modules-system/keyboard-rebind.nix
   ];
 
   cachix = [ ];
-
 
   nixpkgs.config = {
     # allowBroken = true;
@@ -54,9 +55,6 @@
   documentation.doc.enable = true;
   documentation.nixos.enable = true;
   # documentation.man.man-db.enable = true;
-
-  # Firefox environment variables
-  environment.variables.MOZ_X11_EGL = "1";
 
   environment.systemPackages = with pkgs; [
     chromedriver

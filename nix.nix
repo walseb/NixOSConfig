@@ -38,12 +38,11 @@ in {
       show-trace = true
     '';
 
-
     # Needed to be able to use custom channels in home-manager
     settings = {
       trusted-users = [ "root" "admin" ];
 
-      # experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [ "nix-command" "flakes" ];
 
       # Add binary caches
       # useSandbox = true;
@@ -53,4 +52,7 @@ in {
       auto-optimise-store = true;
     };
   };
+
+  # https://github.com/NixOS/nixpkgs/commits/nixpkgs-unstable
+  environment.variables.MY_NIXPKGS = "github:nixos/nixpkgs/635a306fc8ede2e34cb3dd0d6d0a5d49362150ed";
 }

@@ -37,7 +37,7 @@
     ./modules-home/spell.nix
 
     ./modules-home/man.nix
-    
+
     # ./modules-home/dictionary/scowl.nix
 
     # ./modules-home/tools/activitywatch-stable.nix
@@ -133,6 +133,7 @@
     nixfmt
 
     update-nix-fetchgit
+    # (import ./modules-home/remarkable.nix)
 
     # (import ./modules-home/tools/FAS-3.nix)
     # dpkg-deb
@@ -239,5 +240,11 @@
     # misc
     ffmpeg
     audacity
+
+    xcolor
+
+    clipnotify
+    xsel
+    xclip
   ];
 }

@@ -132,5 +132,28 @@
     #   packageRequires = with emacsPackages; [ compat ];
     # })
 
+    (emacsPackages.trivialBuild {
+      pname = "org-assistant";
+      version = "unstable-2023-05-24";
+      src = fetchFromGitHub {
+        repo = "org-assistant";
+        owner = "tyler-dodge";
+        sha256 = "0c4357a6q81z5qnmvxwsrs9hmk36ikkg4h2izchw3a17ck5wmab4";
+        rev = "c572c1a2f63fc8e05b8ff8ef4bc8956ff89edff9";
+      };
+
+      packageRequires = with emacsPackages; [ dash deferred s uuidgen ht];
+    })
+
+    (emacsPackages.trivialBuild {
+      pname = "marionette";
+      version = "unstable-2020-03-25";
+      src = fetchFromGitHub {
+        repo = "marionette.el";
+        owner = "xuchunyang";
+        sha256 = "0b6fpyk30pb88x7dbzdfnjhfjk6ir3phdw5g7zxv7d0iw8r8dshd";
+        rev = "516bbcec25edbaf0feaf3aad3e442d581881c5ee";
+      };
+    })
   ];
 }

@@ -7,15 +7,25 @@
 let
   emacsPkgsOverlay = import ./emacs/emacs-pkgs-overlay.nix { pkgs = pkgs; };
   emacsMainOverlay = import ./emacs/emacs-main-overlay.nix { pkgs = pkgs; };
-  emacsNixpkgs = a: import (builtins.fetchGit {
-    name = "nixpkgs-emacs";
-    url = "https://github.com/nixos/nixpkgs/";
-    rev = "635a306fc8ede2e34cb3dd0d6d0a5d49362150ed"; # refs/heads/nixpkgs-unstable
-  }) { overlays = [ (import a) ]; };
+  emacsNixpkgs = a: import
+    (
+      # builtins.fetchGit {
+      #   name = "nixpkgs-emacs";
+      #   url = "https://github.com/nixos/nixpkgs/";
+      #   rev = "635a306fc8ede2e34cb3dd0d6d0a5d49362150ed"; # refs/heads/nixpkgs-unstable
+      # }
+
+      pkgs.fetchFromGitHub {
+        owner = "nixos";
+        repo = "nixpkgs";
+        rev = "635a306fc8ede2e34cb3dd0d6d0a5d49362150ed"; # refs/heads/nixpkgs-unstable
+        sha256 = "V2p/A4RpEGqEZussOnHYMU6XglxBJGCODdzoyvcwig8="; # refs/heads/nixpkgs-unstable
+      }
+    ) { overlays = [ (import a) ]; };
 
   nixpkgsEmacsPkgs = emacsNixpkgs emacsPkgsOverlay;
 
-  nixpkgsEmacsMain = emacsNixpkgs emacsPkgsOverlay;
+  nixpkgsEmacsMain = emacsNixpkgs emacsMainOverlay;
 in {
   imports = [ ./emacs/pkgs.nix ./emacs/frozen-pkgs.nix ];
 
@@ -26,8 +36,8 @@ in {
       version = "unstable-2023-05-13";
 
       src = pkgs.fetchFromGitHub {
-        repo = "emacs";
         owner = "emacs-mirror";
+        repo = "emacs";
         sha256 = "1dsi8pq314ch2wbqhr02qqvk95fyvl0mc2vy5fffyp8k7iy20dwp";
         # sha256 = "06j9m57wc8b4qh9hbkv3ndd2vhikp7dkqnvc2gdjl6146iix349p";
         rev = "1e6a7594361fa4d60c0d73450e45475593d93696"; # refs/heads/emacs-29
@@ -43,9 +53,21 @@ in {
     # emacs-all-the-icons-fonts
     # emacsUnstable
 
+    bind
+
+    ox-twbs
+
+    dwim-shell-command
+
+    friendly-shell
+    friendly-shell-command
+
+    # HTTP library
+    plz
+
     orglink
 
-    org-assistant
+    # org-assistant
 
     jinx
 
@@ -65,6 +87,9 @@ in {
     xr
 
     # flyspell-correct
+
+    exwm-firefox-evil
+    exwm-firefox-core
 
     # This is broken on unstable
     # shm
@@ -159,7 +184,7 @@ in {
     lispy
     pinentry
     espy
-    with-editor
+    # with-editor
     envrc
     nix-mode
     company-nixos-options
