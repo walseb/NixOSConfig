@@ -16,7 +16,6 @@
     ../modules-system/hardware/printer-network.nix
     # ../modules-system/hardware/bluetooth.nix
 
-    ../modules-system/hardware/acpi_call.nix
     ../modules-system/hardware/tlp/tlp-amd.nix
 
     ../modules-system/hardware/proprietary-firmware/amd.nix # ../modules-system/hardware/proprietary-firmware/all-firmware.nix
@@ -28,6 +27,8 @@
 
     ../modules-system/syncthing.nix
     ../modules-system/redshift.nix
+
+    ../modules-system/hardware/input/libinput.nix
   ];
 
   nix.settings.max-jobs = 1;

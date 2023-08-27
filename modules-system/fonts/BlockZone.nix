@@ -6,19 +6,11 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/ansilove/BlockZone/releases/download/${version}/BlockZone-${version}.tar.gz";
-    sha256 = "031l8aqjpncamhxgbzjfg2ha6yf5mrvdc1l80r3677r9bf5m2rq5";
+    sha256 = "dCamA2lD+RoIz6j/vUZCJsQaqWRjInjHry6VDXOJKLE=";
   };
 
   installPhase = ''
     mkdir -p $out/share/fonts/truetype
     mv *.ttf $out/share/fonts/truetype
     '';
-
-  meta = with stdenv.lib; {
-    description = "BlockZone font";
-
-    # See `License.txt' for details.
-    license = licenses.ofl;
-    homepage = https://github.com/ansilove/BlockZone;
-  };
 }

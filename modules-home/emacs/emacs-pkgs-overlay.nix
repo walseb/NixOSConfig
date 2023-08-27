@@ -3,6 +3,6 @@
 (pkgs.fetchFromGitHub {
   repo = "emacs-overlay";
   owner = "nix-community";
-  sha256 = "13vff14ik9qc8qj1hxfmdwdz2893cnqr25wb8bfbwyhiczs1zrd0";
-  rev = "e9cef3633f160bf671b9196bce99467629b5133e";
+  sha256 = "11zi3f8rh6jzs1nd4a26k8b0p8g1hgag642xf6nplm1qyys3ns99";
+  rev = "e4959460ea8e7d122baab8fd967bc604df928bec";
 })

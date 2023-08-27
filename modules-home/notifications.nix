@@ -51,6 +51,23 @@
         font = "Px437 IBM VGA 8x16";
 
         timeout = 5;
+
+        mouse_left_click = "close_current";
+        # mouse_middle_click = "do_action";
+
+        mouse_middle_click = "close_current";
+        mouse_right_click = "close_all";
+
+        progress_bar = true;
+
+        progress_bar_height = 10;
+        progress_bar_frame_width = 1;
+
+        # Set the minimum width for the progress bar
+        progress_bar_min_width = 150;
+
+        # Set the maximum width for the progress bar
+        progress_bar_max_width = 300;
       };
       urgency_critical = {
         background = "#af0000";

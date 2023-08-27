@@ -19,19 +19,19 @@
     # })
 
     # Re merge it to the main branch and owner after https://github.com/kiennq/emacs-mini-modeline/issues/53 has been resolved
-    (emacsPackages.trivialBuild {
-      pname = "mini-modeline";
-      version = "master";
+    # (emacsPackages.trivialBuild {
+    #   pname = "mini-modeline";
+    #   version = "master";
 
-      src = fetchFromGitHub {
-        repo = "emacs-mini-modeline";
-        owner = "10ne1"; # kiennq
-        sha256 = "2dCf3y1/NYnUSoTCJ1WQEFNiKrrED05JRrPWZztByew=";
-        rev = "8c239047c01a29fa7545ddc840c8fc98328534dc";
-      };
+    #   src = fetchFromGitHub {
+    #     repo = "emacs-mini-modeline";
+    #     owner = "10ne1"; # kiennq
+    #     sha256 = "2dCf3y1/NYnUSoTCJ1WQEFNiKrrED05JRrPWZztByew=";
+    #     rev = "8c239047c01a29fa7545ddc840c8fc98328534dc";
+    #   };
 
-      packageRequires = with emacsPackages; [dash];
-    })
+    #   packageRequires = with emacsPackages; [dash];
+    # })
 
     # (emacsPackages.trivialBuild {
     #   pname = "evil-textobj-anyblock";

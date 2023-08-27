@@ -1,9 +1,8 @@
 { pkgs, ... }:
-
 {
   home.stateVersion = "22.11";
   home.username = "admin";
-  home.homeDirectory= "/home/admin";
+  home.homeDirectory = "/home/admin";
 
   programs.home-manager.enable = true;
 
@@ -51,13 +50,11 @@
 
   xdg.mimeApps = {
     enable = true;
-    defaultApplications = {
-      "text/html" = "firefox.desktop";
-    };
-    associations.added = {
-      "x-scheme-handler/mailto" = "";
-    };
+    defaultApplications = { "text/html" = "firefox.desktop"; };
+    associations.added = { "x-scheme-handler/mailto" = ""; };
   };
+
+  services.clipmenu.enable = true;
 
   home.packages = with pkgs; [
     # (import ./modules-home/nyxt.nix {pkgs = pkgs;})
@@ -87,6 +84,8 @@
     # redshift
 
     w3m
+
+    chromedriver
 
     # shellcheck
 
@@ -169,7 +168,6 @@
     # xclip
     # haskellPackages.threadscope
 
-
     # ogre
 
     # (import ./modules-home/tools/youtube-music-desktop.nix)
@@ -195,7 +193,6 @@
     # gnumake
 
     # gimp
-
 
     # gnuplot
 
@@ -227,7 +224,7 @@
     usbutils
     # gnuplot
 
-    # libqalculate
+    libqalculate
 
     inkscape
 
@@ -246,5 +243,11 @@
     clipnotify
     xsel
     xclip
+
+    file
+
+    cbqn
+
+    plover.dev
   ];
 }

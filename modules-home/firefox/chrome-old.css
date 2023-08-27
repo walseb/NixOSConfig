@@ -1,0 +1,36 @@
+# Hide close buttons on tabs all together
+# .tabbrowser-tab .tab-close-button {
+# visibility: collapse !important;
+# }
+# .titlebar-spacer {
+#   display: none !important;
+# }
+
+# Hide close button
+# Doesn't work
+# .titlebar-buttonbox-container{ display:none  !important;  }
+
+# # Hide button icons
+# .button-box .button-icon {
+# display: none;
+# }
+# Font
+# * {
+#     font-family: "FONT_NAME";
+# }
+
+/* Tab bar */
+# .tabbrowser-strip *[class^="scrollbutton"] {
+#     /* Hide tab scroll buttons */
+#     display: none;
+# }
+
+# .tabbrowser-strip *[class^="tabs-alltabs"] {
+#     /* Hide tab drop-down list */
+#     display: none;
+# }
+
+# .tabbrowser-strip *[class^="tabs-newtab-button"] {
+#     /* Hide new-tab button */
+#     display: none;
+# }

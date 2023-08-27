@@ -66,7 +66,8 @@
         manage = "desktop";
         name = "emacs";
         start = ''
-            emacs &
+            # https://github.com/ch11ng/exwm/issues/914
+            emacs --xrm='Emacs.useXIM: false' &
             waitPID=$!
           '';
       }
@@ -82,11 +83,11 @@
         manage = "desktop";
         name = "emacs-safe";
         start = ''
-            emacs &
+            emacs --xrm='Emacs.useXIM: false' &
             waitPID=$!
           '';
       }
-      ];
+    ];
 
   };
 }

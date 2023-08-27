@@ -5,6 +5,8 @@
 # https://github.com/mozilla/gecko-dev/blob/master/browser/app/profile/firefox.js
 let firefoxSettings =
       {
+        # Disable border in firefox
+        "browser.tabs.inTitlebar" = 0;
         "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
         "toolkit.tabbox.switchByScrolling" = true;
         "general.smoothScroll" = false;
@@ -13,6 +15,10 @@ let firefoxSettings =
         "browser.tabs.tabClipWidth" = 100000;
         # Start download in tmp dir
         "browser.download.start_downloads_in_tmp_dir" = true;
+
+        # https://support.mozilla.org/en-US/questions/1194305
+        # Disable scroll to zoom
+        "mousewheel.with_control.action" = 1;
 
         # "media.videocontrols.picture-in-picture.enabled" = false;
 
@@ -40,6 +46,9 @@ let firefoxSettings =
         "middlemouse.contentLoadURL" = false;
         "middlemouse.paste" = false;
 
+        # Make middle click start moving
+        "general.autoScroll" = true;
+
         # Disable default mpris implementation. Replaced by plasma browser integration
         "media.hardwaremediakeys.enabled" = false;
 
@@ -57,6 +66,7 @@ let firefoxSettings =
 
         # Compact layout
         "browser.uidensity" = 1;
+        "browser.compactmode.show" = 1;
 
         "browser.tabs.loadBookmarksInTabs" = true;
 
@@ -110,6 +120,28 @@ let firefoxSettings =
         # Disable gesture to go back and forward in history
         "browser.gesture.swipe.left" = "cmd_scrollLeft";
         "browser.gesture.swipe.right" = "cmd_scrollRight";
+
+        # Disable firefox search shortcuts. Replaces strings such as @google in search bar.
+        "browser.urlbar.suggest.engines" = false;
+
+        # Remove delay from when audio is paused to when the audio icon disappears.
+        "browser.tabs.delayHidingAudioPlayingIconMS" = 0;
+
+        # Insert new tabs after current always
+        "browser.tabs.insertAfterCurrent" = true;
+
+        # Disable autoplay
+        "media.autoplay.allow-extension-background-pages" = false;
+        "media.autoplay.default" = 5;
+        "media.autoplay.block-event.enabled" = true;
+        "media.autoplay.block-webaudio" = true;
+        "media.block-autoplay-until-in-foreground" = false;
+
+        "ui.textHighlightBackground" = "#004a00";
+        "ui.textHighlightForeground" = "#00b100";
+        # ui.textSelectAttentionBackground	
+        # ui.textSelectAttentionForeground
+        # ui.textSelectDisabledBackground
       };
 
     monsterAcademySettings = lib.mkMerge [firefoxSettings {"marionette.port" = 36289; }]; # MARIONETTE PORT: Monster Academy
@@ -125,57 +157,25 @@ let firefoxSettings =
 # Object.defineProperty(navigator, 'webdriver', {get: () => false})
  '';
 
-    userChromeSettings = ''
-# Hide close buttons on tabs all together
-# .tabbrowser-tab .tab-close-button {
-# visibility: collapse !important;
-# }
-# .titlebar-spacer {
-#   display: none !important;
-# }
-
-# Hide close button
-# Doesn't work
-# .titlebar-buttonbox-container{ display:none  !important;  }
-
-# # Hide button icons
-# .button-box .button-icon {
-# display: none;
-# }
-# Font
-# * {
-#     font-family: "FONT_NAME";
-# }
-
-/* Tab bar */
-# .tabbrowser-strip *[class^="scrollbutton"] {
-#     /* Hide tab scroll buttons */
-#     display: none;
-# }
-
-# .tabbrowser-strip *[class^="tabs-alltabs"] {
-#     /* Hide tab drop-down list */
-#     display: none;
-# }
-
-# .tabbrowser-strip *[class^="tabs-newtab-button"] {
-#     /* Hide new-tab button */
-#     display: none;
-# }
-                '';
-    userContentSettings = ''
-# Doesn't work
-# .titlebar-buttonbox-container { display: none !important; }
-                 # Here too
-                '';
+    userChromeSettings = builtins.readFile ./firefox/userChrome.css;
+    #     userContentSettings = ''
+    # # Doesn't work
+    # # .titlebar-buttonbox-container { display: none !important; }
+    #                  # Here too
+    #                 '';
     nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
       inherit pkgs;
     };
     myBookmarks =
       [
         {
+          name = "Google Bard";
+          keyword = "bard";
+          url = "https://bard.google.com/";
+        }
+        {
           name = "Task Manager";
-          keyword = "mail";
+          keyword = "tasks";
           url = "about:performance";
         }
         {
@@ -183,6 +183,29 @@ let firefoxSettings =
           keyword = "mail";
           url = "mail.com";
         }
+      ];
+
+    myExtensions = with nur.repos.rycee.firefox-addons; [
+      plasma-integration
+      # gsconnect
+
+      # profile-switcher
+      languagetool
+
+      # view-page-archive # https://addons.mozilla.org/en-US/firefox/addon/view-page-archive/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search
+      # linkhints # https://addons.mozilla.org/en-US/firefox/addon/linkhints
+
+      # window-titler # https://addons.mozilla.org/en-GB/firefox/addon/window-titler/
+      # github-repo-size # https://github.com/Shywim/github-repo-size
+      # unload-tabs # https://addons.mozilla.org/en-US/firefox/addon/unload-tabs/
+
+      # bard-for-search-engines # https://addons.mozilla.org/en-US/firefox/addon/bard-for-search-engines/
+      # simple-translate # https://addons.mozilla.org/en-US/firefox/addon/simple-translate/
+      # download-notify # https://addons.mozilla.org/en-US/firefox/addon/download-notify/
+      # pixel-perfect-pro # https://addons.mozilla.org/en-US/firefox/addon/pixel-perfect-pro/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search
+      # copy-selected-tabs-to-clipboar # https://addons.mozilla.org/en-US/firefox/addon/copy-selected-tabs-to-clipboar/
+      # copy-all-tabs # https://addons.mozilla.org/en-US/firefox/addon/copy-all-tabs/
+      # skip-silence # https://addons.mozilla.org/en-US/firefox/addon/skip-silence/
       ];
 
     myFirefoxUnwrapped = (pkgs.firefox-unwrapped.overrideAttrs (old: {
@@ -216,28 +239,6 @@ in
 
   programs.firefox = {
     enable = true;
-
-    extensions = with nur.repos.rycee.firefox-addons; [
-      plasma-integration
-      # gsconnect
-
-      # profile-switcher
-      languagetool
-
-      # linkhints # https://addons.mozilla.org/en-US/firefox/addon/linkhints
-
-      # window-titler # https://addons.mozilla.org/en-GB/firefox/addon/window-titler/
-      # github-repo-size # https://github.com/Shywim/github-repo-size
-      # unload-tabs # https://addons.mozilla.org/en-US/firefox/addon/unload-tabs/
-
-      # bard-for-search-engines # https://addons.mozilla.org/en-US/firefox/addon/bard-for-search-engines/
-      # simple-translate # https://addons.mozilla.org/en-US/firefox/addon/simple-translate/
-      # download-notify # https://addons.mozilla.org/en-US/firefox/addon/download-notify/
-      # pixel-perfect-pro # https://addons.mozilla.org/en-US/firefox/addon/pixel-perfect-pro/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search
-      # copy-selected-tabs-to-clipboar # https://addons.mozilla.org/en-US/firefox/addon/copy-selected-tabs-to-clipboar/
-      # copy-all-tabs # https://addons.mozilla.org/en-US/firefox/addon/copy-all-tabs/
-      # skip-silence # https://addons.mozilla.org/en-US/firefox/addon/skip-silence/
-    ];
 
     package = pkgs.wrapFirefox myFirefoxUnwrapped
       {
@@ -312,9 +313,10 @@ in
         # settings = firefoxSettings;
         settings = defaultSettings;
         userChrome = userChromeSettings;
-        userContent = userContentSettings;
+        # userContent = userContentSettings;
         bookmarks = myBookmarks;
         extraConfig = userJs;
+        extensions = myExtensions;
       };
 
       monsterAcademy = {
@@ -323,9 +325,10 @@ in
         # settings = firefoxSettings;
         settings = monsterAcademySettings;
         userChrome = userChromeSettings;
-        userContent = userContentSettings;
+        # userContent = userContentSettings;
         bookmarks = myBookmarks;
         extraConfig = userJs;
+        extensions = myExtensions;
       };
 
       alen = {
@@ -334,9 +337,10 @@ in
         # settings = firefoxSettings;
         settings = alenSettings;
         userChrome = userChromeSettings;
-        userContent = userContentSettings;
+        # userContent = userContentSettings;
         bookmarks = myBookmarks;
         extraConfig = userJs;
+        extensions = myExtensions;
       };
     };
   };

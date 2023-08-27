@@ -15,12 +15,4 @@ stdenv.mkDerivation rec {
     mv ttf/scientifica.ttf $out/share/fonts/truetype
     mv ttf/scientificaBold.ttf $out/share/fonts/truetype
     '';
-
-  meta = with stdenv.lib; {
-    description = "Scientifica font";
-
-    # See `License.txt' for details.
-    license = licenses.ofl;
-    homepage = https://github.com/NerdyPepper/scientifica;
-  };
 }

@@ -10,8 +10,23 @@ in
     # (import ./my-inconsolata-lgc.nix)
     # (import ./scientifica.nix)
     # (import ./BlockZone.nix)
+    (import ./BQN386.nix)
+    # (import ./DejaVuBQNSansMono.nix)
+    # iosevka-comfy.comfy 
+    iosevka-comfy.comfy-fixed
+    iosevka-comfy.comfy-wide-fixed
+
+    # Takes 400 mb unpacked
+    # iosevka
+    cozette
+
+    (import ./KreativeSoftware.nix)
     (import ./monocraft.nix)
     (import ./jingleberry.nix)
+
+    (import ./ITC-Avant-Garde-Gothic-Medium.nix)
+
+    (import ./LeagueSpartan.nix)
 
     (import ./fragment-mono.nix)
 
@@ -37,14 +52,14 @@ in
   fonts.fontconfig.defaultFonts.serif = [selectedFont];
 
   # Attempt at making zeroes dashed
-  fonts.fontconfig.localConf = ''
-  <?xml version="1.0"?>
-  <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-  <fontconfig>
-    <match target="font">
-      <edit name="fontfeatures" mode="append">
-        <string>zero on</string>
-      </edit>
-    </match>
-  </fontconfig>'';
+  # fonts.fontconfig.localConf = ''
+  # <?xml version="1.0"?>
+  # <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+  # <fontconfig>
+  #   <match target="font">
+  #     <edit name="fontfeatures" mode="append">
+  #       <string>zero on</string>
+  #     </edit>
+  #   </match>
+  # </fontconfig>'';
 }

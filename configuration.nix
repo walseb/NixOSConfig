@@ -1,7 +1,7 @@
 { pkgs, stdenv, callPackage, ... }:
 
 {
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 
   imports = [
     ./nix.nix
@@ -14,7 +14,11 @@
     ./modules-system/firefox.nix
 
     ./modules-system/imagemagick.nix
+
+    ./modules-system/clipmenu.nix
+
     # ./modules-system/keyboard-rebind.nix
+    # ./modules-system/gpaste.nix
   ];
 
   cachix = [ ];
@@ -24,11 +28,11 @@
     allowUnfree = true;
   };
 
-  boot = {
+  boot.tmp = {
     # Clean /tmp on boot
-    cleanTmpDir = true;
+    cleanOnBoot = true;
     # Make /tmp be in ram
-    tmpOnTmpfs = true;
+    useTmpfs = true;
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -47,7 +51,6 @@
 
   # services.emacs.defaultEditor = true;
 
-
   # documentation.enable = true;
   # documentation.man.generateCaches = true;
   # documentation.man.enable = true;
@@ -57,6 +60,9 @@
   # documentation.man.man-db.enable = true;
 
   environment.systemPackages = with pkgs; [
+    # gpaste-1
+    lutris
+
     chromedriver
 
     htop

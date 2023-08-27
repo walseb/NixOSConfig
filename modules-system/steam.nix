@@ -1,7 +1,8 @@
-{ pkgs, lib, ...}:
+{ pkgs, stdenv, lib, fetchurl, ...}:
 {
   environment.systemPackages = with pkgs; [
     steam-run-native
+    # (import ./steam/steam-ge.nix)
   ];
 
   programs.steam.enable = true;
@@ -13,6 +14,8 @@
     "steam-runtime"
   ];
 
+  environment.variables.STEAM_EXTRA_COMPAT_TOOLS_PATHS =
+    "${(import ./steam/steam-ge.nix)}";
 
   # nixpkgs.config.packageOverrides = pkgs: {
   #   steam = pkgs.steam.override {

@@ -11,7 +11,6 @@
     ../../modules-system/wakelock.nix
     ../../modules-system/hardware/file-systems/ntfs-support.nix
     # ../../modules-system/mu.nix
-    ../../modules-system/hardware/input/input.nix
     # ../../modules-system/auto-upgrade.nix
     ../../modules-system/fonts/font.nix
     ../../modules-system/polkit.nix

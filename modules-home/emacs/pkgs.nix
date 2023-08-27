@@ -134,12 +134,12 @@
 
     (emacsPackages.trivialBuild {
       pname = "org-assistant";
-      version = "unstable-2023-05-24";
+      version = "unstable-2023-06-23";
       src = fetchFromGitHub {
         repo = "org-assistant";
         owner = "tyler-dodge";
-        sha256 = "0c4357a6q81z5qnmvxwsrs9hmk36ikkg4h2izchw3a17ck5wmab4";
-        rev = "c572c1a2f63fc8e05b8ff8ef4bc8956ff89edff9";
+        sha256 = "1dggs5w831jlxbn7v5wn755ggg2kgcsij4js19m9yiz6wnw5nrxk";
+        rev = "d036f82072e22a7fc985e94853deaf65c41d5967";
       };
 
       packageRequires = with emacsPackages; [ dash deferred s uuidgen ht];
@@ -154,6 +154,64 @@
         sha256 = "0b6fpyk30pb88x7dbzdfnjhfjk6ir3phdw5g7zxv7d0iw8r8dshd";
         rev = "516bbcec25edbaf0feaf3aad3e442d581881c5ee";
       };
+    })
+
+    (emacsPackages.trivialBuild {
+      pname = "org-graph-view";
+      version = "unstable-2021-09-12";
+
+      src = fetchFromGitHub {
+        owner = "alphapapa";
+        repo = "org-graph-view";
+        sha256 = "1na81h5xidzjsg6l7853y8kcmwsqkc72sw0bdnm4y6ncj51ipj3f";
+        rev = "233c6708c1f37fc60604de49ca192497aef39757";
+      };
+
+      packageRequires = with emacsPackages; [ dash s org ];
+    })
+
+
+    (emacsPackages.trivialBuild {
+      pname = "biome";
+      version = "unstable-2023-08-19";
+
+      src = fetchFromGitHub {
+        owner = "SqrtMinusOne";
+        repo = "biome";
+        sha256 = "1099abqa7vwx0g9vna3rq8f02k7k3kx6w7kx0rcfwsiscqlklc52";
+        rev =  "fc52a2b7ac1a08050499c5eb378d012cd26d0856";
+      };
+
+      packageRequires = with emacsPackages; [ transient ct request compat ];
+    })
+
+    (emacsPackages.trivialBuild {
+      pname = "indent-bars";
+      version = "unstable-2023-08-14";
+
+      src = fetchFromGitHub {
+        owner = "jdtsmith";
+        repo = "indent-bars";
+        sha256 = "12fjd9p3pk2i51m00ww121kzxi7m4sysr2wfd33zy4swdg8szi0j";
+        rev =  "568ec43b0e0059dcf19d86208c95ee0a36ce53fe";
+      };
+
+      packageRequires = with emacsPackages; [compat];
+    })
+    leetcode-cli
+
+    (emacsPackages.trivialBuild {
+      pname = "leetcode-emacs";
+      version = "unstable-2023-08-04";
+
+      src = fetchFromGitHub {
+          owner = "ginqi7";
+          repo = "leetcode-emacs";
+          sha256 = "1nz5vnw4vgpf6h7kmdqjvj7z7x9rz9w4br1bsja3kspd1wxj8csm";
+          rev =  "4908db262b1517ba34a458a012031c16af1ba032";
+      };
+
+      packageRequires = with emacsPackages; [ctable cl-lib];
     })
   ];
 }

@@ -17,12 +17,4 @@ stdenv.mkDerivation rec {
     mv *.ttf $out/share/fonts/truetype
     mv *.otf $out/share/fonts/opentype
     '';
-
-  meta = with stdenv.lib; {
-    description = "Inconsolata LGC patched with firafont ligatures";
-
-    # See `License.txt' for details.
-    license = licenses.ofl;
-    homepage = https://github.com/walseb/Inconsolata-LGC;
-  };
 }
