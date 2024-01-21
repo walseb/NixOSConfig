@@ -1,15 +1,20 @@
 # The pulse effects daemon is enabled in home manager
 { pkgs, ...}:
 {
+  # Needed for easyeffects to work
   programs.dconf.enable = true;
 
-  # [[file:/etc/nixos/modules-home/audio.nix][See home manager for package]]
-  # environment.systemPackages = with pkgs; [
-  #   pulseeffects-pw
-  # at-spi2-core
-  # ];
+  # No longer avaliable?
+  # services.easyeffects.enable = true;
 
-    # systemd.services.pulseeffects-pipewire = {
+  # [[file:/etc/nixos/modules-home/audio.nix][See home manager for package]]
+  environment.systemPackages = with pkgs; [
+    # pulseeffects-pw
+    easyeffects
+    # at-spi2-core
+  ];
+
+  # systemd.services.pulseeffects-pipewire = {
   #   enable = true;
   #   description = "Pulseeffects";
   #   serviceConfig = {

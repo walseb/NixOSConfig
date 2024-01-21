@@ -1,10 +1,9 @@
 { pkgs, ... }:
 {
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.11";
   home.username = "admin";
-  home.homeDirectory = "/home/admin";
 
-  programs.home-manager.enable = true;
+  # programs.home-manager.enable = true;
 
   nixpkgs.config = {
     allowBroken = false;
@@ -13,9 +12,8 @@
 
   imports = [
     # ./nix.nix
-    ./home-device.nix
     # ./modules-home/caches.nix
-    ./modules-home/notifications.nix
+    ./modules-home/notifications/dunst.nix
     ./modules-home/git.nix
     ./modules-home/gpg.nix
     ./modules-home/visual.nix
@@ -36,13 +34,13 @@
     ./modules-home/spell.nix
 
     ./modules-home/man.nix
+    ./modules-home/redshift.nix
 
     # ./modules-home/dictionary/scowl.nix
 
     # ./modules-home/tools/activitywatch-stable.nix
     # Doesn't work with eshell currently
     # ./modules-home/comma.nix
-
   ];
 
   # caches.cachix = (import ./modules-home/cachix-caches.nix);
@@ -50,11 +48,9 @@
 
   xdg.mimeApps = {
     enable = true;
-    defaultApplications = { "text/html" = "firefox.desktop"; };
-    associations.added = { "x-scheme-handler/mailto" = ""; };
   };
 
-  services.clipmenu.enable = true;
+  # services.clipmenu.enable = true;
 
   home.packages = with pkgs; [
     # (import ./modules-home/nyxt.nix {pkgs = pkgs;})
@@ -92,7 +88,7 @@
     # cmake libtool gnumake
 
     # haskellPackages.structured-haskell-mode
-    pinentry_emacs
+    pinentry-emacs
     # libvterm
 
     # haskellPackages.glance - not on hackage

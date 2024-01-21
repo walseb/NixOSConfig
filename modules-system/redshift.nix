@@ -1,3 +1,4 @@
+# Redshift options given by NixOS, not as extensive as home-manager
 { ... }:
 {
   imports = [

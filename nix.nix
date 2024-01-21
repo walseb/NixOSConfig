@@ -28,6 +28,7 @@ let
   ];
 in {
   nix = {
+    package = pkgs.nixFlakes;
     # package = pkgs.nixUnstable;
 
     # Don't garbage collect nix-shell

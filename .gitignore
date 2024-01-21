@@ -1,5 +1,3 @@
 dist-newstyle
-hardware-configuration.nix
-nix-var/
 system-device.nix
 home-device.nix

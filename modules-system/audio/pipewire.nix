@@ -2,7 +2,7 @@
 {
   imports =
     [
-      ./pulseeffects-pipewire.nix
+      ./easyeffects-pipewire.nix
     ];
 
   services.pipewire = {
@@ -18,6 +18,7 @@
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
 
   environment.systemPackages = with pkgs; [
+    # I think this includes easyeffects
     pulseaudioFull
     pamixer
   ];

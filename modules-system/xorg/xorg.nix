@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    # ./picom.nix
+    ./picom.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -17,6 +17,12 @@
   services.xserver = {
     enable = true;
     layout = "us";
+
+    # deviceSection = ''                                                                            
+    # Option "DRI" "3"                                                                            
+    # '';
+    # Option "TearFree" "true"                                                                    
+
 
     displayManager = {
       sddm.enable = true;
@@ -67,7 +73,7 @@
         name = "emacs";
         start = ''
             # https://github.com/ch11ng/exwm/issues/914
-            emacs --xrm='Emacs.useXIM: false' &
+            emacs --xrm='Emacs.useXIM: false' --internal-border=0 --border-width=0 &
             waitPID=$!
           '';
       }

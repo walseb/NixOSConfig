@@ -19,7 +19,7 @@
 
         width = 300;
         height = 300;
-        offset = "0x0";
+        offset = "0x21";
         origin = "top-right";
 
         # transparency = 10;

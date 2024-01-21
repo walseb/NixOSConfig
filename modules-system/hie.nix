@@ -1,5 +1,5 @@
 let
-  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
+  all-hies = (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
 in
 {
   environment.systemPackages = [

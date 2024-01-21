@@ -1,16 +1,16 @@
 { pkgs, ... }:
 let selectedFont =
       # "Px437 IBM VGA 8x16";
-    "Roboto Mono";
+      "Roboto Mono";
     # "Fragment Mono";
     # "IBM Plex Mono";
 in
 {
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     # (import ./my-inconsolata-lgc.nix)
     # (import ./scientifica.nix)
     # (import ./BlockZone.nix)
-    (import ./BQN386.nix)
+    ./BQN386.nix
     # (import ./DejaVuBQNSansMono.nix)
     # iosevka-comfy.comfy 
     iosevka-comfy.comfy-fixed
@@ -20,15 +20,15 @@ in
     # iosevka
     cozette
 
-    (import ./KreativeSoftware.nix)
-    (import ./monocraft.nix)
-    (import ./jingleberry.nix)
+    #    (import ./KreativeSoftware.nix)
+    #   (import ./monocraft.nix)
+    ./jingleberry.nix
 
-    (import ./ITC-Avant-Garde-Gothic-Medium.nix)
+    ./ITC_Avant_Garde_Gothic_Medium.nix
 
-    (import ./LeagueSpartan.nix)
+    ./LeagueSpartan.nix
 
-    (import ./fragment-mono.nix)
+    #  (import ./fragment-mono.nix)
 
     ultimate-oldschool-pc-font-pack
 
@@ -45,11 +45,11 @@ in
     # inconsolata
   ];
 
-  fonts.fontconfig.includeUserConf = true;
+  # fonts.fontconfig.includeUserConf = true;
 
-  fonts.fontconfig.defaultFonts.monospace = [selectedFont];
-  fonts.fontconfig.defaultFonts.sansSerif = [selectedFont];
-  fonts.fontconfig.defaultFonts.serif = [selectedFont];
+  # fonts.fontconfig.defaultFonts.monospace = [selectedFont];
+  # fonts.fontconfig.defaultFonts.sansSerif = [selectedFont];
+  # fonts.fontconfig.defaultFonts.serif = [selectedFont];
 
   # Attempt at making zeroes dashed
   # fonts.fontconfig.localConf = ''

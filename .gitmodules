@@ -4,3 +4,6 @@
 [submodule "fir"]
 	path = deps/hoogle/custom-projects/fir
 	url = https://gitlab.com/sheaf/fir
+[submodule "deps/plover-lapwing-dictionary"]
+	path = deps/plover-lapwing-dictionary
+	url = https://github.com/aerickt/steno-dictionaries

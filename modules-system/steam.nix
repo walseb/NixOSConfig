@@ -7,6 +7,7 @@
 
   programs.steam.enable = true;
 
+  # programs.steam.remotePlay.openFirewall = true;
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "steam"
@@ -15,7 +16,7 @@
   ];
 
   environment.variables.STEAM_EXTRA_COMPAT_TOOLS_PATHS =
-    "${(import ./steam/steam-ge.nix)}";
+    "${./steam/steam-ge.nix}";
 
   # nixpkgs.config.packageOverrides = pkgs: {
   #   steam = pkgs.steam.override {

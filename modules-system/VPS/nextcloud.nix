@@ -21,7 +21,7 @@
       # The password can't contain quotation marks
       adminpassFile = "/keys/nextcloud-password";
       # overwriteProtocol = "https";
-      extraTrustedDomains = [ (import ../../nixos-private-config/servers.nix).mainServer ];
+      extraTrustedDomains = [ ../../nixos-private-config/servers.nix.mainServer ];
     };
   };
 

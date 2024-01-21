@@ -5,6 +5,6 @@
     ./spell/nuspell.nix
 
     ./enchant.nix
-    ./languagetool.nix
+    # ./languagetool.nix
   ];
 }

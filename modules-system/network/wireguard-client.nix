@@ -14,7 +14,7 @@
         # For a client configuration, one peer entry for the server will suffice.
         {
           # Public key of the server (not a file path).
-          publicKey = (import ../../nixos-private-config/servers.nix).mainServerWireguardPublicKey;
+          publicKey = ../../nixos-private-config/servers.nix.mainServerWireguardPublicKey;
 
           presharedKey = "VMC46nt/d8uF/87c8BHjSDXJwcRGgaAV/I8nSITLPbU=";
 
@@ -24,7 +24,7 @@
           #allowedIPs = [ "10.100.0.1" "91.108.12.0/22" ];
 
           # Set this to the server IP and port.
-          endpoint = (import ../../nixos-private-config/servers.nix).mainServer + ":51820";
+          endpoint = ../../nixos-private-config/servers.nix.mainServer + ":51820";
 
           # Send keepalives every 25 seconds. Important to keep NAT tables alive.
           persistentKeepalive = 25;

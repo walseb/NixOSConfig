@@ -3,6 +3,19 @@
 # To update, run: update-nix-fetchgit pkgs.nix
 {
   home.packages = with pkgs; [
+    # https://github.com/mitch-kyle/exwm/tree/master
+    # (emacsPackages.trivialBuild {
+    #   pname = "exwm";
+    #   version = "unstable-2023-04-12";
+
+    #   src = fetchFromGitHub {
+    #     owner = "mitch-kyle";
+    #     repo = "exwm";
+    #     sha256 = "14zisarqz7i6mkw5hzwk3kf6rw4g1716qa26s7zxvxg01qzdiynz";
+    #     rev = "ac33171c18288adbab1b044bf53d19be890c2ee1";
+    #   };
+    # })
+
     (emacsPackages.trivialBuild {
       pname = "salv";
       version = "unstable-2023-04-12";
@@ -16,16 +29,41 @@
     })
 
     (emacsPackages.trivialBuild {
-      pname = "persp-mode";
-      version = "unstable-2023-01-10";
+      pname = "cus-dir";
+      version = "unstable-2023-09-25";
 
-      src = fetchFromGitHub {
-        repo = "persp-mode.el";
-        owner = "Bad-ptr";
-        sha256 = "0jf4wsq13bjdr0wdm9jv702xxyhadfglxhvf9f7ahh3g4izjfqyr";
-        rev = "df95ea710e2a72f7a88293b72137acb0ca024d90";
+      src = fetchFromGitLab {
+        repo = "cus-dir";
+        owner = "mauroaranda";
+        sha256 = "11y8yi8hb93avdgakd9x66zhgsnnmd3mwla7g59spz8gmdpda7x1";
+        rev = "7b96490afc94938a867eef6268cce4c7552eedb7";
       };
     })
+
+    (emacsPackages.trivialBuild {
+      pname = "explain-pause-mode";
+      version = "unstable-2020-07-27";
+
+      src = fetchFromGitHub {
+        repo = "explain-pause-mode";
+        owner = "lastquestion";
+        sha256 = "0frnfwqal9mrnrz6q4v7vcai26ahaw81894arff1yjw372pfgv7v";
+        rev = "2356c8c3639cbeeb9751744dbe737267849b4b51";
+      };
+    })
+
+
+    # (emacsPackages.trivialBuild {
+    #   pname = "persp-mode";
+    #   version = "unstable-2023-01-10";
+
+    #   src = fetchFromGitHub {
+    #     repo = "persp-mode.el";
+    #     owner = "Bad-ptr";
+    #     sha256 = "0jf4wsq13bjdr0wdm9jv702xxyhadfglxhvf9f7ahh3g4izjfqyr";
+    #     rev = "df95ea710e2a72f7a88293b72137acb0ca024d90";
+    #   };
+    # })
 
     (emacsPackages.trivialBuild {
       pname = "explain-pause-mode";
@@ -156,44 +194,29 @@
       };
     })
 
-    (emacsPackages.trivialBuild {
-      pname = "org-graph-view";
-      version = "unstable-2021-09-12";
+ #   (emacsPackages.trivialBuild {
+  #    pname = "org-graph-view";
+   #   version = "unstable-2021-09-12";
 
-      src = fetchFromGitHub {
-        owner = "alphapapa";
-        repo = "org-graph-view";
-        sha256 = "1na81h5xidzjsg6l7853y8kcmwsqkc72sw0bdnm4y6ncj51ipj3f";
-        rev = "233c6708c1f37fc60604de49ca192497aef39757";
-      };
+#      src = fetchFromGitHub {
+ #       owner = "alphapapa";
+  #      repo = "org-graph-view";
+   #     sha256 = "1na81h5xidzjsg6l7853y8kcmwsqkc72sw0bdnm4y6ncj51ipj3f";
+    #    rev = "233c6708c1f37fc60604de49ca192497aef39757";
+     # };
 
-      packageRequires = with emacsPackages; [ dash s org ];
-    })
-
-
-    (emacsPackages.trivialBuild {
-      pname = "biome";
-      version = "unstable-2023-08-19";
-
-      src = fetchFromGitHub {
-        owner = "SqrtMinusOne";
-        repo = "biome";
-        sha256 = "1099abqa7vwx0g9vna3rq8f02k7k3kx6w7kx0rcfwsiscqlklc52";
-        rev =  "fc52a2b7ac1a08050499c5eb378d012cd26d0856";
-      };
-
-      packageRequires = with emacsPackages; [ transient ct request compat ];
-    })
+   #   packageRequires = with emacsPackages; [ dash s org ];
+    #})
 
     (emacsPackages.trivialBuild {
       pname = "indent-bars";
-      version = "unstable-2023-08-14";
+      version = "unstable-2024-01-09";
 
       src = fetchFromGitHub {
         owner = "jdtsmith";
         repo = "indent-bars";
-        sha256 = "12fjd9p3pk2i51m00ww121kzxi7m4sysr2wfd33zy4swdg8szi0j";
-        rev =  "568ec43b0e0059dcf19d86208c95ee0a36ce53fe";
+        sha256 = "08rahxxq6kp7kna4x2jqxpxzm0bmf3y2l6m7ixsf57p5r8bz5vl9";
+        rev =  "8a4ea0ab83016f87acb94ebf3816a02382b82cad";
       };
 
       packageRequires = with emacsPackages; [compat];
@@ -202,16 +225,28 @@
 
     (emacsPackages.trivialBuild {
       pname = "leetcode-emacs";
-      version = "unstable-2023-08-04";
+      version = "unstable-2023-10-23";
 
       src = fetchFromGitHub {
           owner = "ginqi7";
           repo = "leetcode-emacs";
-          sha256 = "1nz5vnw4vgpf6h7kmdqjvj7z7x9rz9w4br1bsja3kspd1wxj8csm";
-          rev =  "4908db262b1517ba34a458a012031c16af1ba032";
+          sha256 = "0mg17816phmri7dd97ijz3anm5r7pxz57gpkrxygjm2ls5awmycs";
+          rev =  "076e7194a0867ee9256f24266546a1a6ab7267ce";
       };
 
       packageRequires = with emacsPackages; [ctable cl-lib];
+    })
+
+    (emacsPackages.trivialBuild {
+      pname = "undo-hl";
+
+      version = "unstable-2023-11-16";
+        src = fetchFromGitHub {
+          owner = "walseb";
+          repo = "undo-hl";
+          sha256 = "080z69ay6ihcr5lany5rkyrjyn6lsr9g3hgi1l3f38pii5mpggfz";
+          rev =  "a55665785caef6e668f57c95f4690af9dfd67991";
+      };
     })
   ];
 }

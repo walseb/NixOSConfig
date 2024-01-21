@@ -8,3 +8,4 @@
     # adoptopenjdk-jre-bin
   ];
 }
+

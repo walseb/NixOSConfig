@@ -7,6 +7,7 @@
     --urlbar-focused-bg-color: #41404c;
     --urlbar-not-focused-bg-color: #1c1b22;
     --toolbar-bgcolor: #2b2a33 !important;
+    --ui-font: 'Roboto Mono';
     --tab-font: 'Roboto Mono';
     --urlbar-font: 'Roboto Mono';
 
@@ -15,7 +16,12 @@
 
     /* try increasing if you encounter problems */
     --urlbar-height-setting: 24px;
+    /* --urlbar-height-setting: auto; */
+    /* --tab-min-height: 16px !important; */
     --tab-min-height: 16px !important;
+    --extension-icon-size: 16px !important;
+
+    --font-size: 12px !important;
 
     /* I don't recommend you touch this unless you know what you're doing */
     --arrowpanel-menuitem-padding: 0px !important; /* 2px !important; */
@@ -26,6 +32,42 @@
     --toolbar-field-focus-background-color: var(--urlbar-focused-bg-color) !important;
     --toolbar-field-background-color: var(--urlbar-not-focused-bg-color) !important;
     --toolbar-field-focus-border-color: transparent !important;
+}
+
+* {
+    font-family: var(--ui-font/* , 'monospace' */);
+}
+
+
+/* Disable sound icon */
+/* .tab-icon-sound { */
+/*     display: none !important; */
+/* } */
+
+/* Hide the mute/unmute button */
+.tab-icon-overlay:not([pinned], [sharing], [crashed]):is(/* [soundplaying],  */[muted]) {
+    display: none !important;
+}
+/* Keep site icon visible on hover */
+.tabbrowser-tab:hover .tab-icon-stack:not([pinned], [sharing], [crashed]):is(/* [soundplaying] */, [muted]) > :not(.tab-icon-overlay),
+/* for site icon with Compact density */
+:root[uidensity="compact"] .tab-icon-stack:not([pinned], [sharing], [crashed]):is(/* [soundplaying] */, [muted]) > :not(.tab-icon-overlay) {
+    opacity: 1 !important; /* overrides full transparency with full opacity */
+}
+
+
+/**
+ * Makes wrapped content more visible. http://superuser.com/a/691490/47108
+ * http://dxr.mozilla.org/mozilla-central/source/toolkit/content/widgets/findbar.xml
+ * http://dxr.mozilla.org/mozilla-central/source/toolkit/themes/linux/global/findBar.css
+ */
+.findbar-container .find-status-icon[status="wrapped"] {
+    display: none;
+}
+.findbar-container .find-status-icon[status="wrapped"] ~ [anonid="find-status"].findbar-find-status {
+    font-weight: bold;
+    background: var(--highlight-foreground);
+    color: var(--highlight-background) !important;
 }
 
 
@@ -54,7 +96,33 @@
 /* --- GENERAL DEBLOAT ---------------------------------- */
 
 /* Bottom left page loading status or url preview */
-#statuspanel { display: none !important; }
+/* #statuspanel { display: none !important; } */
+
+
+#statuspanel #statuspanel-label {
+    background: var(--highlight-background) !important;
+    color: var(--highlight-foreground) !important;
+}
+
+#statuspanel[type="overLink"] #statuspanel-label {
+    display:none!important;
+}
+
+/* /\* Other messages include these: *\/ */
+/* #statuspanel[type="status"] #statuspanel-label[value^="Look"], */
+/* #statuspanel[type="status"] #statuspanel-label[value^="Connect"], */
+/* #statuspanel[type="status"] #statuspanel-label[value^="Send"], */
+/* #statuspanel[type="status"] #statuspanel-label[value^="Transfer"], */
+/* #statuspanel[type="status"] #statuspanel-label[value^="Read"], */
+/* #statuspanel[type="status"] #statuspanel-label[value^="Wrote"], */
+/* #statuspanel[type="status"] #statuspanel-label[value^="Wait"], */
+/* #statuspanel[type="status"] #statuspanel-label[value*="TLS handshake"], */
+/* #statuspanel[type="status"] #statuspanel-label[value*="FTP transaction"] { */
+/*     /\* display:none!important; *\/ */
+
+/*     background: var(--highlight-background) !important; */
+/*     color: var(--highlight-foreground) !important; */
+/* } */
 
 /* Hide dropdown that appears when you type in search bar */
 .autocomplete-history-popup, panel[type=autocomplete-richlistbox], panel[type=autocomplete] {
@@ -98,7 +166,8 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
         padding-top: 0 !important;
         padding-bottom: 0 !important;
         font-family: var(--urlbar-font, 'monospace');
-        font-size: 12px; /* 11px */
+        /* font-size: 12px; /\* 11px *\/ */
+        font-size: var(--font-size); /* 11px */
 }
 
 #urlbar {
@@ -130,7 +199,7 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 
 /* make extension icons smaller */
 #unified-extensions-view {
-        --uei-icon-size: 16px;
+    --uei-icon-size: var (--extension-icon-size);
 }
 
 /* hide bloat */
@@ -186,7 +255,7 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 #TabsToolbar, .tabbrowser-tab {
         max-height: var(--tab-min-height) !important;
         /* font-size: 16px !important; */
-        font-size: 12px !important;
+        font-size: var(--font-size) !important;
 }
 
 /* Change color of normal tabs */
@@ -284,20 +353,21 @@ tab {
 
 /* hide navbar unless focused */
 #nav-bar {
-        min-height: 0 !important;
-        max-height: 0 !important;
-        height: 0 !important;
-        --moz-transform: scaleY(0) !important;
-        transform: scaleY(0) !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    height: 0 !important;
+    --moz-transform: scaleY(0) !important;
+    transform: scaleY(0) !important;
 }
 
 /* show on focus */
 #nav-bar:focus-within {
-        --moz-transform: scale(1) !important;
-        transform: scale(1) !important;
-        max-height: var(--urlbar-height-setting) !important;
-        height: var(--urlbar-height-setting) !important;
-        min-height: var(--urlbar-height-setting) !important;
+    --moz-transform: scale(1) !important;
+    transform: scale(1) !important;
+    max-height: var(--urlbar-height-setting) !important;
+    height: var(--urlbar-height-setting) !important;
+    min-height: var(--urlbar-height-setting) !important;
+    /* z-index: 999 !important; */
 }
 
 #navigator-toolbox:focus-within > .browser-toolbar {

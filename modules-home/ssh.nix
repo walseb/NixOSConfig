@@ -7,7 +7,7 @@
     matchBlocks =
       {
         "github.com" = {
-          identityFile = "~/.ssh/id_rsa-github";
+          identityFile = "~/.ssh/id_ed25519";
           identitiesOnly = true;
           user = "walseb";
         };

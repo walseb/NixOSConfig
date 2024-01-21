@@ -37,7 +37,7 @@
         ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -s fdc9:281f:04d7:9ee9::1/64 -o eth0 -j MASQUERADE
       '';
 
-      peers = (import ../../nixos-private-config/vpn-clients.nix);
+      peers = ../../nixos-private-config/vpn-clients.nix;
     };
   };
 }

@@ -10,9 +10,6 @@
   home.file.".config/enchant/en_US.dic".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/nixos-private-config/spell/.dict.en;
   home.file.".config/enchant/sv.dic".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/nixos-private-config/spell/.dict.sv;
 
-  # home.file.".emacs.d/.aspell.en.pws".source = /home/admin/.aspell.en.pws;
-  # home.file.".emacs.d/.aspell.sv.pws".source = /home/admin/.aspell.sv.pws;
-
   home.packages = with pkgs; [
     enchant
   ];

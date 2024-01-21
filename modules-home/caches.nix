@@ -48,7 +48,7 @@ in {
         The names are ignored.
 
         Example value:
-          
+
           {
             nixos = {
               url = "https://cache.nixos.org";
