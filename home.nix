@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, nur, ... }:
 {
   home.stateVersion = "23.11";
   home.username = "admin";
@@ -11,6 +11,8 @@
   };
 
   imports = [
+    # nur.hmModules.nur
+
     # ./nix.nix
     # ./modules-home/caches.nix
     ./modules-home/notifications/dunst.nix

@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, config, lib, ... }:
 
 # For all options, see
 # https://github.com/mozilla/gecko-dev/blob/master/modules/libpref/init/all.js
@@ -300,9 +300,9 @@ let firefoxSettings =
     # # .titlebar-buttonbox-container { display: none !important; }
     #                  # Here too
     #                 '';
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
+    # nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+    #   inherit pkgs;
+    # };
     myBookmarks =
       [
         {
@@ -322,7 +322,7 @@ let firefoxSettings =
         }
       ];
 
-    myExtensions = with nur.repos.rycee.firefox-addons; [
+    myExtensions = with config.nur.repos.rycee.firefox-addons; [
       plasma-integration
       # gsconnect
 
@@ -516,8 +516,7 @@ in
         # userContent = userContentSettings;
         bookmarks = myBookmarks;
         extraConfig = userJs;
-        # NUR doesn't work with flakes
-        # extensions = myExtensions;
+        extensions = myExtensions;
       };
 
       monsterAcademy = {
@@ -529,7 +528,7 @@ in
         # userContent = userContentSettings;
         bookmarks = myBookmarks;
         extraConfig = userJs;
-        # extensions = myExtensions;
+        extensions = myExtensions;
       };
 
       alen = {
@@ -541,7 +540,7 @@ in
         # userContent = userContentSettings;
         bookmarks = myBookmarks;
         extraConfig = userJs;
-        # extensions = myExtensions;
+        extensions = myExtensions;
       };
     };
   };

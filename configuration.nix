@@ -11,7 +11,7 @@
 
 
   imports = [
-    # ./nix.nix
+    ./nix.nix
     ./modules-system/cachix.nix
     # ./modules-system/chromium.nix
     ./modules-system/network/dns.nix

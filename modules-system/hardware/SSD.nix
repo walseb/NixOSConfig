@@ -6,5 +6,6 @@
   #   "vm.swappiness" = 0;
   # };
 
-  services.fstrim.enable = true;
+  # Not needed for bcachefs  
+  # services.fstrim.enable = true;
 }
