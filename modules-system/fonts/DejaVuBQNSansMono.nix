@@ -1,4 +1,5 @@
-with import <nixpkgs> {};
+{ pkg-s }:
+with pkg-s;
 
 stdenv.mkDerivation rec {
   pname = "DejaVuBQNSansMono";

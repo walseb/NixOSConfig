@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ emacs-overlay, ... }:
 
 
 {
-  home.packages = with pkgs; [
+  home.packages = with emacs-overlay; [
     # Performance patch https://github.com/abo-abo/swiper/pull/2986
     # (emacsPackages.trivialBuild {
     #   pname = "swiper";

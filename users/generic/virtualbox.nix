@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkg-s, ... }:
 with lib;
 {
   boot.kernelParams = [ "nomodeset" ];
@@ -12,7 +12,7 @@ with lib;
   powerManagement.enable = false;
   virtualisation.virtualbox.guest.enable = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkg-s; [
     linuxPackages.virtualboxGuestAdditions
   ];
 }

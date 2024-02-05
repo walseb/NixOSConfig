@@ -1,18 +1,11 @@
-{ pkgs, nur, ... }:
+{ pkg-s, pkgs-u, ... }:
 {
   home.stateVersion = "23.11";
   home.username = "admin";
 
   # programs.home-manager.enable = true;
 
-  nixpkgs.config = {
-    allowBroken = false;
-    allowUnfree = true;
-  };
-
   imports = [
-    # nur.hmModules.nur
-
     # ./nix.nix
     # ./modules-home/caches.nix
     ./modules-home/notifications/dunst.nix
@@ -54,7 +47,10 @@
 
   # services.clipmenu.enable = true;
 
-  home.packages = with pkgs; [
+  home.packages = with pkg-s; [
+    xorg.xwininfo
+
+    zip
     # (import ./modules-home/nyxt.nix {pkgs = pkgs;})
     # xfce.xfce4-notifyd
     # mpd
@@ -246,6 +242,6 @@
 
     cbqn
 
-    plover.dev
+    pkgs-u.plover.dev
   ];
 }

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 # Installed using nixos-in-place
 {

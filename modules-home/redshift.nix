@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 {
   services.redshift = {
     enable = true;

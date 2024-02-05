@@ -1,6 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkg-s, ... }:
 {
-  home.packages = with pkgs; [
+  home.packages = with pkg-s; [
     nuspell
 
     hunspellDicts.en_US-large

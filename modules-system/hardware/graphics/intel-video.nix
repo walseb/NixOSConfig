@@ -1,4 +1,4 @@
-{pkgs, lib, ...}:
+{pkg-s, lib, ...}:
 {
 
   # boot.initrd.kernelModules = [ "amdgpu" ];
@@ -19,16 +19,18 @@
   # https://forums.debian.net/viewtopic.php?t=144681
   # https://github.com/i-rinat/libvdpau-va-gl
   # environment.variables.VDPAU_DRIVER = "va_gl";
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  nixpkgs.config.packageOverrides = pkg-s: {
+    vaapiIntel = pkg-s.vaapiIntel.override { enableHybridCodec = true; };
   };
 
   hardware.opengl = {
   enable = true;
-  extraPackages = with pkgs; [
+  extraPackages = with pkg-s; [
     intel-media-driver # LIBVA_DRIVER_NAME=iHD
     vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
     vaapiVdpau
+
+    # video acceleration
     libvdpau-va-gl
     # Vulkan
 
@@ -39,13 +41,10 @@
 
     # OpenCL
     # rocm-opencl-icd
-
-    # video acceleration
-    # libvdpau-va-gl
   ];
 
   extraPackages32 =  [
-    # pkgs.driversi686Linux.amdvlk
+    # pkg-s.driversi686Linux.amdvlk
   ];
   };
 }

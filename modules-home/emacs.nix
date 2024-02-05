@@ -1,56 +1,29 @@
 # https://hydra.nix-community.org/project/emacs-overlay
 # https://hydra.nix-community.org/jobset/emacs-overlay/unstable
-# { pkgs ? (fetchTarball "https://github.com/NixOS/nixpkgs/archive/84d74ae9c9cbed73274b8e4e00be14688ffc93fe.tar.gz" ) {}, ... }:
+# { pkg-s ? (fetchTarball "https://github.com/NixOS/nixpkgs/archive/84d74ae9c9cbed73274b8e4e00be14688ffc93fe.tar.gz" ) {}, ... }:
 # with import <nixpkgs> {};
 
-{ pkgs, ... }:
+{ pkg-s, emacs-overlay, ... }:
 let
-  emacsPkgsOverlay = import ./emacs/emacs-pkgs-overlay.nix { pkgs = pkgs; };
-  emacsMainOverlay = import ./emacs/emacs-main-overlay.nix { pkgs = pkgs; };
-  emacs29Overlay = import ./emacs/emacs-29-overlay.nix { pkgs = pkgs; };
-  emacsNixpkgs = a: import
-    (
-      # builtins.fetchGit {
-      #   name = "nixpkgs-emacs";
-      #   url = "https://github.com/nixos/nixpkgs/";
-      #   rev = "635a306fc8ede2e34cb3dd0d6d0a5d49362150ed"; # refs/heads/nixpkgs-unstable
-      # }
-      # <nixpkgs>
-      # This fetches nixpgks unstable.
-      pkgs.fetchFromGitHub {
-        owner = "nixos";
-        repo = "nixpkgs";
-        rev = "ea780f3de2d169f982564128804841500e85e373"; # refs/heads/nixpkgs-unstable
-        sha256 = "18arqzwv00mwaps98rgmnxcksgr4rm1ivmzfpjfkpkbbndid3h3b"; # refs/heads/nixpkgs-unstable
-      }
+  # my-emacs29 = (emacs-overlay-emacs.emacsGit.overrideAttrs (old: {
+  #   name = "emacs-29";
+  #   version = "unstable-2024-01-14";
 
-    ) { overlays = [ (import a) ]; };
+  #   # Emacs 29. Doesn't build due to new patches in emacs overlay. Fix later.
+  #   src = pkg-s.fetchFromGitHub {
+  #     owner = "emacs-mirror";
+  #     repo = "emacs";
+  #     sha256 = "1fg845k530xb8hh1k1yjmypavi1lfdlvsrvc4acaxkfkh9bw08j7";
+  #     # sha256 = "06j9m57wc8b4qh9hbkv3ndd2vhikp7dkqnvc2gdjl6146iix349p";
+  #     rev = "5bb5590dec95e813ed120b3f09734451b4ebb18f"; # refs/heads/emacs-29
 
-  nixpkgsEmacsPkgs = emacsNixpkgs emacsPkgsOverlay;
-
-  nixpkgsEmacsMain = emacsNixpkgs emacsMainOverlay;
-
-  nixpkgsEmacs29 = emacsNixpkgs emacs29Overlay;
-
-  my-emacs29 = (nixpkgsEmacs29.emacsGit.overrideAttrs (old: {
-    name = "emacs-29";
-    version = "unstable-2024-01-14";
-
-    # Emacs 29. Doesn't build due to new patches in emacs overlay. Fix later.
-    src = pkgs.fetchFromGitHub {
-      owner = "emacs-mirror";
-      repo = "emacs";
-      sha256 = "1fg845k530xb8hh1k1yjmypavi1lfdlvsrvc4acaxkfkh9bw08j7";
-      # sha256 = "06j9m57wc8b4qh9hbkv3ndd2vhikp7dkqnvc2gdjl6146iix349p";
-      rev = "5bb5590dec95e813ed120b3f09734451b4ebb18f"; # refs/heads/emacs-29
-
-      # sha256 = "MhmLMXdd45hE2CEsOzI00LozoDvHOopRVB5fN3UbRyY=";
-      # rev = "dc33a122230adbfa37926f4eb19c0620b3affd85";
-    };
-  }));
+  #     # sha256 = "MhmLMXdd45hE2CEsOzI00LozoDvHOopRVB5fN3UbRyY=";
+  #     # rev = "dc33a122230adbfa37926f4eb19c0620b3affd85";
+  #   };
+  # }));
 
   # overrideAttrs
-  gtkEmacs = nixpkgsEmacsMain.emacs-git.override {
+  gtkEmacs = emacs-overlay.emacs-git.override {
     # withGTK2 = true;
     withGTK3 = true;
   };
@@ -59,11 +32,13 @@ in {
   imports = [ ./emacs/pkgs.nix ./emacs/frozen-pkgs.nix ];
 
   #home.packages = with nixpkgsEmacs29.emacsPackages; [
-  home.packages = with nixpkgsEmacsPkgs.emacsPackages; [
+  home.packages = with emacs-overlay.emacsPackages; [
     mlscroll
     jsonian
 
     # https://github.com/mitch-kyle/exwm/tree/master
+
+    crdt
 
     org-sticky-header
 
@@ -74,7 +49,7 @@ in {
     gtkEmacs
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/emacs/default.nix
-    # pkgs.emacs29
+    # pkg-s.emacs29
     # emacs
 
     # recursion-indicator
@@ -83,14 +58,14 @@ in {
 
     bluetooth
 
-    pkgs.libwebsockets
+    pkg-s.libwebsockets
     ibrowse
     biome
 
     ivy-clipmenu
 
-    pkgs.jansson
-    pkgs.rnix-lsp
+    pkg-s.jansson
+    pkg-s.rnix-lsp
 
     pcmpl-args
 
@@ -99,7 +74,7 @@ in {
     disk-usage
 
     # Change to this later if emacs-29 is released
-     #nixpkgsEmacs29.emacs
+    #nixpkgsEmacs29.emacs
 
     # emacsGitNativeComp
     # emacsNativeComp
@@ -138,6 +113,8 @@ in {
 
     # better-jumper
 
+    mini-frame
+
     stem-reading-mode
 
     vlf
@@ -146,7 +123,7 @@ in {
 
     org-roam
     # Org roam deps for emacs 29
-    pkgs.sqlite
+    pkg-s.sqlite
     emacsql-sqlite-builtin
 
     xr

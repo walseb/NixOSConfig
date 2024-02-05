@@ -1,5 +1,5 @@
 # https://github.com/magnetophon/nixosConfig/blob/master/music.nix
-{pkgs, ...}:
+{pkg-s, ...}:
 {
   imports = [
     # ./musnix.nix
@@ -9,9 +9,9 @@
   # services.jack.alsa.enable = true;
   # services.jack.jackd.enable = true;
 
-  # hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
+  # hardware.pulseaudio.package = pkg-s.pulseaudio.override { jackaudioSupport = true; };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkg-s; [
     jack2Full
     qjackctl
   ];
@@ -24,12 +24,12 @@
       LimitRTPRIO = "infinity";
       LimitMEMLOCK = "infinity";
       Environment="JACK_NO_AUDIO_RESERVATION=1";
-      ExecStart = "${pkgs.jack2}/bin/jackd -P71 -p1024 -dalsa -dhw:3 -r44100 -n2";
+      ExecStart = "${pkg-s.jack2}/bin/jackd -P71 -p1024 -dalsa -dhw:3 -r44100 -n2";
       User = "admin";
       Group = "audio";
       KillSignal="SIGKILL";
       Restart="always";
-      # ExecStartPre="${pkgs.pulseaudio}/bin/pulseaudio -k";
+      # ExecStartPre="${pkg-s.pulseaudio}/bin/pulseaudio -k";
     };
   };
 }

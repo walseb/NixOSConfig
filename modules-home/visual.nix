@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 {
   # xsession.pointerCursor.size = 32;
-  # xsession.pointerCursor.package = pkgs.capitaine-cursors;
+  # xsession.pointerCursor.package = pkg-s.capitaine-cursors;
   # redglass or whiteglass
   # xsession.pointerCursor.name = "capitaine-cursors";
 

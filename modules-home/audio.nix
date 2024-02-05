@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
+{ pkg-s, ... }: {
   # services.pulseeffects.enable = true;
-  # services.pulseeffects.package = pkgs.pulseeffects-pw;
+  # services.pulseeffects.package = pkg-s.pulseeffects-pw;
   # services.pulseeffects.preset = "default";
 }

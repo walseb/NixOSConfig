@@ -1,8 +1,8 @@
-{ pkgs, haskellPackages, ... }:
+{ pkg-s, haskellPackages, ... }:
 {
   nixpkgs.config = {
-    packageOverrides = pkgs: {
-      haskellPackages.cut-the-crap-my = (pkgs.haskellPackages.cut-the-crap.override { }).overrideAttrs (old: rec {
+    packageOverrides = pkg-s: {
+      haskellPackages.cut-the-crap-my = (pkg-s.haskellPackages.cut-the-crap.override { }).overrideAttrs (old: rec {
         src = pkgs.fetchFromGitHub {
           owner = "walseb";
           repo = "cut-the-crap";

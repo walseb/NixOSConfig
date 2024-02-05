@@ -10,7 +10,7 @@ stdenv.mkDerivation {
     rev = "635a306fc8ede2e34cb3dd0d6d0a5d49362150ed";
   };
 
-  propagatedBuildInputs = with pkgs; [
+  propagatedBuildInputs = with pkg-s; [
     dbus
     expat
     libgpgerror

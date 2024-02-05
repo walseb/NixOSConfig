@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkg-s, ... }:
 
 let
   unstable = import
@@ -10,8 +10,9 @@ in
   # imports = [
   #   ./build-spotifyd.nix
   # ];
-  # services.spotifyd.package = pkgs.spotifyd-git;
+  # services.spotifyd.package = pkg-s.spotifyd-git;
   services.spotifyd.package = (unstable.spotifyd.override { withMpris = true; withPulseAudio = true; });
 
   services.spotifyd.enable = true;
+  services.spotifyd.package = pkg-s.spotifyd;
 }

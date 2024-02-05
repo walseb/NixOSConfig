@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 {
   imports = [
     ./picom.nix
   ];
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkg-s; [
     xorg.setxkbmap
     xorg.xkbcomp
 
@@ -30,7 +30,7 @@
 
       # Allow exwm to work
       sessionCommands =
-        "${pkgs.xorg.xhost}/bin/xhost +SI:localuser:$USER";
+        "${pkg-s.xorg.xhost}/bin/xhost +SI:localuser:$USER";
 
       # session = [{
       #   manage = "desktop";
@@ -46,7 +46,7 @@
         [ { manage = "desktop";
             name = "xterm";
             start = ''
-            ${pkgs.xterm}/bin/xterm -ls &
+            ${pkg-s.xterm}/bin/xterm -ls &
             waitPID=$!
           '';
           }

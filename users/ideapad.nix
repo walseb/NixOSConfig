@@ -1,4 +1,4 @@
-{ pkgs, stdenv, lib, ...}:
+{ pkgs, pkg-s, stdenv, lib, ...}:
 let
   # Generate using mkpasswd -m sha-512
   pass = "$6$emDF9qEWb4Q$VWmHX4lcEbMjC6xqr6h31QttnRUz.jMxpL1xFefXc5jiLOrSrobfrAy1lTxo4PqjCfG41sXoSVXEmveB.3E5S/";
@@ -94,10 +94,9 @@ in
 
   # services.xserver.desktopManager.plasma5.enable = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkg-s; [
     plasma-browser-integration
     plasma-integration
-    home
     # inkscape
 
     # inkcut-new

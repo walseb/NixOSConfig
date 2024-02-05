@@ -1,14 +1,14 @@
-{pkgs, ...}:
+{pkg-s, ...}:
 let
-  script = pkgs.writeShellScript "script" ''
+  script = pkg-s.writeShellScript "script" ''
     export DISPLAY=:0
     while true; do
         # 15 min on
-        ${pkgs.coreutils}/bin/sleep 900
-        ${pkgs.xorg.xset}/bin/xset dpms force off
+        ${pkg-s.coreutils}/bin/sleep 900
+        ${pkg-s.xorg.xset}/bin/xset dpms force off
         # 15 min off
-        ${pkgs.coreutils}/bin/sleep 900
-        ${pkgs.xorg.xset}/bin/xset dpms force on
+        ${pkg-s.coreutils}/bin/sleep 900
+        ${pkg-s.xorg.xset}/bin/xset dpms force on
     done'';
 in
 {

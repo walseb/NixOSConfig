@@ -1,10 +1,11 @@
-with import <nixpkgs> {};
+{ pkg-s }:
+with pkg-s;
 
 stdenv.mkDerivation rec {
   pname = "League Spartan";
   version = "master";
 
-  propagatedBuildInputs = with pkgs; [
+  propagatedBuildInputs = with pkg-s; [
     unzip
   ];
 

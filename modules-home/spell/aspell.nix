@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkg-s, ... }:
 {
   # https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/libraries/aspell/dictionaries.nix
 
-  home.file.".emacs.d/.aspell.en.pws".source = /etc/nixos/nixos-private-config/spell/.dict.en;
-  home.file.".emacs.d/.aspell.sv.pws".source = /etc/nixos/nixos-private-config/spell/.dict.sv;
+  home.file.".emacs.d/.aspell.en.pws".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/nixos-private-config/spell/.dict.en;
+  home.file.".emacs.d/.aspell.sv.pws".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/nixos-private-config/spell/.dict.sv;
 
-  home.packages = with pkgs; [
+  home.packages = with pkg-s; [
     aspell
 
     aspellDicts.en

@@ -1,11 +1,12 @@
-with import <nixpkgs> {};
+{ pkg-s }:
+with pkg-s;
 
 # Helvetica mono
 stdenv.mkDerivation rec {
   pname = "Fragment-mono";
   version = "unstable-2022-12-16";
 
-  src = pkgs.fetchFromGitHub {
+  src = pkg-s.fetchFromGitHub {
     owner = "weiweihuanghuang";
     repo = "fragment-mono";
     rev = "82bba49f9abaf0705c1b3ab1392d31ae82bc3070";

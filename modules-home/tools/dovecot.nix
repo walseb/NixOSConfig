@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 {
   dovecot2.enable = true;
   dovecot2.configFile = "/etc/nixos/dovecot.conf";

@@ -1,4 +1,5 @@
-with import <nixpkgs> {};
+{ pkg-s }:
+with pkg-s;
 
 # Fonts from Kreative Software.
 # Includes FairFax, FairFaxHD
@@ -6,7 +7,7 @@ stdenv.mkDerivation rec {
   pname = "BQN386";
   version = "1.0";
 
-  src = pkgs.fetchFromGitHub {
+  src = pkg-s.fetchFromGitHub {
     owner = "dzaima";
     repo = "BQN386";
     rev = "81e18d1eb8cb6b66df9e311b3b63ec086d910d18";

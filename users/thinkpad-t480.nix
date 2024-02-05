@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 
 let
   # Generate using mkpasswd -m sha-512
@@ -17,6 +17,7 @@ in
     ./generic/laptop.nix
     # (import ../modules-system/boot/bios.nix { grub-dev = "/dev/nvme0n1"; })
     ../modules-system/boot/uefi.nix
+    ../modules-system/vm/ios.nix
 
     # ../modules-system/webcam-loopback.nix
 
@@ -118,7 +119,7 @@ in
   services.undervolt.coreOffset = -100;
   services.undervolt.enable = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkg-s; [
     plasma-browser-integration
     plasma-integration
     home-manager

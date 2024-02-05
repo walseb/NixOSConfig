@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 {
   imports = [
     ./printer.nix

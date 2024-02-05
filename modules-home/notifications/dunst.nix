@@ -1,6 +1,7 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 {
   services.dunst.enable = true;
+  services.dunst.package = pkg-s.dunst;
   services.dunst.settings =
     {
       global = {
@@ -47,8 +48,8 @@
         # icon_position = "left";
         icon_position = "off";
 
-        # font = "Roboto Mono";
-        font = "Px437 IBM VGA 8x16";
+        font = "Roboto Mono";
+        # font = "Px437 IBM VGA 8x16";
 
         timeout = 5;
 
@@ -68,12 +69,23 @@
 
         # Set the maximum width for the progress bar
         progress_bar_max_width = 300;
+
+        transparency = 10;
       };
       urgency_critical = {
-        background = "#af0000";
-        foreground = "#eceff1";
+        # background = "#af0000";
+        # foreground = "#eceff1";
+        background = "#1a2d07";
+        foreground = "#67b11d";
+
         timeout = 20;
       };
+
+      # urgency_critical = {
+      #   background = "#af0000";
+      #   foreground = "#eceff1";
+      #   timeout = 20;
+      # };
 
       urgency_low = {
         background = "#1a2d07";

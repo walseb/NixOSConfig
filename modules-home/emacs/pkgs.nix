@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ emacs-overlay, ... }:
 
 # To update, run: update-nix-fetchgit pkgs.nix
 {
-  home.packages = with pkgs; [
+  home.packages = with emacs-overlay; [
     # https://github.com/mitch-kyle/exwm/tree/master
     # (emacsPackages.trivialBuild {
     #   pname = "exwm";

@@ -1,4 +1,4 @@
-{ nmea-time-pkg, pkgs, ... }:
+{ nmea-time-pkg, pkg-s, ... }:
 {
   systemd.services.nmea-time-service = {
     serviceConfig.Type = "oneshot";

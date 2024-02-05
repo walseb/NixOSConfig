@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 {
   imports =
     [
@@ -15,9 +15,9 @@
     jack.enable = true;
 
   };
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  hardware.pulseaudio.package = pkg-s.pulseaudioFull;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkg-s; [
     # I think this includes easyeffects
     pulseaudioFull
     pamixer

@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
+{ pkg-s, ... }: {
+  environment.systemPackages = with pkg-s; [
     qsynth qtractor qjackctl
   ];
 }

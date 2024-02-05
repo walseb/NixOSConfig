@@ -1,18 +1,21 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 let selectedFont =
       # "Px437 IBM VGA 8x16";
+      # "jetbrains mono";
       "Roboto Mono";
     # "Fragment Mono";
     # "IBM Plex Mono";
 in
 {
-  fonts.packages = with pkgs; [
+  fonts.packages = with pkg-s; [
     # (import ./my-inconsolata-lgc.nix)
     # (import ./scientifica.nix)
     # (import ./BlockZone.nix)
-    ./BQN386.nix
+    jetbrains-mono
+
+    (import ./BQN386.nix {inherit pkg-s;})
     # (import ./DejaVuBQNSansMono.nix)
-    # iosevka-comfy.comfy 
+    # iosevka-comfy.comfy
     iosevka-comfy.comfy-fixed
     iosevka-comfy.comfy-wide-fixed
 
@@ -22,11 +25,11 @@ in
 
     #    (import ./KreativeSoftware.nix)
     #   (import ./monocraft.nix)
-    ./jingleberry.nix
+    (import ./jingleberry.nix {inherit pkg-s;})
 
-    ./ITC_Avant_Garde_Gothic_Medium.nix
+    (import ./ITC_Avant_Garde_Gothic_Medium.nix {inherit pkg-s;})
 
-    ./LeagueSpartan.nix
+    (import ./LeagueSpartan.nix {inherit pkg-s;})
 
     #  (import ./fragment-mono.nix)
 
@@ -45,11 +48,11 @@ in
     # inconsolata
   ];
 
-  # fonts.fontconfig.includeUserConf = true;
+  fonts.fontconfig.includeUserConf = true;
 
-  # fonts.fontconfig.defaultFonts.monospace = [selectedFont];
-  # fonts.fontconfig.defaultFonts.sansSerif = [selectedFont];
-  # fonts.fontconfig.defaultFonts.serif = [selectedFont];
+  fonts.fontconfig.defaultFonts.monospace = [selectedFont];
+  fonts.fontconfig.defaultFonts.sansSerif = [selectedFont];
+  fonts.fontconfig.defaultFonts.serif = [selectedFont];
 
   # Attempt at making zeroes dashed
   # fonts.fontconfig.localConf = ''

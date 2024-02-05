@@ -1,7 +1,7 @@
-{pkgs, ...}:
+{pkg-s, pkgs, ...}:
 
 
-(pkgs.nyxt.overrideAttrs
+(pkg-s.nyxt.overrideAttrs
   (old : {
     version = "3";
     src = pkgs.fetchFromGitHub {

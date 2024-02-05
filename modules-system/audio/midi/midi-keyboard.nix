@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 {
   systemd.services.a2jmidid = {
     enable = true;
@@ -7,7 +7,7 @@
     serviceConfig = {
       User = "admin";
       Group = "users";
-      ExecStart = "${pkgs.a2jmidid}/bin/a2jmidid";
+      ExecStart = "${pkg-s.a2jmidid}/bin/a2jmidid";
       Restart = "on-failure";
     };
   };

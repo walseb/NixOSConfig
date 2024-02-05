@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 {
-  # environment.systemPackages = with pkgs; [
+  # environment.systemPackages = with pkg-s; [
   #   matrix-synapse
   # ];
 

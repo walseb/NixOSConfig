@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{pkg-s, ...}:
 {
 
   boot.initrd.kernelModules = [ "amdgpu" ];
@@ -17,7 +17,7 @@
 
   hardware.opengl = {
     enable = true;
-    extraPackages = with pkgs; [
+    extraPackages = with pkg-s; [
       # Vulkan
       amdvlk
       # rocm-opencl-icd
@@ -33,7 +33,7 @@
     ];
 
     extraPackages32 =  [
-      pkgs.driversi686Linux.amdvlk
+      pkg-s.driversi686Linux.amdvlk
     ];
   };
 }

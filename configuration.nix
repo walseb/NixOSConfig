@@ -1,17 +1,22 @@
-{ pkgs, stdenv, callPackage, ... }:
+{ pkg-s, stdenv, callPackage, ... }:
 
 {
   system.stateVersion = "23.11";
 
 # Cold War Assault
-  networking.firewall.allowedTCPPorts = [27015 27036 8000 8001 80];
-  networking.firewall.allowedUDPPorts = [2302 2303 2304  2305  27015  27031  27032 27033 27034 27035 27036 8000 8001 80];
+  networking.firewall.allowedTCPPorts = [27015 27036 8000 8001 80 6530];
+  networking.firewall.allowedUDPPorts = [2302 2303 2304  2305  27015  27031  27032 27033 27034 27035 27036 8000 8001 80 6530];
 
   networking.nameservers = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
 
+  # services.openssh = {
+  #   enable = true;
+  #   extraConfig = "GatewayPorts yes";
+  #   ports = [6530 22];
+  # };
 
   imports = [
-    ./nix.nix
+    ./modules-system/nix.nix
     ./modules-system/cachix.nix
     # ./modules-system/chromium.nix
     ./modules-system/network/dns.nix
@@ -29,6 +34,8 @@
 
     ./modules-system/kernel.nix
 
+    ./modules-system/obs.nix
+
     # ./modules-system/keyboard-rebind.nix
     # ./modules-system/gpaste.nix
   ];
@@ -37,18 +44,15 @@
 
   services.journald.extraConfig = "SystemMaxUse=100M";
 
-  nixpkgs.config = {
-    # allowBroken = true;
-    allowUnfree = true;
-  };
   # services.clamav.daemon.enable = true;
 
-  boot.tmp = {
-    # Clean /tmp on boot
-    cleanOnBoot = true;
-    # Make /tmp be in ram
-    useTmpfs = true;
-  };
+  # boot.tmp = {
+  #   # Clean /tmp on boot
+  #   cleanOnBoot = true;
+  #   # Make /tmp be in ram
+  #   useTmpfs = true;
+  #   tmpfsSize = "90%";
+  # };
 
   zramSwap = {
     enable = true;
@@ -79,7 +83,7 @@
   documentation.nixos.enable = true;
   # documentation.man.man-db.enable = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkg-s; [
     # gpaste-1
     lutris
 

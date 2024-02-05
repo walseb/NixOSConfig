@@ -1,16 +1,16 @@
 # Maybe modify src at /nix/var/nix/profiles/per-user/root/channels/nixos/pkgs/games/cataclysm-dda/default.nix instead???
-{ pkgs,
+{ pkg-s, pkgs,
 #  tiles ? true,
 #  Cocoa, libicns,
 #  debug ? false,
   ... }:
 # let
-#   inherit (pkgs.callPackage ./common.nix { inherit tiles Cocoa debug; }) common utils;
+#   inherit (pkg-s.callPackage ./common.nix { inherit tiles Cocoa debug; }) common utils;
 # in
 {
   nixpkgs.config = {
-    packageOverrides = pkgs: {
-      cataclysm-dda-git-master = (pkgs.cataclysm-dda-git.override { }).overrideAttrs (old: rec {
+    packageOverrides = pkg-s: {
+      cataclysm-dda-git-master = (pkg-s.cataclysm-dda-git.override { }).overrideAttrs (old: rec {
         version = "master";
 
         # fetchTarball "https://github.com/infinisil/all-hies/tarball/master"

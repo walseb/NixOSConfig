@@ -1,4 +1,4 @@
-{ pkgs, lib, callPackage, ... }:
+{ pkg-s, lib, callPackage, ... }:
 
 {
   imports = [
@@ -10,7 +10,6 @@
     # ./modules-home/hie.nix
     # ./modules-home/spotify.nix
     # ./modules-home/spotifyd.nix
-    .././modules-home/email.nix
     .././modules-home/emacs.nix
 
     # (import ./modules-system/inkscape/inkscape-silhouette.nix {lib= lib; python3Packages = pkgs.python3Packages; fetchFromGitHub = pkgs.fetchFromGitHub; wrapQtAppsHook = pkgs.wrapQtAppsHook; cups = lib.cups; })
@@ -21,9 +20,9 @@
   #     signByDefault = true;
   #   };
   # };
-  # home.packages = with pkgs; [ obs-studio ];
+  # home.packages = with pkg-s; [ obs-studio ];
 
-  home.packages = with pkgs; [
+  home.packages = with pkg-s; [
     # (import ./pkgs/laser-etching/ezgraver.nix)
 
     # (import ./my-inconsolata-lgc.nix)

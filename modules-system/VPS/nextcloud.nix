@@ -1,11 +1,11 @@
 # https://jacobneplokh.com/how-to-setup-nextcloud-on-nixos/
-{pkgs, ...}:
+{pkg-s, ...}:
 {
   services.nextcloud = {
     enable = true;
     hostName = "127.0.0.1";
     autoUpdateApps.enable = true;
-    package = pkgs.nextcloud21;
+    package = pkg-s.nextcloud21;
 
     # https = true;
     maxUploadSize = "100G";

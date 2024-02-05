@@ -1,10 +1,11 @@
-with import <nixpkgs> {};
+{ pkg-s }:
+with pkg-s;
 
 stdenv.mkDerivation rec {
   pname = "Monocraft";
   version = "master";
 
-  src = pkgs.fetchFromGitHub {
+  src = pkg-s.fetchFromGitHub {
     owner = "IdreesInc";
     repo = "Monocraft";
     rev = "d6538b9fa4366c81c4e8b33c86d4fc673f305d66";

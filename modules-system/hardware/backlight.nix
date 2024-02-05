@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 
 {
   hardware.acpilight.enable = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkg-s; [
     acpilight
   ];
 }

@@ -1,5 +1,5 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 {
-  home.packages = with pkgs; [ cached-nix-shell ];
+  home.packages = with pkg-s; [ cached-nix-shell ];
   programs.bash.shellAliases = { nix-shell = "cached-nix-shell"; };
 }

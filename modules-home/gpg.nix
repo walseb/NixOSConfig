@@ -1,5 +1,5 @@
 # https://github.com/nix-community/home-manager/blob/master/modules/programs/gpg.nix
-{ pkgs, ... }: {
+{ pkgs, pkg-s, ... }: {
   services.gpg-agent = {
     enable = true;
     pinentryFlavor = "emacs";
@@ -12,7 +12,8 @@
     # grabKeyboardAndMouse = false;
   };
 
-  programs.gpg.package = pkgs.gnupg.overrideAttrs (orig: {
+  # For now, just lock the GnuPG version
+  programs.gpg.package = pkg-s.gnupg.overrideAttrs (orig: {
     version = "2.4.0";
     src = pkgs.fetchurl {
       url = "mirror://gnupg/gnupg/gnupg-2.4.0.tar.bz2";

@@ -9,7 +9,7 @@ stdenv.mkDerivation {
     sha256 = "e863e682ecbfa0798978a082a53c6fed06a49bb6834e96ae00459840c4662294";
   };
 
-  propagatedBuildInputs = with pkgs; [
+  propagatedBuildInputs = with pkg-s; [
     dbus
     expat
     libgpgerror

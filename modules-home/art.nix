@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkg-s, ... }:
 {
-  home.packages = with pkgs; [
+  home.packages = with pkg-s; [
     # Once support is better, try this OSS driver
     # digimend.enable = true;
     # Supported tablets:

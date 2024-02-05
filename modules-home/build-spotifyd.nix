@@ -1,13 +1,13 @@
-{ pkgs, ...}:
+{ pkg-s, ...}:
 
 {
   nixpkgs.config = {
-    packageOverrides = pkgs: {
-      spotifyd-git= (pkgs.spotifyd.override {}).overrideAttrs (old: rec {
+    packageOverrides = pkg-s: {
+      spotifyd-git= (pkg-s.spotifyd.override {}).overrideAttrs (old: rec {
         pname = "spotifyd";
         version = "987a2d7b17e160974220f74fc25a860e70aa0909";
 
-        src = pkgs.fetchFromGitHub {
+        src = pkg-s.fetchFromGitHub {
           owner = "Spotifyd";
           repo = "spotifyd";
           rev = "${version}";
@@ -22,9 +22,9 @@
           "alsa_backend, pulseaudio_backend, dbus_mpris"
         ];
 
-        nativeBuildInputs = [ pkgs.pkgconfig pkgs.cargo ];
+        nativeBuildInputs = [ pkg-s.pkgconfig pkg-s.cargo ];
 
-        buildInputs = [ pkgs.openssl pkgs.alsaLib pkgs.libpulseaudio pkgs.dbus];
+        buildInputs = [ pkg-s.openssl pkg-s.alsaLib pkg-s.libpulseaudio pkg-s.dbus];
 
         doCheck = false;
       });

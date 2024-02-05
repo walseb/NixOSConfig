@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   services.picom.enable = true;
   # services.picom.vSync = true;

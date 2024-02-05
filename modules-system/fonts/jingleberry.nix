@@ -1,10 +1,11 @@
-with import <nixpkgs> {};
+{ pkg-s }:
+with pkg-s;
 
 stdenv.mkDerivation rec {
   pname = "Jingleberry";
   version = "master";
 
-  # propagatedBuildInputs = with pkgs; [
+  # propagatedBuildInputs = with pkg-s; [
   #   unzip
   # ];
   dontUnpack = true;

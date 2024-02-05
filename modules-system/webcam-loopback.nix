@@ -1,10 +1,10 @@
-{ pkgs, ...}:
+{ pkg-s, ...}:
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkg-s; [
     v4l-utils
   ];
 
-  boot.extraModulePackages = [ pkgs.linuxPackages.v4l2loopback ];
+  boot.extraModulePackages = [ pkg-s.linuxPackages.v4l2loopback ];
 
   # boot.extraModprobeConfig = "options v4l2loopback video_nr=5";
 }

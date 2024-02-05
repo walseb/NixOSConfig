@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkg-s, pkgs, ... }:
 {
   nixpkgs.config = {
-    packageOverrides = pkgs: {
-      gpaste-1 = (pkgs.gnome.gpaste.override { }).overrideAttrs (old: rec {
+    packageOverrides = pkg-s: {
+      gpaste-1 = (pkg-s.gnome.gpaste.override { }).overrideAttrs (old: rec {
         version = "master";
 
         src = pkgs.fetchFromGitHub {

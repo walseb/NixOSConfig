@@ -1,10 +1,10 @@
-{ pkgs, xrandr-output, file, xrandr-extra ? "", ... }: {
+{ pkg-s, xrandr-output, file, xrandr-extra ? "", ... }: {
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkg-s; [
     xorg.xrandr
     inotify-tools
     # surf
-    # (pkgs.surf.override { patches = ../../loose-configs/surf/autoplay.patch; })
+    # (pkg-s.surf.override { patches = ../../loose-configs/surf/autoplay.patch; })
 
     chromium
 
@@ -25,7 +25,7 @@
       manage = "desktop";
       name = "xterm";
       start = ''
-        ${pkgs.xterm}/bin/xterm -ls &
+        ${pkg-s.xterm}/bin/xterm -ls &
         waitPID=$!
       '';
     }];
@@ -36,13 +36,13 @@
       start = ''
         xrandr --output ${xrandr-output} ${xrandr-extra}
         while true; do
-            ${pkgs.dwm}/bin/dwm &
+            ${pkg-s.dwm}/bin/dwm &
             PID=$!
-            ${pkgs.chromium}/bin/chromium ${file} --autoplay-policy=no-user-gesture-required --mute-audio &
+            ${pkg-s.chromium}/bin/chromium ${file} --autoplay-policy=no-user-gesture-required --mute-audio &
             PIDBROWSER=$!
-            ${pkgs.inotify-tools}/bin/inotifywait -e modify ${file}
+            ${pkg-s.inotify-tools}/bin/inotifywait -e modify ${file}
             # Give transfer some time to complete
-            # ${pkgs.coreutils}/bin/sleep 5
+            # ${pkg-s.coreutils}/bin/sleep 5
             kill $PID
             kill $PIDBROWSER
         done
