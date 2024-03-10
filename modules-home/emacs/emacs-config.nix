@@ -1,124 +1,11 @@
-# https://hydra.nix-community.org/project/emacs-overlay
-# https://hydra.nix-community.org/jobset/emacs-overlay/unstable
-# { pkg-s ? (fetchTarball "https://github.com/NixOS/nixpkgs/archive/84d74ae9c9cbed73274b8e4e00be14688ffc93fe.tar.gz" ) {}, ... }:
-# with import <nixpkgs> {};
+{ pkg-s, emacs-overlay, emacs }:
+with pkg-s;
 
-{ pkg-s, config, emacs-overlay, lib, ... }:
-let
-  # my-emacs29 = (emacs-overlay-emacs.emacsGit.overrideAttrs (old: {
-  #   name = "emacs-29";
-  #   version = "unstable-2024-01-14";
+stdenv.mkDerivation rec {
+  pname = "Emacs config";
+  version = "master";
 
-  #   # Emacs 29. Doesn't build due to new patches in emacs overlay. Fix later.
-  #   src = pkg-s.fetchFromGitHub {
-  #     owner = "emacs-mirror";
-  #     repo = "emacs";
-  #     sha256 = "1fg845k530xb8hh1k1yjmypavi1lfdlvsrvc4acaxkfkh9bw08j7";
-  #     # sha256 = "06j9m57wc8b4qh9hbkv3ndd2vhikp7dkqnvc2gdjl6146iix349p";
-  #     rev = "5bb5590dec95e813ed120b3f09734451b4ebb18f"; # refs/heads/emacs-29
-
-  #     # sha256 = "MhmLMXdd45hE2CEsOzI00LozoDvHOopRVB5fN3UbRyY=";
-  #     # rev = "dc33a122230adbfa37926f4eb19c0620b3affd85";
-  #   };
-  # }));
-
-  # overrideAttrs
-  gtkEmacs = emacs-overlay.emacs-git.override {
-    # withGTK2 = true;
-    withGTK3 = true;
-  };
-
-in {
-  imports = [ ./emacs/pkgs.nix ./emacs/frozen-pkgs.nix ];
-
-
-  # services.emacs = {
-  #   enable = true;
-  #   package = gtkEmacs;
-  #   defaultEditor = true;
-  #   startWithUserSession = true;
-  #   extraOptions = ["--debug-init"];
-  # };
-
-  # systemd.user.services.emacs = {
-  #   # restartIfChanged = false;
-  #   # Prevent emacs from being restarted by updates
-  #   Unit = {
-  #     X-SwitchMethod = "keep-old";
-  #   };
-  #   Service.Restart = lib.mkForce "never";
-  # };
-
-  home.sessionVariables = {
-    # This option is necessary for firefox to use the portal
-    GTK_USE_PORTAL = "1";
-
-    MOZ_X11_EGL = "1";
-    MOZ_USE_XINPUT2 = "1";
-
-    PAGER = "cat";
-    VISUAL = "emacsclient -r";
-    EDITOR = "emacsclient -r";
-    
-    # XDG_DESKTOP_PORTAL_DIR = "${emacs-overlay.emacsPackages.filechooser}";
-  };
-
-
-  systemd.user.services = {
-    emacs-ac = {
-      Unit = {
-        Description = "Notify emacs on ac";
-        PartOf = [ "ac.target" ];
-      };
-      Service = {
-        Type = "oneshot";
-        ExecStart = ''
-          ${gtkEmacs}/bin/emacsclient -e "(run-hooks #'my/bat-ac-hook)"'';
-      };
-
-      Install = {
-        WantedBy = [ "ac.target" ];
-      };
-    };
-
-    emacs-battery = {
-      Unit = {
-        Description = "Notify emacs on battery";
-        PartOf = [ "battery.target" ];
-      };
-      Service = {
-        Type = "oneshot";
-        ExecStart = ''
-          ${gtkEmacs}/bin/emacsclient -e "(run-hooks #'my/bat-battery-hook)"'';
-      };
-      Install = {
-        WantedBy = [ "battery.target" ];
-      };
-    };
-  };
-
-  # Link Emacs config
-  home.file.".emacs.d/".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/cfg/emacs;
-
-  # replace with emacs-gtk, or a version provided by the community overlay if desired.
-  #home.packages = with nixpkgsEmacs29.emacsPackages; [
-  home.packages = with emacs-overlay.emacsPackages; [
-    consult-notmuch
-    consult-hoogle
-
-    magit-annex
-
-    saveplace-pdf-view
-
-    consult-dir 
-
-    el-patch
-    pkg-s.gh
-    consult-gh
-
-    # PROBLEM: Nix isn't able to build this, as my config reaches for ~/.nix-profile
-    # (import ./emacs/emacs-config.nix {inherit pkg-s; inherit emacs-overlay; emacs = gtkEmacs;})
-
+  propagatedBuildInputs = with emacs-overlay.emacsPackages; [
     haskell-emacs
 
     # filechooser
@@ -135,7 +22,6 @@ in {
 
     which-key
     # emacs
-    gtkEmacs
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/emacs/default.nix
     # pkg-s.emacs29
@@ -266,7 +152,8 @@ in {
     evil-surround
     evil-lion
     titlecase
-    exwm
+    # Using this fork for now https://github.com/mitch-kyle/exwm/tree/master
+    # exwm
     exwm-edit
     hydra
     xterm-color
@@ -364,4 +251,14 @@ in {
     undo-fu
     compat
   ];
+
+  dontUnpack = true;
+
+  src = ../../cfg/emacs;
+  # Shell script: 
+  # emacs --dump-file="/Users/yuan/.emacs.d/emacs.pdmp"
+
+  installPhase = ''
+    ${emacs} --batch --eval '(progn (load \"~/.emacs.d/early-init.el\") (load \"~/.emacs.d/init.el\") (message \"-EMACS BUILT SUCCESSFULLY-\"))'
+    '';
 }

@@ -12,7 +12,7 @@ in
     ./thinkpad-t480-hardware-configuration.nix
 
     ./generic/pc.nix
-    # ./generic/midi.nix
+    ./generic/midi.nix
     # (import ./generic/pc.nix { mouse-acceleration = false; pkgs = pkgs; })
     ./generic/laptop.nix
     # (import ../modules-system/boot/bios.nix { grub-dev = "/dev/nvme0n1"; })

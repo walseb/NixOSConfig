@@ -1,12 +1,14 @@
-{ pkg-s, pkgs-u, ... }:
+{ pkg-s, pkgs-u, nixos-version, ... }:
 {
-  home.stateVersion = "23.11";
+  home.stateVersion = nixos-version;
   home.username = "admin";
 
   # programs.home-manager.enable = true;
 
   imports = [
-    # ./nix.nix
+    # ./modules-home/battery.nix
+    ./nixos-private-config/private-home.nix
+    ./modules-home/nix.nix
     # ./modules-home/caches.nix
     ./modules-home/notifications/dunst.nix
     ./modules-home/git.nix
@@ -14,10 +16,11 @@
     ./modules-home/visual.nix
     ./modules-home/audio.nix
 
+    ./modules-home/theme.nix
+
     ./modules-home/firefox.nix
 
     ./modules-home/cached-nix-shell.nix
-    ./modules-home/direnv/direnv.nix
     # ./modules-home/direnv/lorri.nix
     ./modules-home/direnv/nix-direnv.nix
 
@@ -38,6 +41,8 @@
     # ./modules-home/comma.nix
   ];
 
+  programs.bash.enable = true;
+
   # caches.cachix = (import ./modules-home/cachix-caches.nix);
   xdg.configFile."mimeapps.list".force = true;
 
@@ -48,6 +53,7 @@
   # services.clipmenu.enable = true;
 
   home.packages = with pkg-s; [
+    rclone
     xorg.xwininfo
 
     zip
@@ -55,6 +61,7 @@
     # xfce.xfce4-notifyd
     # mpd
     # mpc_cli
+    git-annex
     git
     # git-lfs
 
@@ -243,5 +250,17 @@
     cbqn
 
     pkgs-u.plover.dev
+    # (pkgs-u.plover.dev.overrideAttrs (orig: {
+    #   version = "2.4.0";
+    #   propagatedBuildInputs = with python3Packages; [ babel pyqt5 xlib pyserial appdirs wcwidth setuptools pip];
+
+    #   src = pkgs.fetchFromGitHub {
+    #     # https://github.com/openstenoproject/plover
+    #     owner = "openstenoproject";
+    #     repo = "plover";
+    #     rev = "53c416fd893d62ab9ede5898129da3be856e910d";
+    #     sha256 = "sha256-4MXETUhWxaO4lUX2fJ7CmfFvqC1P61Gq7523kD7oD6o=";
+    #   };
+    # }))
   ];
 }

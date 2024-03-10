@@ -61,24 +61,26 @@
         hash = "sha256-fmnsVFG8JhzHhE5J5HkqhdfwnAZ4nsgA/EpErsNidk4=";
       };
 
+      # [2024-02-16 Fri 16:00] Looks like this is no longer supported?
+      # See here: https://raw.githubusercontent.com/languagetool-org/languagetool/master/languagetool-standalone/CHANGES.md
       # All files mandatory
       # Data from:
       # https://languagetool.org/download/word2vec/
-      word2vecModel = pkg-s.linkFarm "word2vec"
-        (builtins.mapAttrs (_: v: pkg-s.fetchzip v) {
-          en = { # 83M
-            url = "https://languagetool.org/download/word2vec/en.zip";
-            hash = "sha256-PAR0E8qxHBfkHYLJQH3hiuGMuyNF4cw9UbQeXVbau/A=";
-          };
-          de = { # 95M
-            url = "https://languagetool.org/download/word2vec/de.zip";
-            hash = "sha256-NbH3EPd8ZtQd4Gdg/lL5A2cnBGsrVKvLngs1bT1k17Y=";
-          };
-          pt = { # 72M
-            url = "https://languagetool.org/download/word2vec/pt.zip";
-            hash = "sha256-2HH3RwUxHFP8+THdPPCwm/EeXuyQq55izz8SFmfLf30=";
-          };
-        });
+      # word2vecModel = pkg-s.linkFarm "word2vec"
+      #   (builtins.mapAttrs (_: v: pkg-s.fetchzip v) {
+      #     en = { # 83M
+      #       url = "https://languagetool.org/download/word2vec/en.zip";
+      #       hash = "sha256-PAR0E8qxHBfkHYLJQH3hiuGMuyNF4cw9UbQeXVbau/A=";
+      #     };
+      #     de = { # 95M
+      #       url = "https://languagetool.org/download/word2vec/de.zip";
+      #       hash = "sha256-NbH3EPd8ZtQd4Gdg/lL5A2cnBGsrVKvLngs1bT1k17Y=";
+      #     };
+      #     pt = { # 72M
+      #       url = "https://languagetool.org/download/word2vec/pt.zip";
+      #       hash = "sha256-2HH3RwUxHFP8+THdPPCwm/EeXuyQq55izz8SFmfLf30=";
+      #     };
+      #   });
 
       pipelinePrewarming = true;
 

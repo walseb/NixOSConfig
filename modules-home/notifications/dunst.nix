@@ -1,4 +1,4 @@
-{ pkg-s, ... }:
+{ pkg-s, my_font, ... }:
 {
   services.dunst.enable = true;
   services.dunst.package = pkg-s.dunst;
@@ -48,7 +48,8 @@
         # icon_position = "left";
         icon_position = "off";
 
-        font = "Roboto Mono";
+        font = my_font;
+        # font = "Roboto Mono";
         # font = "Px437 IBM VGA 8x16";
 
         timeout = 5;

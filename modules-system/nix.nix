@@ -1,45 +1,16 @@
 { pkgs, pkg-s-path, pkg-s, lib, ... }:
 
 
-let
-  caches = [
-    "https://nix-gaming.cachix.org"
-
-    "https://cache.nixos.org/"
-
-    "https://nixcache.reflex-frp.org"
-
-    # Haskell.nix
-    # "https://hydra.iohk.io"
-
-    "https://nix-community.cachix.org"
-
-    # https://github.com/shajra/haskell-hls-nix
-    # "https://shajra.cachix.org"
-  ];
-
-  cachesKeys = [
-    "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-
-    "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
-
-    # haskell.nix
-    # "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-
-    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-
-    # https://github.com/shajra/haskell-hls-nix
-    # "shajra.cachix.org-1:V0x7Wjgd/mHGk2KQwzXv8iydfIgLupbnZKLSQt5hh9o="
-  ];
-in {
-  # nixpkgs.config = {
-  #   # allowBroken = true;
-  #   allowUnfree = true;
-  # };
+{
+  nixpkgs.config = {
+    # allowBroken = true;
+    allowUnfree = true;
+  };
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "steam-original"
 
+    "ocaml4.14.1-cpdf"
     "languagetool"
   ];
 
@@ -73,19 +44,50 @@ in {
 
     # Needed to be able to use custom channels in home-manager
     settings = {
+      # Remove?
       trusted-users = [ "root" "admin" ];
+
+      auto-optimise-store = true;
 
       experimental-features = [ "nix-command" "flakes" ];
 
-      # Add binary caches
-      # useSandbox = true;
-      trusted-substituters = caches;
-      trusted-public-keys = cachesKeys;
+      # binary-caches-parallel-connections = 40;
 
-      auto-optimise-store = true;
+      
+
+      trusted-substituters = [
+        "https://nix-gaming.cachix.org"
+
+        "https://cache.nixos.org/"
+
+        "https://nixcache.reflex-frp.org"
+
+        "https://nix-community.cachix.org"
+      ];
+
+      substituters = [
+        "https://nix-gaming.cachix.org"
+
+        "https://cache.nixos.org/"
+
+        "https://nixcache.reflex-frp.org"
+
+        "https://nix-community.cachix.org"
+      ];
+
+      
+      trusted-public-keys = [
+        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+
+        "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
+
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+
+      ];
     };
   };
 
   # https://github.com/NixOS/nixpkgs/commits/nixpkgs-unstable
-  environment.variables.MY_NIXPKGS = "github:nixos/nixpkgs/635a306fc8ede2e34cb3dd0d6d0a5d49362150ed";
+  # Deprecated
+  # environment.variables.MY_NIXPKGS = "github:nixos/nixpkgs/635a306fc8ede2e34cb3dd0d6d0a5d49362150ed";
 }

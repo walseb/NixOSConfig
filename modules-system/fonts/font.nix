@@ -1,11 +1,4 @@
-{ pkg-s, ... }:
-let selectedFont =
-      # "Px437 IBM VGA 8x16";
-      # "jetbrains mono";
-      "Roboto Mono";
-    # "Fragment Mono";
-    # "IBM Plex Mono";
-in
+{ pkg-s, my_font, ... }:
 {
   fonts.packages = with pkg-s; [
     # (import ./my-inconsolata-lgc.nix)
@@ -50,9 +43,9 @@ in
 
   fonts.fontconfig.includeUserConf = true;
 
-  fonts.fontconfig.defaultFonts.monospace = [selectedFont];
-  fonts.fontconfig.defaultFonts.sansSerif = [selectedFont];
-  fonts.fontconfig.defaultFonts.serif = [selectedFont];
+  fonts.fontconfig.defaultFonts.monospace = [my_font];
+  fonts.fontconfig.defaultFonts.sansSerif = [my_font];
+  fonts.fontconfig.defaultFonts.serif = [my_font];
 
   # Attempt at making zeroes dashed
   # fonts.fontconfig.localConf = ''
@@ -65,4 +58,5 @@ in
   #     </edit>
   #   </match>
   # </fontconfig>'';
+
 }

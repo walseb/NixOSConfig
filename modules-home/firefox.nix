@@ -6,6 +6,29 @@
 # https://hg.mozilla.org/mozilla-central/file/tip/modules/libpref/init/StaticPrefList.yaml#l9652
 let firefoxSettings =
       {
+        # Portal
+        # Each setting can have the following values:
+        # 0 – Never
+        #   1 – Always
+        #   2 – Auto (typically depends on whether Firefox is run from within Flatpak or whether the GDK_DEBUG=portals environment is set)
+        #   The settings are:
+        # widget.use-xdg-desktop-portal.file-picker – Whether to use XDG portal for the file picker
+        #   widget.use-xdg-desktop-portal.mime-handler – Whether to use XDG portal for the mime handler
+        #   widget.use-xdg-desktop-portal.settings – Whether to try to use XDG portal for settings/look-and-feel information
+        #   widget.use-xdg-desktop-portal.location – Whether to use XDG portal for geolocation
+        #   widget.use-xdg-desktop-portal.open-uri – Whether to use XDG portal for opening to a file
+
+        # Always open new window
+        # "browser.link.open_newwindow" = 2;
+        # "browser.link.open_newwindow.restriction" = 0;
+        # "browser.link.open_newwindow.override.external" = 2;
+        # "middlemouse.openNewWindow" = true;
+
+        # Always open in tab
+        "browser.link.open_newwindow" = 3;
+        "browser.link.open_newwindow.restriction" = 0;
+        "browser.link.open_newwindow.override.external" = 2;
+
         # Fully disable pocket
         "extensions.pocket.enabled" = true;
 
@@ -279,6 +302,27 @@ let firefoxSettings =
         "layout.css.has-selector.enabled" = true;
         # HTML Sanitizer API
         "dom.security.sanitizer.enabled" = true;
+
+        # Zoom levels
+        "toolkit.zoomManager.zoomValues" = ".1,.2,.3,.4,.5,.6,.7,.8,.9,1,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9.3,4,5";
+        # Apply zoom only to current tab and not site-wide
+        "browser.zoom.siteSpecific" = false;
+        # Zoom.minPercent
+        # Zoom.maxPercent
+
+        "devtools.toolbox.zoomValue" = 1.2; # increases the default text size in Firefox devtools to 120%
+        "devtools.inspector.showUserAgentStyles" = true; #shows user-agent styles in the CSS Rules pane in Firefox devtools (why are user-agent styles hidden by default?) 
+        "browser.chrome.guess_favicon" = false; # stops Firefox from attempting to load the website’s favicon from the default location when an icon is <i>not</i> declared in the HTML document (I use this config to get rid of the distracting ”favicon not found” errors in the devtools console) 
+
+        # Configure UI
+        "ui.caretWidth" = 2;
+        "ui.caretBlinkTime" = -1;
+
+        # Simply start typing to do a search
+        "accessibility.typeaheadfind" = true;
+
+        # Don't prompt about notifications  
+        "dom.webnotifications.enabled" = false;
       };
 
     monsterAcademySettings = lib.mkMerge [firefoxSettings {"marionette.port" = 36289; }]; # MARIONETTE PORT: Monster Academy
@@ -322,6 +366,8 @@ let firefoxSettings =
         }
       ];
 
+    # Try this:
+    # https://github.com/Athena-OS/athena-nix/blob/39162284fecf626d11990c122c277336d0f90d1e/nixos/home-manager/browsers/firefox/default.nix#L116
     myExtensions = with config.nur.repos.rycee.firefox-addons; [
       plasma-integration
       # gsconnect
@@ -347,7 +393,8 @@ let firefoxSettings =
     ];
 
     myFirefoxUnwrapped = (pkgs.firefox-unwrapped.overrideAttrs (old: {
-
+      # Changes here require rebuilding of Firefox
+      # allowAddonSideload = true;
       # browser.allowAddonSideload = true;
       # browser.requireSigning = false;
       # browser.pipewireSupport = true;
@@ -358,36 +405,66 @@ let firefoxSettings =
       #   ./firefox/marionette.patch
       # ];
     }));
-in
-{
+    # https://github.com/Athena-OS/athena-nix/blob/39162284fecf626d11990c122c277336d0f90d1e/nixos/home-manager/browsers/firefox/default.nix#L116
+    search = {
+      force = true;
+      default = "Google";
+      engines = {
+        # "Nix Packages" = {
+        #   urls = [{
+        #     template = "https://search.nixos.org/packages";
+        #     params = [
+        #       { name = "type"; value = "packages"; }
+        #       { name = "query"; value = "{searchTerms}"; }
+        #     ];
+        #   }];
+        #   icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        #   definedAliases = [ "@np" ];
+        # };
+        # "NixOS Wiki" = {
+        #   urls = [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
+        #   iconUpdateURL = "https://nixos.wiki/favicon.png";
+        #   updateInterval = 24 * 60 * 60 * 1000;
+        #   definedAliases = [ "@nw" ];
+        # };
+        "Wikipedia (en)".metaData.alias = "@wiki";
+        "Google".metaData.hidden = true;
+        "Amazon.com".metaData.hidden = true;
+        "Bing".metaData.hidden = true;
+        "eBay".metaData.hidden = true;
+      };
 
-  xdg.mimeApps.defaultApplications = {
-    "message/rfc822" = "firefox.desktop";
-    "x-scheme-handler/mailto" = "firefox.desktop";
-    "application/x-extension-htm" = "firefox.desktop";
-    "application/x-extension-html" = "firefox.desktop";
-    "application/x-extension-shtml" = "firefox.desktop";
-    "application/x-extension-xht" = "firefox.desktop";
-    "application/x-extension-xhtml" = "firefox.desktop";
-    "application/xhtml+xml" = "firefox.desktop";
-    "text/html" = "firefox.desktop";
-    "x-scheme-handler/chrome" = "firefox.desktop";
-    "x-scheme-handler/http" = "firefox.desktop";
-    "x-scheme-handler/https" = "firefox.desktop";
-  };
+    };
+    in
+      {
 
-  # config = {
-  #   firefox = {
-  #     allowAddonSideload = true;
-  #     requireSigning = false;
-  #     pipewireSupport = true;
-  #   };
-  # };
+        xdg.mimeApps.defaultApplications = {
+          "message/rfc822" = "firefox.desktop";
+          "x-scheme-handler/mailto" = "firefox.desktop";
+          "application/x-extension-htm" = "firefox.desktop";
+          "application/x-extension-html" = "firefox.desktop";
+          "application/x-extension-shtml" = "firefox.desktop";
+          "application/x-extension-xht" = "firefox.desktop";
+          "application/x-extension-xhtml" = "firefox.desktop";
+          "application/xhtml+xml" = "firefox.desktop";
+          "text/html" = "firefox.desktop";
+          "x-scheme-handler/chrome" = "firefox.desktop";
+          "x-scheme-handler/http" = "firefox.desktop";
+          "x-scheme-handler/https" = "firefox.desktop";
+        };
+
+        # config = {
+        #   firefox = {
+        #     allowAddonSideload = true;
+        #     requireSigning = false;
+        #     pipewireSupport = true;
+        #   };
+        # };
 
 
-  home.packages = with pkgs; [
-    libdrm
-    plasma-browser-integration
+        home.packages = with pkgs; [
+          libdrm
+plasma-browser-integration
     # gnomeExtensions.gsconnect
   ];
 
@@ -424,8 +501,10 @@ in
     # nativeMessagingHosts.packages = [ pkgs.plasma5Packages.plasma-browser-integration ];
     # nativeMessagingHosts.packages = [ pkgs.plasma-browser-integration];
 
-    # package = (pkgs.wrapFirefox.override {browser.allowAddonSideload = true; browser.requireSigning = true;}) myFirefoxUnwrapped
-    package = pkgs.wrapFirefox myFirefoxUnwrapped
+    # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/networking/browsers/firefox/wrapper.nix
+    package = pkgs.wrapFirefox.override {
+      # Here you can set packages to be used
+    } myFirefoxUnwrapped
       {
         # allowAddonSideload = true;
         # requireSigning = true;

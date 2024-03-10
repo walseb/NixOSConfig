@@ -7,13 +7,16 @@
     # (import ./steam/steam-ge.nix)
     # This allows for steam to install normal games
     steam-run-native
+
+    # For now, this is needed for some games (https://github.com/NixOS/nixpkgs/issues/271483)
+    pkgsi686Linux.gperftools
   ];
 
   programs.steam = {
     # enable steam as usual
     enable = true;
+    # package = (pkg-s.steam.override { extraLibraries = pkg-s: [ pkg-s.pkgsi686Linux.gperftools ]; });
     package = pkg-s.steam;
-
 
     # add extra compatibility tools to your STEAM_EXTRA_COMPAT_TOOLS_PATHS using the newly added `extraCompatPackages` option
     extraCompatPackages = [
