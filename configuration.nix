@@ -20,7 +20,8 @@
   # };
 
   imports = [
-    ./modules-system/nix.nix
+    ./modules-system/virt-manager.nix
+
     ./modules-system/cachix.nix
     # ./modules-system/chromium.nix
     ./modules-system/network/dns.nix
@@ -46,6 +47,30 @@
     # ./modules-system/gpaste.nix
   ];
 
+  users = {
+    users.admin = {
+      group = "users";
+      isNormalUser = true;
+      uid = 1000;
+      password = "1";
+      # hashedPassword =  "$6$emDF9qEWb4Q$VWmHX4lcEbMjC6xqr6h31QttnRUz.jMxpL1xFefXc5jiLOrSrobfrAy1lTxo4PqjCfG41sXoSVXEmveB.3E5S/";
+
+      extraGroups = [ "wheel" "audio" "video" "usbmux" "networkmanager" "uinput"
+
+                      # Printer
+                      "lp"
+
+                      # VM
+                      "libvirt" "libvirtd" "kvm" "input" ];
+    };
+    users.root = {
+      password = "1";
+      # hashedPassword =  "$6$emDF9qEWb4Q$VWmHX4lcEbMjC6xqr6h31QttnRUz.jMxpL1xFefXc5jiLOrSrobfrAy1lTxo4PqjCfG41sXoSVXEmveB.3E5S/";
+    };
+
+    mutableUsers = false;
+  };
+
   # For some reason, this is needed
   cachix = [ ];
 
@@ -57,6 +82,13 @@
   # https://unix.stackexchange.com/questions/265713/how-to-configure-swappiness-in-linux-memory-management
   boot.kernel.sysctl = {
     "vm.swappiness" = 1;
+
+    # "net.ipv4.conf.all.forwarding" = 1;
+    # "net.ipv4.conf.all.route_localnet" = 1;
+    # "net.ipv4.conf.default.forwarding" = 1;
+
+    # Allows the user to bind lower range addresses
+    "net.ipv4.ip_unprivileged_port_start" = 0;
   };
 
 
@@ -79,7 +111,8 @@
     "en_US.UTF-8/UTF-8"
   ];
 
-  i18n.extraLocaleSettings = { "TIME_STYLE" = "iso"; };
+  i18n.extraLocaleSettings = { "TIME_STYLE" = "+%d-%m-%Y %H:%M"; };
+  # i18n.extraLocaleSettings = { "TIME_STYLE" = "iso"; };
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -98,6 +131,10 @@
   # documentation.man.man-db.enable = true;
 
   environment.systemPackages = with pkg-s; [
+    # Needed by book maker automation
+    librsvg
+
+
     stack
     # Needed for KDP cover maker
     texlive.combined.scheme-medium
@@ -137,5 +174,8 @@
     # ydotool
 
     vim
+
+    gcc
+    zlib
   ];
 }

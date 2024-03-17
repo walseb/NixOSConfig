@@ -89,7 +89,7 @@ in
   # services.syncthing.relay.statusPort = 22241;
   # # [22 80]
   # networking.firewall.allowedTCPPorts = [22240 22241];
-  
+
   programs.kdeconnect.enable = true;
 
   # services.xserver.desktopManager.plasma5.enable = true;
@@ -108,8 +108,6 @@ in
     # (import ./modules-home/games/cortex.nix)
 
   ];
-
-  nix.settings.max-jobs = 1;
 
   services.xserver.libinput.touchpad.calibrationMatrix = "2, 0, 0, 0, 2, 0, 0, 0, 1";
   services.xserver.libinput.mouse.calibrationMatrix = "2, 0, 0, 0, 2, 0, 0, 0, 1";

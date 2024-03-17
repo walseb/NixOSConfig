@@ -28,6 +28,8 @@
 
     displayManager = {
       sddm.enable = true;
+      autoLogin.enable = true;
+      autoLogin.user = "admin";
       # sddm.theme = "chili";
 
       #   sddm.theme = "${(pkgs.fetchFromGitHub {
@@ -84,9 +86,10 @@
             # https://github.com/ch11ng/exwm/issues/914
             # emacsclient -r &
             # emacsclient -c &
-            emacs --xrm='Emacs.useXIM: false' --internal-border=0 --border-width=0 &
+            emacs --internal-border=0 --border-width=0 &
             waitPID=$!
           '';
+        # --xrm='Emacs.useXIM: false' 
       }
       # {
       #   manage = "desktop";

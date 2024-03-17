@@ -4,7 +4,7 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # hardware.pulseaudio.package = pkg-s.pulseaudioFull;
+  hardware.pulseaudio.package = pkg-s.pulseaudioFull;
 
   environment.systemPackages = with pkg-s; [
     pamixer

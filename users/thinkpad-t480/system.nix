@@ -1,18 +1,21 @@
-{ pkg-s, ... }:
+{ pkgs, pkg-s-path, pkg-s, lib, ... }:
 
 let
   # Generate using mkpasswd -m sha-512
-  pass = "$6$emDF9qEWb4Q$VWmHX4lcEbMjC6xqr6h31QttnRUz.jMxpL1xFefXc5jiLOrSrobfrAy1lTxo4PqjCfG41sXoSVXEmveB.3E5S/";
   my-nat-addr = "10.100.0.2/32";
 in
 {
   # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   imports = [
-    ./thinkpad-t480-hardware-configuration.nix
+    (import ../modules-system/nix.nix {inherit pkgs; inherit pkg-s-path; inherit pkg-s; inherit lib; max-jobs = 2;})
+
+    ../modules-system/file-server/http-file-server.nix
+
+    ./hardware-configuration.nix
 
     ./generic/pc.nix
-    ./generic/midi.nix
+    # ./generic/midi.nix
     # (import ./generic/pc.nix { mouse-acceleration = false; pkgs = pkgs; })
     ./generic/laptop.nix
     # (import ../modules-system/boot/bios.nix { grub-dev = "/dev/nvme0n1"; })
@@ -75,24 +78,6 @@ in
 
   networking.hostName = "nixos";
 
-  users = {
-    users.admin = {
-      group = "users";
-      isNormalUser = true;
-      uid = 1000;
-      password = "1";
-      # hashedPassword = pass;
-
-      extraGroups = [ "wheel" "audio" "video" "usbmux" "networkmanager" "uinput" "lp" ];
-    };
-    users.root = {
-      # password = "1";
-      hashedPassword = pass;
-    };
-
-    mutableUsers = false;
-  };
-
   # services.syncthing.relay.enable = true;
   # services.syncthing.relay.port = 22240;
   # services.syncthing.relay.statusPort = 22241;
@@ -102,10 +87,6 @@ in
   programs.kdeconnect.enable = true;
 
   # services.xserver.desktopManager.plasma5.enable = true;
-
-
-  nix.settings.max-jobs = 1;
-  nix.settings.cores = 1;
 
   # https://github.com/NixOS/nixos-hardware/blob/master/lenovo/thinkpad/t480/default.nix
   services.throttled.enable = true;

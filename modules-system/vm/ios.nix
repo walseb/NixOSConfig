@@ -14,7 +14,7 @@ in
   ];
 
   # This ensures the package is protected from garbage collection
-  environment.variables.IGNORE_THIS = "${iosPkg}";
+  # environment.variables.IGNORE_THIS = "${iosPkg}";
 
   # systemd.services.macos-ventura.wantedBy = lib.mkForce [];
   # Password is "admin"

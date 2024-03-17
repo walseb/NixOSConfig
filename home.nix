@@ -53,7 +53,7 @@
   # services.clipmenu.enable = true;
 
   home.packages = with pkg-s; [
-    rclone
+    # rclone
     xorg.xwininfo
 
     zip

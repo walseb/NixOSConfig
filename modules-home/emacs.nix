@@ -3,7 +3,7 @@
 # { pkg-s ? (fetchTarball "https://github.com/NixOS/nixpkgs/archive/84d74ae9c9cbed73274b8e4e00be14688ffc93fe.tar.gz" ) {}, ... }:
 # with import <nixpkgs> {};
 
-{ pkg-s, config, emacs-overlay, lib, ... }:
+{ pkg-s, config, emacs-overlay, ... }:
 let
   # my-emacs29 = (emacs-overlay-emacs.emacsGit.overrideAttrs (old: {
   #   name = "emacs-29";
@@ -24,6 +24,7 @@ let
 
   # overrideAttrs
   gtkEmacs = emacs-overlay.emacs-git.override {
+    # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/emacs/make-emacs.nix
     # withGTK2 = true;
     withGTK3 = true;
   };
@@ -63,39 +64,38 @@ in {
     # XDG_DESKTOP_PORTAL_DIR = "${emacs-overlay.emacsPackages.filechooser}";
   };
 
+  # systemd.user.services = {
+  #   emacs-ac = {
+  #     Unit = {
+  #       Description = "Notify emacs on ac";
+  #       PartOf = [ "ac.target" ];
+  #     };
+  #     Service = {
+  #       Type = "oneshot";
+  #       ExecStart = ''
+  #         ${gtkEmacs}/bin/emacsclient -e "(run-hooks #'my/bat-ac-hook)"'';
+  #     };
 
-  systemd.user.services = {
-    emacs-ac = {
-      Unit = {
-        Description = "Notify emacs on ac";
-        PartOf = [ "ac.target" ];
-      };
-      Service = {
-        Type = "oneshot";
-        ExecStart = ''
-          ${gtkEmacs}/bin/emacsclient -e "(run-hooks #'my/bat-ac-hook)"'';
-      };
+  #     Install = {
+  #       WantedBy = [ "ac.target" ];
+  #     };
+  #   };
 
-      Install = {
-        WantedBy = [ "ac.target" ];
-      };
-    };
-
-    emacs-battery = {
-      Unit = {
-        Description = "Notify emacs on battery";
-        PartOf = [ "battery.target" ];
-      };
-      Service = {
-        Type = "oneshot";
-        ExecStart = ''
-          ${gtkEmacs}/bin/emacsclient -e "(run-hooks #'my/bat-battery-hook)"'';
-      };
-      Install = {
-        WantedBy = [ "battery.target" ];
-      };
-    };
-  };
+  #   emacs-battery = {
+  #     Unit = {
+  #       Description = "Notify emacs on battery";
+  #       PartOf = [ "battery.target" ];
+  #     };
+  #     Service = {
+  #       Type = "oneshot";
+  #       ExecStart = ''
+  #         ${gtkEmacs}/bin/emacsclient -e "(run-hooks #'my/bat-battery-hook)"'';
+  #     };
+  #     Install = {
+  #       WantedBy = [ "battery.target" ];
+  #     };
+  #   };
+  # };
 
   # Link Emacs config
   home.file.".emacs.d/".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/cfg/emacs;
@@ -103,6 +103,8 @@ in {
   # replace with emacs-gtk, or a version provided by the community overlay if desired.
   #home.packages = with nixpkgsEmacs29.emacsPackages; [
   home.packages = with emacs-overlay.emacsPackages; [
+    midi-kbd
+
     consult-notmuch
     consult-hoogle
 
@@ -148,7 +150,10 @@ in {
     bluetooth
 
     pkg-s.libwebsockets
+    # ibrowse requires the websocket library
+    websocket
     ibrowse
+
     biome
 
     ivy-clipmenu

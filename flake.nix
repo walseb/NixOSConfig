@@ -77,6 +77,13 @@
         nixtheplanet-nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         nixtheplanet.url = "github:matthewcroughan/nixtheplanet";
 
+        nixtheplanet.inputs.osx-kvm.follows = "my-osx-kvm";
+
+        my-osx-kvm = {
+          url = "github:kholia/OSX-KVM";
+          flake = false;
+        };
+
         nixtheplanet.inputs.nixpkgs.follows = "nixtheplanet-nixpkgs";
 
         nix-gaming.url = "github:fufexan/nix-gaming";
@@ -125,60 +132,63 @@
         ];
       };
       pkg-s-path = nixpkgs-slow;
+
+      system = user-system: user-home: {
+        system = "x86_64-linux";
+
+        specialArgs = {
+          inherit inputs;
+          inherit pkg-s;
+          inherit pkg-s-path;
+          inherit nixThePlanetPkgs;
+          inherit pkgs-u;
+          inherit my_font;
+
+          # inherit nixos-version;
+          nixos-version = "23.11";
+        };
+
+        modules = [
+          inputs.nix-gaming.nixosModules.steamCompat
+
+          ./configuration.nix
+
+          home-manager.nixosModules.home-manager
+
+          user-system
+
+          nixtheplanet.nixosModules.macos-ventura
+
+          {
+            home-manager.useGlobalPkgs = true;
+            # By default packages will be installed to $HOME/.nix-profile but they can be installed to /etc/profiles if is added to the system configuration. This is necessary if, for example, you wish to use nixos-rebuild build-vm. This option may become the default value in the future.
+            home-manager.useUserPackages = false;
+
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              inherit pkg-s;
+              inherit pkg-s-path;
+              emacs-overlay = emacs-overlay-import;
+              inherit pkgs-u;
+              inherit my_font;
+              # nixos-version = nixos-version;
+              nixos-version = "23.11";
+            };
+
+            home-manager.users.admin = {
+              imports = [
+                nur.nixosModules.nur
+
+                user-home
+              ];
+            };
+          }
+        ];
+      };
     in {
       nixosConfigurations = {
-        "thinkpad-t480" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-
-          specialArgs = {
-            inherit inputs;
-            inherit pkg-s;
-            inherit pkg-s-path;
-            inherit nixThePlanetPkgs;
-            inherit pkgs-u;
-            inherit my_font;
-
-            # inherit nixos-version;
-            nixos-version = "23.11";
-          };
-
-          modules = [
-            inputs.nix-gaming.nixosModules.steamCompat
-
-            ./configuration.nix
-
-            home-manager.nixosModules.home-manager
-
-            ./users/thinkpad-t480.nix
-
-            nixtheplanet.nixosModules.macos-ventura
-
-            {
-              home-manager.useGlobalPkgs = true;
-              # By default packages will be installed to $HOME/.nix-profile but they can be installed to /etc/profiles if is added to the system configuration. This is necessary if, for example, you wish to use nixos-rebuild build-vm. This option may become the default value in the future.
-              home-manager.useUserPackages = false;
-
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                inherit pkg-s;
-                inherit pkg-s-path;
-                emacs-overlay = emacs-overlay-import;
-                inherit pkgs-u;
-                inherit my_font;
-                # nixos-version = nixos-version;
-                nixos-version = "23.11";
-              };
-
-              home-manager.users.admin = {
-                imports = [
-                  nur.nixosModules.nur
-
-                  ./users/thinkpad-t480-home.nix
-                ];
-              };
-            }
-          ];
-        };
+        "thinkpad-t480" = nixpkgs.lib.nixosSystem (system ./users/thinkpad-t480/system.nix ./users/thinkpad-t480/home.nix);
+        "nuc" = nixpkgs.lib.nixosSystem (system ./users/thinkpad-t480.nix ./users/thinkpad-t480-home.nix);
       };
     };
 }

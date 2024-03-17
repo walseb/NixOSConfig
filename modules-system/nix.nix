@@ -1,4 +1,4 @@
-{ pkgs, pkg-s-path, pkg-s, lib, ... }:
+{ pkgs, pkg-s-path, pkg-s, lib, max-jobs, ... }:
 
 
 {
@@ -15,11 +15,23 @@
   ];
 
   nix = {
-    registry.nixpkgs.flake = pkg-s-path;
+    daemonCPUSchedPolicy = "idle"; # "other", "batch", "idle"
+    daemonIOSchedClass = "idle"; # "best-effort", "idle"
+    daemonIOSchedPriority = 7; # 0-7
 
-    nixPath = [
-      "nixpkgs=${pkg-s-path}"
-    ];
+    # Disable when using this: https://github.com/NixOS/nixpkgs/blob/f8399b228ef35e29216ad7a79c7bb44234ff69f3/nixos/modules/misc/nixpkgs-flake.nix#L99
+    channel.enable = true;
+
+    settings.max-jobs = max-jobs;
+    settings.cores = max-jobs;
+
+    registry.nixpkgs.flake = pkg-s-path;
+    # registry.nixpkgs.to = pkg-s-path;
+
+    # "nixpkgs=${pkg-s-path}"
+    # nixPath = [
+    #   "nixpkgs=flake:nixpkgs"
+    # ];
 
     package = pkg-s.nixFlakes;
     # package = pkgs.nixUnstable;
@@ -53,7 +65,7 @@
 
       # binary-caches-parallel-connections = 40;
 
-      
+
 
       trusted-substituters = [
         "https://nix-gaming.cachix.org"
@@ -75,7 +87,7 @@
         "https://nix-community.cachix.org"
       ];
 
-      
+
       trusted-public-keys = [
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
 
