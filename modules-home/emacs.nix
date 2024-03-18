@@ -23,8 +23,8 @@ let
   # }));
 
   # overrideAttrs
-  gtkEmacs = emacs-overlay.emacs-git.overrideAttrs {
-    # gtkEmacs = emacs-overlay.emacs-pgtk.overrideAttrs {
+  gtkEmacs = emacs-overlay.emacs-git.override {
+    # gtkEmacs = emacs-overlay.emacs-pgtk.override {
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/emacs/make-emacs.nix
     # withGTK2 = true;
     withGTK3 = true;
@@ -32,7 +32,6 @@ let
 
     # patches = emacs-overlay.emacs-git.patches ++ [ ./emacs/transparency.patch ];
   };
-
 in {
   imports = [ ./emacs/pkgs.nix ./emacs/frozen-pkgs.nix ];
 

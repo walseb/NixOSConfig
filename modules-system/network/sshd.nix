@@ -5,6 +5,6 @@
 
   environment.systemPackages = with pkg-s; [
     # Basic ssh packages
-    rg
+    ripgrep
   ];
 }
