@@ -1,6 +1,13 @@
 { pkgs, pkg-s-path, pkg-s, lib, ... }:
 
 {
+  users = {
+    users.admin = {
+      password = "2FML=D!u.C?Aq/5";
+    };
+  };
+
+
   imports = [
     ../generic/lumos-server.nix
     (import ../../modules-system/nix.nix {inherit pkgs; inherit pkg-s-path; inherit pkg-s; inherit lib; max-jobs = 2;})

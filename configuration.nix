@@ -67,4 +67,28 @@
   environment.systemPackages = with pkg-s; [
     vim
   ];
+
+
+  users = {
+    users.admin = {
+      group = "users";
+      isNormalUser = true;
+      uid = 1000;
+      # hashedPassword =  "$6$emDF9qEWb4Q$VWmHX4lcEbMjC6xqr6h31QttnRUz.jMxpL1xFefXc5jiLOrSrobfrAy1lTxo4PqjCfG41sXoSVXEmveB.3E5S/";
+
+      extraGroups = [ "wheel" "audio" "video" "usbmux" "networkmanager" "uinput"
+
+                      # Printer
+                      "lp"
+
+                      # VM
+                      "libvirt" "libvirtd" "kvm" "input" ];
+    };
+    users.root = {
+      password = "1";
+      # hashedPassword =  "$6$emDF9qEWb4Q$VWmHX4lcEbMjC6xqr6h31QttnRUz.jMxpL1xFefXc5jiLOrSrobfrAy1lTxo4PqjCfG41sXoSVXEmveB.3E5S/";
+    };
+
+    mutableUsers = false;
+  };
 }

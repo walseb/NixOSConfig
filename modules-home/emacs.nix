@@ -30,7 +30,7 @@ let
     withGTK3 = true;
     # withPgtk = true;
 
-    patches = emacs-overlay.emacs-git.patches ++ [ ./emacs/transparency.patch ];
+    # patches = emacs-overlay.emacs-git.patches ++ [ ./emacs/transparency.patch ];
   };
 
 in {

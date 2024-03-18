@@ -6,6 +6,11 @@ let
 in
 {
   # boot.kernelPackages = pkgs.linuxPackages_latest;
+  users = {
+    users.admin = {
+      password = "1";
+    };
+  };
 
 
   networking = {
