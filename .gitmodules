@@ -1,6 +1,6 @@
 [submodule "nixos-private-config"]
 	path = nixos-private-config
-	url = https://github.com/walseb/nixos-private-config
+	url = git@github.com:walseb/nixos-private-config
 [submodule "fir"]
 	path = deps/hoogle/custom-projects/fir
 	url = https://gitlab.com/sheaf/fir
