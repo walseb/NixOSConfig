@@ -4,6 +4,7 @@
   imports = [
     ../../modules-system/hardware/SSD.nix
     ../../modules-system/carpalx-layout.nix
+    ../../modules-system/wakelock.nix
   ];
 
   services.tlp.enable = true;

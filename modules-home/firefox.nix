@@ -346,15 +346,15 @@ let
   monsterAcademySettings = lib.mkMerge [
     firefoxSettings
     { "marionette.port" = 36289; } # MARIONETTE PORT: Monster Academy
-  ]; 
+  ];
   defaultSettings = lib.mkMerge [
     firefoxSettings
     { "marionette.port" = 36288; } # MARIONETTE PORT: default
-  ]; 
+  ];
   alenSettings = lib.mkMerge [
     firefoxSettings
     { "marionette.port" = 36287; } # MARIONETTE PORT: Alen
-  ]; 
+  ];
 
   # defaultSettings = {
   #   inherit firefoxSettings;
@@ -477,7 +477,6 @@ let
       "Bing".metaData.hidden = true;
       "eBay".metaData.hidden = true;
     };
-
   };
 in {
 
@@ -577,7 +576,7 @@ in {
       # ];
 
       # See https://github.com/mozilla/policy-templates
-      # extraPolicies.Extensions.Install = [ "https://addons.mozilla.org/firefox/downloads/file/1671300/decentraleyes-latest-an+fx.xpi" ]; 
+      # extraPolicies.Extensions.Install = [ "https://addons.mozilla.org/firefox/downloads/file/1671300/decentraleyes-latest-an+fx.xpi" ];
 
       extraPolicies = {
         # Homepage = {

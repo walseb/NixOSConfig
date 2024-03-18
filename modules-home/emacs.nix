@@ -23,15 +23,18 @@ let
   # }));
 
   # overrideAttrs
-  gtkEmacs = emacs-overlay.emacs-git.override {
+  gtkEmacs = emacs-overlay.emacs-git.overrideAttrs {
+    # gtkEmacs = emacs-overlay.emacs-pgtk.overrideAttrs {
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/emacs/make-emacs.nix
     # withGTK2 = true;
     withGTK3 = true;
+    # withPgtk = true;
+
+    patches = emacs-overlay.emacs-git.patches ++ [ ./emacs/transparency.patch ];
   };
 
 in {
   imports = [ ./emacs/pkgs.nix ./emacs/frozen-pkgs.nix ];
-
 
   # services.emacs = {
   #   enable = true;
@@ -60,7 +63,7 @@ in {
     PAGER = "cat";
     VISUAL = "emacsclient -r";
     EDITOR = "emacsclient -r";
-    
+
     # XDG_DESKTOP_PORTAL_DIR = "${emacs-overlay.emacsPackages.filechooser}";
   };
 
@@ -98,7 +101,7 @@ in {
   # };
 
   # Link Emacs config
-  home.file.".emacs.d/".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/cfg/emacs;
+  home.file.".emacs.d/".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/deps/emacs;
 
   # replace with emacs-gtk, or a version provided by the community overlay if desired.
   #home.packages = with nixpkgsEmacs29.emacsPackages; [
@@ -112,7 +115,7 @@ in {
 
     saveplace-pdf-view
 
-    consult-dir 
+    consult-dir
 
     el-patch
     pkg-s.gh

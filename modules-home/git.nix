@@ -8,6 +8,11 @@
     userName = "Sebastian Wålinder";
     userEmail = "s.walinder@gmail.com";
   };
+
+  home.packages = with pkg-s; [
+    git-annex
+    git
+  ];
 }
 
 

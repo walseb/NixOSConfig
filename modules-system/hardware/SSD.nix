@@ -7,5 +7,5 @@
   # };
 
   # Not needed for bcachefs  
-  # services.fstrim.enable = true;
+  services.fstrim.enable = true;
 }

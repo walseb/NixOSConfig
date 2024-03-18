@@ -4,12 +4,12 @@
 [submodule "fir"]
 	path = deps/hoogle/custom-projects/fir
 	url = https://gitlab.com/sheaf/fir
-[submodule "deps/plover-lapwing-dictionary"]
-	path = deps/plover-lapwing-dictionary
-	url = https://github.com/aerickt/steno-dictionaries
-[submodule "cfg/emacs"]
-	path = cfg/emacs
+[submodule "deps/backup/WalinderPhotos"]
+	path = deps/backup/WalinderPhotos
+	url = git@github.com:walseb/WalinderPhotos
+[submodule "deps/emacs"]
+	path = deps/emacs
 	url = git@github.com:walseb/QualityEmacsConfig
-[submodule "cfg/lapwing"]
-	path = cfg/lapwing
+[submodule "deps/lapwing"]
+	path = deps/lapwing
 	url = https://github.com/aerickt/steno-dictionaries

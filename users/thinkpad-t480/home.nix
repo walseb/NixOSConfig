@@ -2,15 +2,14 @@
 
 {
   imports = [
-    ../home.nix
-
-    ../nixos-private-config/email.nix
+    ../../nixos-private-config/email.nix
     # ./modules-home/games/cataclysm-dda/cataclysm-dda-git-latest.nix
     # ./modules-home/art.nix
     # ./modules-home/hie.nix
     # ./modules-home/spotify.nix
     # ./modules-home/spotifyd.nix
-    .././modules-home/emacs.nix
+    ../../modules-home/emacs.nix
+    ../generic/workstation-home.nix
 
     # (import ./modules-system/inkscape/inkscape-silhouette.nix {lib= lib; python3Packages = pkgs.python3Packages; fetchFromGitHub = pkgs.fetchFromGitHub; wrapQtAppsHook = pkgs.wrapQtAppsHook; cups = lib.cups; })
   ];

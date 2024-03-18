@@ -2,6 +2,9 @@
 {
   imports = [
     ./picom.nix
+    ../fonts/font.nix
+    ../wakelock.nix
+    ../audio/pipewire.nix
   ];
 
   environment.systemPackages = with pkg-s; [
@@ -12,7 +15,7 @@
     autorandr
 
     st
-    
+
     sddm-chili-theme
   ];
 
@@ -21,8 +24,8 @@
     enable = true;
     layout = "us";
 
-    # deviceSection = ''                                                                            
-    # Option "DRI" "3"                                                                            
+    # deviceSection = ''
+    # Option "DRI" "3"
     # '';
     # Option "TearFree" "true"
 
@@ -89,7 +92,7 @@
             emacs --internal-border=0 --border-width=0 &
             waitPID=$!
           '';
-        # --xrm='Emacs.useXIM: false' 
+        # --xrm='Emacs.useXIM: false'
       }
       # {
       #   manage = "desktop";

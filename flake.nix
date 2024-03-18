@@ -179,6 +179,7 @@
               imports = [
                 nur.nixosModules.nur
 
+                ./home.nix
                 user-home
               ];
             };
@@ -188,7 +189,7 @@
     in {
       nixosConfigurations = {
         "thinkpad-t480" = nixpkgs.lib.nixosSystem (system ./users/thinkpad-t480/system.nix ./users/thinkpad-t480/home.nix);
-        "nuc" = nixpkgs.lib.nixosSystem (system ./users/thinkpad-t480.nix ./users/thinkpad-t480-home.nix);
+        "nuc" = nixpkgs.lib.nixosSystem (system ./users/nuc/system.nix ./users/nuc/home.nix);
       };
     };
 }

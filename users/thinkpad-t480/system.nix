@@ -7,45 +7,67 @@ in
 {
   # boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  imports = [
-    (import ../modules-system/nix.nix {inherit pkgs; inherit pkg-s-path; inherit pkg-s; inherit lib; max-jobs = 2;})
 
-    ../modules-system/file-server/http-file-server.nix
+  networking = {
+    # Cold War Assault
+    firewall.allowedTCPPorts = [27015 27036 8000 8001 80 6530];
+    firewall.allowedUDPPorts = [2302 2303 2304  2305  27015  27031  27032 27033 27034 27035 27036 8000 8001 80 6530];
+  };
+  # Swap only when needed
+  # https://unix.stackexchange.com/questions/265713/how-to-configure-swappiness-in-linux-memory-management
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 1;
+
+  };
+
+
+  imports = [
+    ../generic/workstation-system.nix
+
+    ../../modules-system/kernel.nix
+
+    ../../modules-system/hardware/SSD.nix
+
+    ../../modules-system/network/dns.nix
+    ../../modules-system/virt-manager.nix
+
+    (import ../../modules-system/nix.nix {inherit pkgs; inherit pkg-s-path; inherit pkg-s; inherit lib; max-jobs = 2;})
+
+    ../../modules-system/file-server/http-file-server.nix
 
     ./hardware-configuration.nix
 
-    ./generic/pc.nix
     # ./generic/midi.nix
     # (import ./generic/pc.nix { mouse-acceleration = false; pkgs = pkgs; })
-    ./generic/laptop.nix
+    ../generic/laptop.nix
     # (import ../modules-system/boot/bios.nix { grub-dev = "/dev/nvme0n1"; })
-    ../modules-system/boot/uefi.nix
-    ../modules-system/vm/ios.nix
+    ../../modules-system/boot/uefi.nix
+    ../../modules-system/vm/ios.nix
 
     # ../modules-system/webcam-loopback.nix
 
-    ../modules-system/hardware/printer-network.nix
-    ../modules-system/hardware/bluetooth.nix
+    ../../modules-system/hardware/printer-network.nix
+    ../../modules-system/hardware/bluetooth.nix
 
-    ../modules-system/hardware/tlp/tlp-intel.nix
+    ../../modules-system/hardware/tlp/tlp-intel-laptop-performance.nix
 
     # ../modules-system/hardware/proprietary-firmware/amd.nix # ../modules-system/hardware/proprietary-firmware/all-firmware.nix
-    ../modules-system/hardware/proprietary-firmware/intel.nix
+    ../../modules-system/hardware/proprietary-firmware/intel.nix
     # ../modules-system/hardware/proprietary-firmware/redistributable-firmware.nix
     # ../modules-system/hardware/proprietary-firmware/all-firmware.nix
 
-    ../modules-system/hardware/graphics/vulkan.nix
+    ../../modules-system/hardware/graphics/vulkan.nix
     # ../modules-system/hardware/graphics/amd-video.nix
-    ../modules-system/hardware/graphics/intel-video.nix
+    ../../modules-system/hardware/graphics/intel-video.nix
 
-    ../modules-system/syncthing.nix
+    ../../modules-system/syncthing.nix
     # ../modules-system/redshift.nix
 
     # ../modules-system/hardware/input/synaptics.nix
-    ../modules-system/hardware/input/libinput.nix
+    ../../modules-system/hardware/input/libinput.nix
 
 
-    ../modules-system/steam.nix
+    ../../modules-system/steam.nix
 
 
     # ./hw-configs/x200-libreboot.nix
@@ -76,8 +98,6 @@ in
     # (import ./modules-system/inkscape/inkscape-my-extensions.nix {inkscape-silhouette = (import ./modules-system/inkscape/inkscape-silhouette.nix {lib= lib; python3Packages = pkgs.python3Packages; fetchFromGitHub = lib.fetchFromGitHub;wrapQtAppsHook = lib.wrapQtAppsHook; cups = lib.cups; });})
   ];
 
-  networking.hostName = "nixos";
-
   # services.syncthing.relay.enable = true;
   # services.syncthing.relay.port = 22240;
   # services.syncthing.relay.statusPort = 22241;
@@ -103,7 +123,7 @@ in
   environment.systemPackages = with pkg-s; [
     plasma-browser-integration
     plasma-integration
-    home-manager
+    # home-manager
     # inkscape
 
     # inkcut-new
