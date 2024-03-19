@@ -12,7 +12,6 @@ in
     };
   };
 
-
   networking = {
     # Cold War Assault
     firewall.allowedTCPPorts = [27015 27036 8000 8001 80 6530];

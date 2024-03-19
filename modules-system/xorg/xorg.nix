@@ -2,7 +2,6 @@
 {
   imports = [
     ./picom.nix
-    ../fonts/font.nix
     ../wakelock.nix
     ../audio/pipewire.nix
   ];

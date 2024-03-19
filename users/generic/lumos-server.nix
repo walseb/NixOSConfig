@@ -1,4 +1,8 @@
 { pkg-s, ... }: {
+  imports = [
+    ../../modules-system/fonts/font.nix
+  ];
+
   networking = {
     # Cold War Assault
     firewall.allowedTCPPorts = [ 80 ];
